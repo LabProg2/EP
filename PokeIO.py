@@ -8,3 +8,7 @@ class PokeIO:
 	def print_hp():
 		pass
 
+	def print_poke_info(poke1, is_my_turn):
+		pass
+
+

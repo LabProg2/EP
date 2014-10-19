@@ -10,6 +10,15 @@ class Pokemon:
 		self.speed = speed
 		self.special = special
 
+	def get_spd():
+		pass
+
+	def is_alive():
+		return self.health_power > 0
+
+	def list_attacks():
+		return self.attack_list
+
 	def perform_attack(attack, onPokemon):
 		pass
 
