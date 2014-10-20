@@ -1,8 +1,8 @@
 class Battle:
 	def __init__(self, poke1, poke2):
-		self.poke1 = poke1
-		self.poke2 = poke2
-		self.turn = self.whos_faster(poke1, poke2)
+		self._poke1 = poke1
+		self._poke2 = poke2
+		self._turn = self.whos_faster(poke1, poke2)
 
 	def whos_faster(poke1, poke2):
 		return poke1 if poke1.get_spd() > poke2.get_spd() else return poke2
