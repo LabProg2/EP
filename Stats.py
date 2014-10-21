@@ -16,4 +16,6 @@ class Stats:
 		return 250 * self._defense_power
 
 	def critical():
-		return self._speed/512
+		if random.random() <= self._speed/512 :
+			return 2
+		return 1
