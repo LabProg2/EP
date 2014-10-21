@@ -6,6 +6,12 @@ class Attack:
 		self._power = power
 		self._pp = pp
 
-	def stab(poke_type):
-		pass 
+	@property
+	def power(self):
+		return self._power
 
+	def stab(poke_type):
+		if elm_type == poke_type :
+			return 1.5
+		return 1
+	

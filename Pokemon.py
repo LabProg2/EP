@@ -41,7 +41,13 @@ class Pokemon:
 	def is_alive():
 		return self.health_power > 0
 
+	@property
+	def defense_force(self):
+		return stats.defense_force()
+
 	def perform_attack(attack, onPokemon):
+		# modifier = attack.stab(type())*stats.critical()*random.uniform(0.85,1)*compare_to(onPokemon) ???
+		# damage = ((stats.attack_force()*attack.base()/onPokemon.defense_force())+2)*modifier
 		pass
 
 	def receive_damage(damage = 0):
