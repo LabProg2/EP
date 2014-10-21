@@ -7,13 +7,13 @@ class Stats:
 		self._special = special
 
 	def decrease_life(amount):
-		pass
+		self._hp = self._hp - amount
 
 	def attack_force(level):
-		pass
+		return (2 * level + 10)*self._attack_power
 
 	def defense_force():
-		pass
+		return 250 * self._defense_power
 
 	def critical():
-		pass
+		return self._speed/512
