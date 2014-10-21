@@ -6,7 +6,7 @@ class Pokemon:
 		self._stats = stats
 		self._attack_list = attack_list
 
-	@property 
+	@property
 	def name(self):
 		'''Get pokemon's name'''
 		return self._name
