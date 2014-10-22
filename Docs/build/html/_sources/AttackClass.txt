@@ -1,0 +1,11 @@
+Attack Class
+============
+.. toctree::
+   :maxdepth: 2
+
+.. automodule:: Attack
+.. autoclass:: Attack
+   :members:
+
+   .. automethod:: __init__
+
