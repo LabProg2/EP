@@ -10,16 +10,17 @@ class Attack:
 		:returns: An Attack instance with all attributes set
 		'''
 		self._name = name
-		self._poke_type = poke_type
+		self._elm_type = elm_type
 		self._accuracy = accuracy
 		self._power = power
 		self._pp = pp
 
-	def stab(poke_type):
-		''' Same Type Attack Bonus.
+	@property
+	def power(self):
+		return self._power
 
-		:param poke_type: The type of a pokemon
-		:returns: the stab of an attack
-		'''
-		pass 
-
+	def stab(self, poke_type):
+		if self._elm_type == poke_type :
+			return 1.5
+		return 1
+	
