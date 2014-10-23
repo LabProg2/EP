@@ -56,25 +56,24 @@ class Pokemon:
 
 		:returns: TODO
 		'''
-		return self.health_power > 0
+		return stats.hp() > 0
 
 	@property
 	def defense_force(self):
 		return stats.defense_force()
 	
 	def perform_attack(attack, onPokemon):
-		''' Calculates the damage of Pokemon's attack over the onPokemon
+		''' Calculates the damage of Pokemon's attack over the onPokemon, based on http://bulbapedia.bulbagarden.net/wiki/Damage#Damage_formula
 		
 		:param attack: TODO
 		:param onPokemon: TODO
-		:returns: TODO
 		'''
 		
 		#compares all possibilities of primary and secondary types of Pokemon and onPokemon
-		compare_modifier = 	poke_type1.compare_to(poke_type1.onPokemon)*poke_type1.compare_to(poke_type2.onPokemon)*poke_type2.compare_to(poke_type1.onPokemon)*poke_type2.compare_to(poke_type2.onPokemon)
+		compare_modifier = poke_type1.compare_to(poke_type1.onPokemon) * poke_type1.compare_to(poke_type2.onPokemon) * poke_type2.compare_to(poke_type1.onPokemon) * poke_type2.compare_to(poke_type2.onPokemon)
 							
-		modifier = compare_modifier*attack.stab(type())*stats.critical()*random.uniform(0.85,1)
-		damage = ((stats.attack_force()*attack.base()/onPokemon.defense_force())+2)*modifier
+		modifier = compare_modifier * attack.stab(type()) * stats.critical() * random.uniform(0.85,1)
+		damage = ((stats.attack_force() * attack.base() / onPokemon.defense_force()) + 2) * modifier
 		onPokemon.receive_damage(damage)
 
 	def receive_damage(damage = 0):
