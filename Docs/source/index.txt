@@ -12,8 +12,12 @@ Welcome to Pokemon Battle's documentation!
    :maxdepth: 2
 
    PokemonClass
-   AttackClass
+   MoveClass
    TypeClass
+   StatsClass
+   BattleClass
+   PokeIOClass
+
 
 Indices and tables
 ==================

@@ -1,9 +1,0 @@
-Type Class
-============
-.. toctree::
-   :maxdepth: 2
-
-.. automodule:: Type 
-.. autoclass:: Type
-   :members:
-

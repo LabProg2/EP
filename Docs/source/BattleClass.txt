@@ -1,10 +1,10 @@
-Attack Class
+Battle Class
 ============
 .. toctree::
    :maxdepth: 2
 
-.. automodule:: Attack
-.. autoclass:: Attack
+.. automodule:: Battle 
+.. autoclass:: Battle
    :members:
 
    .. automethod:: __init__

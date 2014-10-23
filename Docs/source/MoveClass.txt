@@ -1,10 +1,10 @@
-Attack Class
+Move Class
 ============
 .. toctree::
    :maxdepth: 2
 
-.. automodule:: Attack
-.. autoclass:: Attack
+.. automodule:: Move 
+.. autoclass:: Move
    :members:
 
    .. automethod:: __init__
