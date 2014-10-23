@@ -1,0 +1,11 @@
+Stats Class
+============
+.. toctree::
+   :maxdepth: 2
+
+.. automodule:: Stats
+.. autoclass:: Stats
+   :members:
+
+   .. automethod:: __init__
+

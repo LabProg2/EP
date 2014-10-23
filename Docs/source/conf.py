@@ -247,6 +247,5 @@ texinfo_documents = [
 #texinfo_show_urls = 'footnote'
 
 sys.path.insert(0, os.path.abspath('../../src/'))
-sys.path.append('/usr/lib/python3.4')
 print(sys.path)
 #os.path.abspath('../../')

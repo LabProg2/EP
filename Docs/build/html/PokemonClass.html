@@ -29,7 +29,7 @@
 
   
     <link rel="top" title="Pokemon Battle 1.0 documentation" href="index.html"/>
-        <link rel="next" title="Attack Class" href="AttackClass.html"/>
+        <link rel="next" title="Move Class" href="MoveClass.html"/>
         <link rel="prev" title="Welcome to Pokemon Battle’s documentation!" href="index.html"/> 
 
   
@@ -61,10 +61,16 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="">Pokemon Class</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="AttackClass.html">Attack Class</a><ul class="simple">
+<li class="toctree-l1"><a class="reference internal" href="MoveClass.html">Move Class</a><ul class="simple">
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="TypeClass.html">Type Class</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="BattleClass.html">Battle Class</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="PokeIOClass.html">PokeIO Class</a><ul class="simple">
 </ul>
 </li>
 </ul>
@@ -109,12 +115,12 @@
 </div>
 <span class="target" id="module-Pokemon"></span><dl class="class">
 <dt id="Pokemon.Pokemon">
-<em class="property">class </em><tt class="descclassname">Pokemon.</tt><tt class="descname">Pokemon</tt><big>(</big><em>poke_type</em>, <em>stats</em>, <em>name='unknown'</em>, <em>level=1</em>, <em>attack_list=[]</em><big>)</big><a class="headerlink" href="#Pokemon.Pokemon" title="Permalink to this definition">¶</a></dt>
-<dd><p>Pokemon description TODO</p>
+<em class="property">class </em><tt class="descclassname">Pokemon.</tt><tt class="descname">Pokemon</tt><big>(</big><em>poke_type</em>, <em>stats</em>, <em>name='unknown'</em>, <em>level=1</em>, <em>move_list=[]</em><big>)</big><a class="headerlink" href="#Pokemon.Pokemon" title="Permalink to this definition">¶</a></dt>
+<dd><p>TODO: descirption</p>
 <dl class="method">
 <dt id="Pokemon.Pokemon.__init__">
-<tt class="descname">__init__</tt><big>(</big><em>poke_type</em>, <em>stats</em>, <em>name='unknown'</em>, <em>level=1</em>, <em>attack_list=[]</em><big>)</big><a class="headerlink" href="#Pokemon.Pokemon.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Description TODO</p>
+<tt class="descname">__init__</tt><big>(</big><em>poke_type</em>, <em>stats</em>, <em>name='unknown'</em>, <em>level=1</em>, <em>move_list=[]</em><big>)</big><a class="headerlink" href="#Pokemon.Pokemon.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>TODO: Description</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -124,7 +130,7 @@
 <li><strong>stats</strong> &#8211; TODO</li>
 <li><strong>name</strong> &#8211; TODO</li>
 <li><strong>level</strong> &#8211; TODO</li>
-<li><strong>attack_list</strong> &#8211; TODO</li>
+<li><strong>move_list</strong> &#8211; TODO</li>
 </ul>
 </td>
 </tr>
@@ -133,12 +139,6 @@
 </tr>
 </tbody>
 </table>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="Pokemon.Pokemon.attack_list">
-<tt class="descname">attack_list</tt><a class="headerlink" href="#Pokemon.Pokemon.attack_list" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get pokemon&#8217;s attack_list</p>
 </dd></dl>
 
 <dl class="method">
@@ -162,21 +162,27 @@
 </dd></dl>
 
 <dl class="attribute">
+<dt id="Pokemon.Pokemon.move_list">
+<tt class="descname">move_list</tt><a class="headerlink" href="#Pokemon.Pokemon.move_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get pokemon&#8217;s move_list</p>
+</dd></dl>
+
+<dl class="attribute">
 <dt id="Pokemon.Pokemon.name">
 <tt class="descname">name</tt><a class="headerlink" href="#Pokemon.Pokemon.name" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get pokemon&#8217;s name</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="Pokemon.Pokemon.perform_attack">
-<tt class="descname">perform_attack</tt><big>(</big><em>attack</em>, <em>onPokemon</em><big>)</big><a class="headerlink" href="#Pokemon.Pokemon.perform_attack" title="Permalink to this definition">¶</a></dt>
+<dt id="Pokemon.Pokemon.perform_move">
+<tt class="descname">perform_move</tt><big>(</big><em>move</em>, <em>onPokemon</em><big>)</big><a class="headerlink" href="#Pokemon.Pokemon.perform_move" title="Permalink to this definition">¶</a></dt>
 <dd><p>TODO: description</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>attack</strong> &#8211; TODO</li>
+<li><strong>move</strong> &#8211; TODO</li>
 <li><strong>onPokemon</strong> &#8211; TODO</li>
 </ul>
 </td>
@@ -214,7 +220,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="AttackClass.html" class="btn btn-neutral float-right" title="Attack Class"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="MoveClass.html" class="btn btn-neutral float-right" title="Move Class"/>Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="index.html" class="btn btn-neutral" title="Welcome to Pokemon Battle’s documentation!"><span class="fa fa-arrow-circle-left"></span> Previous</a>

@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Search &mdash; Pokemon Battle 1.0 documentation</title>
+  <title>Move Class &mdash; Pokemon Battle 1.0 documentation</title>
   
 
   
@@ -28,7 +28,9 @@
   
 
   
-    <link rel="top" title="Pokemon Battle 1.0 documentation" href="index.html"/> 
+    <link rel="top" title="Pokemon Battle 1.0 documentation" href="index.html"/>
+        <link rel="next" title="Type Class" href="TypeClass.html"/>
+        <link rel="prev" title="Pokemon Class" href="PokemonClass.html"/> 
 
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
@@ -44,7 +46,7 @@
       <div class="wy-side-nav-search">
         <a href="index.html" class="fa fa-home"> Pokemon Battle</a>
         <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="#" method="get">
+  <form id ="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
@@ -55,11 +57,11 @@
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
         
         
-            <ul>
+            <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="PokemonClass.html">Pokemon Class</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="MoveClass.html">Move Class</a><ul class="simple">
+<li class="toctree-l1 current"><a class="current reference internal" href="">Move Class</a><ul class="simple">
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="TypeClass.html">Type Class</a><ul class="simple">
@@ -94,8 +96,10 @@
   <ul class="wy-breadcrumbs">
     <li><a href="index.html">Docs</a> &raquo;</li>
       
-    <li></li>
+    <li>Move Class</li>
       <li class="wy-breadcrumbs-aside">
+        
+          <a href="_sources/MoveClass.txt" rel="nofollow"> View page source</a>
         
       </li>
   </ul>
@@ -103,22 +107,71 @@
 </div>
           <div role="main">
             
-  <noscript>
-  <div id="fallback" class="admonition warning">
-    <p class="last">
-      Please activate JavaScript to enable the search
-      functionality.
-    </p>
-  </div>
-  </noscript>
+  <div class="section" id="move-class">
+<h1>Move Class<a class="headerlink" href="#move-class" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul class="simple">
+</ul>
+</div>
+<span class="target" id="module-Move"></span><dl class="class">
+<dt id="Move.Move">
+<em class="property">class </em><tt class="descclassname">Move.</tt><tt class="descname">Move</tt><big>(</big><em>name</em>, <em>elm_type</em>, <em>accuracy</em>, <em>power</em>, <em>pp</em><big>)</big><a class="headerlink" href="#Move.Move" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represents a pokemon&#8217;s move</p>
+<dl class="method">
+<dt id="Move.Move.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>name</em>, <em>elm_type</em>, <em>accuracy</em>, <em>power</em>, <em>pp</em><big>)</big><a class="headerlink" href="#Move.Move.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Move&#8217;s constructor</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>name</strong> &#8211; Move&#8217;s name</li>
+<li><strong>elm_type</strong> &#8211; Move&#8217;s type</li>
+<li><strong>accuracy</strong> &#8211; Move&#8217;s accuracy</li>
+<li><strong>pp</strong> &#8211; Move&#8217;s power points. How many attacks you can use</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">An Move instance with all attributes set</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
-  
-  <div id="search-results">
-  
-  </div>
+<dl class="method">
+<dt id="Move.Move.stab">
+<tt class="descname">stab</tt><big>(</big><em>poke_type</em><big>)</big><a class="headerlink" href="#Move.Move.stab" title="Permalink to this definition">¶</a></dt>
+<dd><p>Same Type Attack Bonus</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>poke_type</strong> &#8211; A type to compare to the current Move type</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The stab coefficient of the damage formula</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
 
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="TypeClass.html" class="btn btn-neutral float-right" title="Type Class"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="PokemonClass.html" class="btn btn-neutral" title="Pokemon Class"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>
@@ -154,7 +207,6 @@
       <script type="text/javascript" src="_static/jquery.js"></script>
       <script type="text/javascript" src="_static/underscore.js"></script>
       <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="_static/searchtools.js"></script>
 
   
 
@@ -170,14 +222,7 @@
           SphinxRtdTheme.StickyNav.enable();
       });
   </script>
-  
-  <script type="text/javascript">
-    jQuery(function() { Search.loadIndex("searchindex.js"); });
-  </script>
-  
-  <script type="text/javascript" id="searchindexloader"></script>
    
-
 
 </body>
 </html>
