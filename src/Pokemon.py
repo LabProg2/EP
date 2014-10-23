@@ -1,5 +1,17 @@
 class Pokemon:
-	def __init__(self, name = 'unknown', level = 1, poke_type, stats, attack_list = []):
+	'''
+	Pokemon description TODO
+	'''
+	def __init__(self, poke_type, stats, name = 'unknown', level = 1, attack_list = []):
+		''' Description TODO
+
+		:param poke_type: TODO
+		:param stats: TODO
+		:param name: TODO
+		:param level: TODO
+		:param attack_list: TODO
+		:returns: TODO
+		'''
 		self._name = name
 		self._level = level
 		self._poke_type = poke_type
@@ -38,7 +50,13 @@ class Pokemon:
 	def attack_list(self, value):
 		self.attack_list = value
 	
+#######################################################################################3
+
 	def is_alive():
+		''' TODO: description
+
+		:returns: TODO
+		'''
 		return self.health_power > 0
 
 	@property
@@ -46,10 +64,21 @@ class Pokemon:
 		return stats.defense_force()
 
 	def perform_attack(attack, onPokemon):
+		''' TODO: description
+		
+		:param attack: TODO
+		:param onPokemon: TODO
+		:returns: TODO
+		'''
 		# modifier = attack.stab(type())*stats.critical()*random.uniform(0.85,1)*compare_to(onPokemon) ???
 		# damage = ((stats.attack_force()*attack.base()/onPokemon.defense_force())+2)*modifier
 		pass
 
 	def receive_damage(damage = 0):
+		''' TODO: description
+
+		:param damage: TODO
+		:returns: TODO
+		'''
 		pass
 
