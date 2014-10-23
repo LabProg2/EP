@@ -1,7 +1,12 @@
+from random import random
 from enum import Enum
 
 
 class Type(Enum):
+    '''
+    It's basically an enum of types
+    '''
+
     # list of types
     Normal = 0
     Fighting = 1
