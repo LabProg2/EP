@@ -60,8 +60,7 @@ class Pokemon:
 
         :returns: TODO
         '''
-        # TODO fix it!
-        return self.health_power > 0
+        return self._stats.hp > 0
 
     def perform_move(move, onPokemon):
         ''' Calculates the damage of Pokemon's attack over the onPokemon

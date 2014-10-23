@@ -20,13 +20,18 @@ class Stats:
         self._speed = speed
         self._special = special
 
-    def decrease_life(self, amount):
+	@property
+    def hp(self):
+        '''Get the pokemon's hp'''
+        return self._hp
+
+    def attack_force(self, level):
         '''TODO: description
 
-        :param amount: TODO
+        :param level: TODO
         :returns: TODO
         '''
-        self._hp = self._hp - amount
+        return (2 * level + 10) * self._attack_power
 
     def attack_force(self, level):
         '''TODO: description
