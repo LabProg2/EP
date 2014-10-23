@@ -1,0 +1,11 @@
+Move Class
+============
+.. toctree::
+   :maxdepth: 2
+
+.. automodule:: Move 
+.. autoclass:: Move
+   :members:
+
+   .. automethod:: __init__
+
