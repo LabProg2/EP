@@ -1,4 +1,3 @@
-from random import random
 from enum import Enum
 
 
