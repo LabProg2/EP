@@ -13,6 +13,7 @@ Welcome to Pokemon Battle's documentation!
 
    PokemonClass
    AttackClass
+   TypeClass
 
 Indices and tables
 ==================

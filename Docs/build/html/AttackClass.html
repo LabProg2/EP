@@ -23,10 +23,12 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="Pokemon Battle 1.0 documentation" href="index.html" /> 
+    <link rel="top" title="Pokemon Battle 1.0 documentation" href="index.html" />
+    <link rel="next" title="Type Class" href="TypeClass.html" />
+    <link rel="prev" title="Pokemon Class" href="PokemonClass.html" /> 
   </head>
-  <body role="document">
-    <div class="related" role="navigation" aria-label="related navigation">
+  <body>
+    <div class="related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -35,6 +37,12 @@
         <li class="right" >
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
+        <li class="right" >
+          <a href="TypeClass.html" title="Type Class"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="PokemonClass.html" title="Pokemon Class"
+             accesskey="P">previous</a> |</li>
         <li><a href="index.html">Pokemon Battle 1.0 documentation</a> &raquo;</li> 
       </ul>
     </div>  
@@ -42,7 +50,7 @@
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body" role="main">
+          <div class="body">
             
   <div class="section" id="attack-class">
 <h1>Attack Class<a class="headerlink" href="#attack-class" title="Permalink to this headline">¶</a></h1>
@@ -52,11 +60,11 @@
 </div>
 <span class="target" id="module-Attack"></span><dl class="class">
 <dt id="Attack.Attack">
-<em class="property">class </em><code class="descclassname">Attack.</code><code class="descname">Attack</code><span class="sig-paren">(</span><em>name</em>, <em>elm_type</em>, <em>accuracy</em>, <em>power</em>, <em>pp</em><span class="sig-paren">)</span><a class="headerlink" href="#Attack.Attack" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">Attack.</tt><tt class="descname">Attack</tt><big>(</big><em>name</em>, <em>elm_type</em>, <em>accuracy</em>, <em>power</em>, <em>pp</em><big>)</big><a class="headerlink" href="#Attack.Attack" title="Permalink to this definition">¶</a></dt>
 <dd><p>Represents a pokemon&#8217;s attack</p>
 <dl class="method">
 <dt id="Attack.Attack.__init__">
-<code class="descname">__init__</code><span class="sig-paren">(</span><em>name</em>, <em>elm_type</em>, <em>accuracy</em>, <em>power</em>, <em>pp</em><span class="sig-paren">)</span><a class="headerlink" href="#Attack.Attack.__init__" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">__init__</tt><big>(</big><em>name</em>, <em>elm_type</em>, <em>accuracy</em>, <em>power</em>, <em>pp</em><big>)</big><a class="headerlink" href="#Attack.Attack.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Attack&#8217;s constructor</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -77,22 +85,6 @@
 </table>
 </dd></dl>
 
-<dl class="method">
-<dt id="Attack.Attack.stab">
-<code class="descname">stab</code><span class="sig-paren">(</span><em>poke_type</em><span class="sig-paren">)</span><a class="headerlink" href="#Attack.Attack.stab" title="Permalink to this definition">¶</a></dt>
-<dd><p>Same Type Attack Bonus.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>poke_type</strong> &#8211; The type of a pokemon</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">the stab of an attack</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
 </dd></dl>
 
 </div>
@@ -101,16 +93,20 @@
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+      <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="_sources/AttackClass.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
-<div id="searchbox" style="display: none" role="search">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="PokemonClass.html"
+                        title="previous chapter">Pokemon Class</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="TypeClass.html"
+                        title="next chapter">Type Class</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/AttackClass.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
       <input type="text" name="q" />
@@ -127,7 +123,7 @@
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related" role="navigation" aria-label="related navigation">
+    <div class="related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -136,12 +132,18 @@
         <li class="right" >
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
+        <li class="right" >
+          <a href="TypeClass.html" title="Type Class"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="PokemonClass.html" title="Pokemon Class"
+             >previous</a> |</li>
         <li><a href="index.html">Pokemon Battle 1.0 documentation</a> &raquo;</li> 
       </ul>
     </div>
-    <div class="footer" role="contentinfo">
+    <div class="footer">
         &copy; Copyright 2014, Bruno, Gustavo, Cesar, Rafael.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3b1.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
     </div>
   </body>
 </html>
