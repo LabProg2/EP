@@ -15,7 +15,7 @@ class PokeIO:
         ''' TODO: description'''
         pass
 
-    def print_poke_info(pokemon):
+    def print_poke_info(pokemon, is_on_turn = False):
         ''' TODO: descritpion'''
         pass
 

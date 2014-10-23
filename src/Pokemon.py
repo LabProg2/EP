@@ -52,7 +52,7 @@ class Pokemon:
     
 #######################################################################################3
 
-    def is_alive():
+    def is_alive(self):
         ''' TODO: description
 
         :returns: TODO

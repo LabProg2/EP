@@ -1,26 +1,26 @@
 class Battle:
-    def __init__(self, poke1, poke2):
-        self._poke1 = poke1
-        self._poke2 = poke2
-        self._turn = self.whos_faster(poke1, poke2)
+	def __init__(self, poke1, poke2):
+		''' Prepare battle between poke1 and poke2 '''
+		self._active_poke = self.whos_faster(poke1, poke2)
+		if poke1 is self._active_poke: 
+			self._idle_poke = poke2
+		else:
+			self._idle_poke = poke1
 
-    def whos_faster(poke1, poke2):
-        return poke1 if poke1.get_spd() > poke2.get_spd() else poke2
+	def run_battle(self):
+		''' Start the battle '''
+		pokeio = PokeIO()
+		while self._active_poke.is_alive() or self._idle_poke.is_alive():
+			pokeio.print_poke_info(self._active_poke, True)
+			pokeio.print_poke_info(self._idle_poke, False)
+			pokeio.print_attack_list(self._active_poke)
+			attack = pokeio.read_attack
+			damage = self._active_poke.perform_attack(attack, self._idle_poke)
+			self._idle_poke.receive_damage(damage)
+			self._switch_turns()
 
-    def run_battle():
-        pokeio = PokeIO()
-        active_poke = whos_faster(poke1, poke2)
-        while poke1.is_alive() or poke2.is_alive():
-            pokeio.print_poke_info(self.poke1, self.turn == 1)
-            pokeio.print_poke_info(self.poke2, self.turn == 2)
-            pokeio.print_move_list(active_poke)
-            move = pokeio.read_move
-            if active_poke is poke1:
-                next_poke = poke2
-            else:
-                next_poke = poke1
-            damage = active_poke.perform_move(move, next_poke)
-            next_poke.receive_damage(damage)
-            active_poke = next_poke
-
-
+	def _switch_turns(self):
+		''' Changes the turn of pokemons '''
+		temp = self._active_poke
+		self._active_poke = self._idle_poke
+		self._idle_poke = temp
