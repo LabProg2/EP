@@ -20,10 +20,14 @@ class Stats:
         self._speed = speed
         self._special = special
 
+######### PROPERTIES ####################################################################
+
 	@property
     def hp(self):
         '''Get the pokemon's hp'''
         return self._hp
+
+######### METHODS #######################################################################
 
     def attack_force(self, level):
         '''TODO: description
@@ -31,7 +35,7 @@ class Stats:
         :param level: TODO
         :returns: TODO
         '''
-        return (2 * level + 10) * self._attack_power
+        return (2 * level + 10) * self._attack
 
     def attack_force(self, level):
         '''TODO: description
