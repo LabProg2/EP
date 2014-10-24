@@ -2,13 +2,13 @@ class Battle:
 	''' The battle between two pokemons'''
 	def __init__(self, poke1, poke2):
 		''' Prepare battle between poke1 and poke2'''
-#### não existe whos_faster˜˜ lalala
-		self._active_poke = self.whos_faster(poke1, poke2)
-		if poke1 is self._active_poke: 
+		#verificar se poke1 e poke2 são pokemons e levantar exception
+		if poke1.stats.speed > poke2.stats.speed:
+			self._active_poke = poke1
 			self._idle_poke = poke2
 		else:
+			self._active_poke = poke2
 			self._idle_poke = poke1
-		#verificar se poke1 e poke2 são pokemons e levantar exception
 
 	def run_battle(self):
 		''' Start the battle'''
