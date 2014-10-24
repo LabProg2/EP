@@ -109,18 +109,17 @@ class Pokemon:
         
         :param move: TODO
         :param onPokemon: TODO
-        :returns: The damage received by the pokemon 
+        :returns: The damage received by the pokemon. If the pokemon missed the attack it returns -1 
         '''
         if not isinstance(onPokemon, Pokemon):
             raise TypeError("onPokemon must be a Pokemon instance")
 
-        if accuracy_probability(move) == False:
-            return 0
-
-        compare_modifier = self.compare_types_to(onPokemon)
-        modifier = compare_modifier * move.stab(self._poke_type) * stats.critical() * random.uniform(0.85,1)
-        damage = (self._stats.attack_force() * move.power / onPokemon.defense_force() + 2) * modifier
-        onPokemon.receive_damage(damage)
+        damage = -1
+        if not move.missed():
+            compare_modifier = self.compare_types_to(onPokemon)
+            modifier = compare_modifier * move.stab(self._poke_type) * stats.critical() * random.uniform(0.85,1)
+            damage = (self._stats.attack_force() * move.power / onPokemon.defense_force() + 2) * modifier
+            onPokemon.receive_damage(damage)
 
         return damage
 
@@ -139,17 +138,6 @@ class Pokemon:
                 type_coef *= type1.compare_to(type2)
 
         return type_coef
-
-    def accuracy_probability(self, move):
-        ''' Calculates the probability of the Pokemon's attack hitting the opponent
-
-        :param move: TODO
-        :returns: TODO
-        '''
-        probability = move.accuracy() # * Accuracy/Evasion = 1 this status cannot be changed in this version
-        if random() <= probability :
-            return True
-        return False
 
     def receive_damage(self, damage = 0):
         ''' TODO: description

@@ -1,4 +1,5 @@
 from Type import Type
+from random import randrange
 
 class Move:
     ''' Represents a pokemon's move'''
@@ -54,13 +55,6 @@ class Move:
     def power(self):
         return self._power
 
-    @property
-    def accuracy(self):
-        ''' Get the accuracy of the move 
-        :returns: returns the accuracy of the move
-        '''
-        return self._accuracy
-
     def stab(self, poke_type):
         ''' Same Type Attack Bonus
 
@@ -73,3 +67,6 @@ class Move:
         if self._elm_type == poke_type :
             return 1.5
         return 1
+
+    def missed(self):
+        return randrange(0, 100) <= accuracy
