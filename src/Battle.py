@@ -2,6 +2,7 @@ class Battle:
 	''' The battle between two pokemons'''
 	def __init__(self, poke1, poke2):
 		''' Prepare battle between poke1 and poke2'''
+#### não existe whos_faster˜˜ lalala
 		self._active_poke = self.whos_faster(poke1, poke2)
 		if poke1 is self._active_poke: 
 			self._idle_poke = poke2
