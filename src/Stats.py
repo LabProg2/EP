@@ -62,7 +62,7 @@ class Stats:
 
 ######### PROPERTIES ####################################################################
 
-	@property
+    @property
     def hp(self):
         '''Get the pokemon's hp'''
         return self._hp

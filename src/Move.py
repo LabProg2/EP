@@ -56,8 +56,8 @@ class Move:
 
     @property
     def accuracy(self):
-         ''' Get the accuracy of the move 
-         :returns: returns the accuracy of the move
+        ''' Get the accuracy of the move 
+        :returns: returns the accuracy of the move
         '''
         return self._accuracy
 

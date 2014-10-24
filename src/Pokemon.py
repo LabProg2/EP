@@ -66,7 +66,7 @@ class Pokemon:
     def level(self):
         return self._level
     @level.setter
-    def level(self, level)
+    def level(self, level):
         try:
             level = int(level)
         except ValueError:
@@ -77,7 +77,7 @@ class Pokemon:
     @property
     def move_list(self):
         return self._move_list
-    @attack_list.setter
+    @move_list.setter
     def move_list(self, move_list):
         if isinstance(move_list, Move):
             move_list = [move_list]
@@ -97,14 +97,14 @@ class Pokemon:
 
 ########## METHODS ######################################################################
     
-    def is_alive():
+    def is_alive(self):
         ''' TODO: description
 
         :returns: TODO
         '''
         return self._stats.hp > 0
 
-    def perform_move(move, onPokemon):
+    def perform_move(self, move, onPokemon):
         ''' Calculates the damage of Pokemon's attack over the onPokemon
         
         :param move: TODO
@@ -124,7 +124,7 @@ class Pokemon:
 
         return damage
 
-    def compare_types_to(pokemon):
+    def compare_types_to(self, pokemon):
         ''' Compare every combination between two pokemon's types. 
 
         :param pokemon: The deffensive pokemon.
@@ -140,15 +140,18 @@ class Pokemon:
 
         return type_coef
 
-    def accuracy_probability(move):
+    def accuracy_probability(self, move):
         ''' Calculates the probability of the Pokemon's attack hitting the opponent
+
+        :param move: TODO
+        :returns: TODO
         '''
         probability = move.accuracy() # * Accuracy/Evasion = 1 this status cannot be changed in this version
         if random() <= probability :
             return True
         return False
 
-    def receive_damage(damage = 0):
+    def receive_damage(self, damage = 0):
         ''' TODO: description
 
         :param damage: TODO
