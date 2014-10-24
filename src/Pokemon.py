@@ -1,8 +1,13 @@
+from Move import Move
+from Type import Type
+from Stats import Stats
+from random import random
+
 class Pokemon:
     '''
     Class that defines the properties, attack and defense of the Pokemon
     '''
-    def __init__(self, poke_type1, poke_type2 = 'none', stats, name = 'unknown', level = 1, move_list = []):
+    def __init__(self, type_list, stats, name = 'unknown', level = 1, move_list = []):
         ''' Description TODO
 
         :param poke_type1: Pokemon's principal type
@@ -13,45 +18,82 @@ class Pokemon:
         :param move_list: Pokemon's moves, object of the Move class.
         :returns: TODO
         '''
-        self._name = name
-        self._level = level
-        self._poke_type = poke_type
-        self._stats = stats
-        self._attack_list = attack_list
 
+        self.name = name
+
+        try:
+            level = int(level)
+        except ValueError:
+            raise ValueError("level must be an int")
+        else:
+            if level < 1 or level > 100:
+                raise ValueError("level must be in interval [1 ; 100]")
+            self._level = level
+        
+        if not isisntance(stats, Stats):
+            raise TypeError("stats must be a Stats's instance")
+        self._stats = stats
+    
+        self.move_list = move_list
+
+        if isinstance(type_list, Type):
+            type_list = [type_list]
+        else:
+            raise TypeError("type_list must have only Type instances")
+        type_list.append(Type.Blank)
+        type_list = type_list[0 : 2]
+        if len(type_list) == 1:
+            raise ValueError("type_list must have at least one type")
+        for typ in type_list:
+            if not isinstance(typ, Type):
+                raise TypeError("type_list must have only Type instances")
+        
 ############# PROPERTIES ################################################################
 
     @property
     def name(self):
         return self._name
     @name.setter
-    def name(self, value):
-        self._name = value
+    def name(self, name):
+        try:
+            name = str(name)
+        except ValueError:
+            raise ValueError("name must be a string")
+        else:
+            self._name = name
     
     @property
     def level(self):
         return self._level
     @level.setter
-    def level(self, value):
-#### TESTAR PARA AS OUTRAS PROPERTIES ASSIM COMO ESSE TRY: ######   
+    def level(self, level)
         try:
-            value = int(value)
+            level = int(level)
         except ValueError:
-            print ("ERROR: Tried to assign a not int value to pokemon's level")
+            raise ValueError("level must be an int")
         else:
             self._level = value 
     
     @property
-    def attack_list(self):
-        '''Get pokemon's attack_list'''
-        return self._attack_list
+    def move_list(self):
+        return self._move_list
     @attack_list.setter
-    def attack_list(self, value):
-        self._attack_list = value
+    def move_list(self, move_list):
+        if isinstance(move_list, Move):
+            move_list = [move_list]
+        else:
+            raise TypeError("move_list must have only Move instances")
+        move_list = move_list[0 : 4]
+        if len(move_list) == 0:
+            raise ValueError("move_list must have at least one move")
+        for mov in move_list:
+            if not isinstance(mov, Move):
+                raise TypeError("move_list must have only Move instances")
+        self._move_list = move_list
 
     @property
     def defense_force(self):
-        return stats.defense_force()
+        return self._stats.defense_force()
 
 ########## METHODS ######################################################################
     
@@ -69,10 +111,17 @@ class Pokemon:
         :param onPokemon: TODO
         :returns: The damage received by the pokemon 
         '''
+        if not isinstance(onPokemon, Pokemon):
+            raise TypeError("onPokemon must be a Pokemon instance")
+
+        if accuracy_probability(move) == False:
+            return 0
+
         compare_modifier = self.compare_types_to(onPokemon)
         modifier = compare_modifier * move.stab(self._poke_type) * stats.critical() * random.uniform(0.85,1)
         damage = (self._stats.attack_force() * move.power / onPokemon.defense_force() + 2) * modifier
         onPokemon.receive_damage(damage)
+
         return damage
 
     def compare_types_to(pokemon):
@@ -81,13 +130,23 @@ class Pokemon:
         :param pokemon: The deffensive pokemon.
         :returns: The **Type** coefficient to be used on damage formula
         '''
-        # TODO: Verify if it is realy a pokemon?
+        if not isinstance(pokemon, Pokemon):
+            raise TypeError("pokemon must be a Pokemon instance")
+
         type_coef = 1
         for type1 in self._type_list:
             for type2 in pokemon.type_list:
                 type_coef *= type1.compare_to(type2)
 
         return type_coef
+
+    def accuracy_probability(move):
+        ''' Calculates the probability of the Pokemon's attack hitting the opponent
+        '''
+        probability = move.accuracy() # * Accuracy/Evasion = 1 this status cannot be changed in this version
+        if random() <= probability :
+            return True
+        return False
 
     def receive_damage(damage = 0):
         ''' TODO: description
@@ -98,7 +157,6 @@ class Pokemon:
         try:
             damage = int(damage)
         except ValueError:
-            print ("ERROR: Tried to assign a not int value in damage")
+            raise ValueError("damage must be an int greater than 0") 
         else:
             stats.decrease_life(damage)
-

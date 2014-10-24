@@ -9,7 +9,7 @@ class PokeIO:
         :returns: An integer representing the movement the user selected
         '''
         #aqui preicsa dar uns rise violento
-        x = None
+        x = None 
         while x in restriction_list or type(x) is not int:
             s = input("Escolha seu movimento!")
             try:

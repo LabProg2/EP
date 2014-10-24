@@ -14,24 +14,60 @@ class Stats:
         :param special: TODO
         :returns: TODO
         '''
-        self._hp = hp
-        self._attack = attack
-        self._defense = defense
-        self._speed = speed
-        self._special = special
+
+        try:
+            hp = int(hp)
+            if hp < 0:
+                raise ValueError
+        except ValueError:
+            raise ValueError('hp must be an int greater than or equal to 0')
+        else:
+            self._hp = hp
+
+        try:
+            attack = int(attack)
+            if attack < 0:
+                raise ValueError
+        except ValueError:
+            raise ValueError('attack must be an int greater than or equal to 0')
+        else:
+            self._attack = attack
+
+        try:
+            defense = int(defense)
+            if defense < 0:
+                raise ValueError
+        except ValueError:
+            raise ValueError('defense mut be an int greater than or equal to 0')
+        else:
+            self._defense = defense
+
+        try:
+            speed = int(speed)
+            if speed < 0:
+                raise ValueError
+        except ValueError:
+            raise ValueError('speed mut be an int greater than or equal to 0')
+        else:
+            self._speed = speed
+            
+        try:
+            special = int(special)
+            if special < 0:
+                raise ValueError
+        except ValueError:
+            raise ValueError('special mut be an int greater than or equal to 0')
+        else:
+            self._special = special
+
+######### PROPERTIES ####################################################################
 
 	@property
     def hp(self):
         '''Get the pokemon's hp'''
         return self._hp
 
-    def attack_force(self, level):
-        '''TODO: description
-
-        :param level: TODO
-        :returns: TODO
-        '''
-        return (2 * level + 10) * self._attack_power
+######### METHODS #######################################################################
 
     def attack_force(self, level):
         '''TODO: description
@@ -39,7 +75,14 @@ class Stats:
         :param level: TODO
         :returns: TODO
         '''
-        return (2 * level + 10) * self._attack
+        try:
+            level = int(level)
+            if level < 0:
+                raise ValueError
+        except ValueError:
+            raise ValueError('level must be an int greater than or equal to 0')
+        else:
+            return (2 * level + 10) * self._attack
 
     def defense_force():
         '''TODO: description
