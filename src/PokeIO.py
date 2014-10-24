@@ -39,6 +39,3 @@ class PokeIO:
         print(pokemon.name + "HP: " + pokemon.stats.hp, end = " ")
         if is_on_turn:
             print("[Em sua vez]", end = "")
-
-
-
