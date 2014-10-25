@@ -115,27 +115,44 @@
 </div>
 <span class="target" id="module-Pokemon"></span><dl class="class">
 <dt id="Pokemon.Pokemon">
-<em class="property">class </em><tt class="descclassname">Pokemon.</tt><tt class="descname">Pokemon</tt><big>(</big><em>poke_type</em>, <em>stats</em>, <em>name='unknown'</em>, <em>level=1</em>, <em>move_list=[]</em><big>)</big><a class="headerlink" href="#Pokemon.Pokemon" title="Permalink to this definition">¶</a></dt>
-<dd><p>TODO: descirption</p>
+<em class="property">class </em><tt class="descclassname">Pokemon.</tt><tt class="descname">Pokemon</tt><big>(</big><em>type_list</em>, <em>stats</em>, <em>name='unknown'</em>, <em>level=1</em>, <em>move_list=[]</em><big>)</big><a class="headerlink" href="#Pokemon.Pokemon" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class that defines the properties, attack and defense of the Pokemon</p>
 <dl class="method">
 <dt id="Pokemon.Pokemon.__init__">
-<tt class="descname">__init__</tt><big>(</big><em>poke_type</em>, <em>stats</em>, <em>name='unknown'</em>, <em>level=1</em>, <em>move_list=[]</em><big>)</big><a class="headerlink" href="#Pokemon.Pokemon.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>TODO: Description</p>
+<tt class="descname">__init__</tt><big>(</big><em>type_list</em>, <em>stats</em>, <em>name='unknown'</em>, <em>level=1</em>, <em>move_list=[]</em><big>)</big><a class="headerlink" href="#Pokemon.Pokemon.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Description TODO</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>poke_type</strong> &#8211; TODO</li>
-<li><strong>stats</strong> &#8211; TODO</li>
-<li><strong>name</strong> &#8211; TODO</li>
-<li><strong>level</strong> &#8211; TODO</li>
-<li><strong>move_list</strong> &#8211; TODO</li>
+<li><strong>poke_type1</strong> &#8211; Pokemon&#8217;s principal type</li>
+<li><strong>poke_type2</strong> &#8211; Pokemon&#8217;s secondary type (default: none)</li>
+<li><strong>stats</strong> &#8211; Pokemon&#8217;s stats, object of the Stats class.</li>
+<li><strong>name</strong> &#8211; Pokemon&#8217;s name (for example, a Zubat&#8217;s name is &#8216;Batman&#8217;)</li>
+<li><strong>level</strong> &#8211; Pokemon&#8217;s level</li>
+<li><strong>move_list</strong> &#8211; Pokemon&#8217;s moves, object of the Move class.</li>
 </ul>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">TODO</p>
 </td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Pokemon.Pokemon.compare_types_to">
+<tt class="descname">compare_types_to</tt><big>(</big><em>pokemon</em><big>)</big><a class="headerlink" href="#Pokemon.Pokemon.compare_types_to" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compare every combination between two pokemon&#8217;s types.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>pokemon</strong> &#8211; The deffensive pokemon.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The <strong>Type</strong> coefficient to be used on damage formula</td>
 </tr>
 </tbody>
 </table>
@@ -155,28 +172,10 @@
 </table>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="Pokemon.Pokemon.level">
-<tt class="descname">level</tt><a class="headerlink" href="#Pokemon.Pokemon.level" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get pokemon&#8217;s level</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="Pokemon.Pokemon.move_list">
-<tt class="descname">move_list</tt><a class="headerlink" href="#Pokemon.Pokemon.move_list" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get pokemon&#8217;s move_list</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="Pokemon.Pokemon.name">
-<tt class="descname">name</tt><a class="headerlink" href="#Pokemon.Pokemon.name" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get pokemon&#8217;s name</p>
-</dd></dl>
-
 <dl class="method">
 <dt id="Pokemon.Pokemon.perform_move">
 <tt class="descname">perform_move</tt><big>(</big><em>move</em>, <em>onPokemon</em><big>)</big><a class="headerlink" href="#Pokemon.Pokemon.perform_move" title="Permalink to this definition">¶</a></dt>
-<dd><p>TODO: description</p>
+<dd><p>Calculates the damage of Pokemon&#8217;s attack over the onPokemon</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -187,7 +186,7 @@
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">TODO</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">The damage received by the pokemon. If the pokemon missed the attack it returns -1</p>
 </td>
 </tr>
 </tbody>
