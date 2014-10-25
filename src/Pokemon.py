@@ -136,7 +136,7 @@ class Pokemon:
             compare_modifier = self.compare_types_to(onPokemon)
             modifier = compare_modifier * move.stab(self._type_list[0], self._type_list[1]) * self._stats.critical() * uniform(0.85,1)
             print("Types - move: " + str(type(move)) + " onPokemon: " + str(type(onPokemon)))
-            damage = (self._stats.attack_force(self._level) * move.power / onPokemon.defense_force() + 2) * modifier
+            damage = (self._stats.attack_force(self._level) * move.power / onPokemon.defense_force + 2) * modifier
             onPokemon.receive_damage(damage)
 
         return damage
