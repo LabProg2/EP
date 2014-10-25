@@ -64,6 +64,7 @@ class PokeIO:
                 print("A move pp must be an integer")
             move = Move(move_name, move_type, move_acu, move_pwr, move_pp)
             move_list.append(move)
+        print(move_list)
         return Pokemon(typ_list, stats, name, lvl, move_list)
 
     def read_move(self, upper_limit, restriction_list = []):

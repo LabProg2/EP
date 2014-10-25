@@ -30,11 +30,11 @@ class Pokemon:
                 raise ValueError("level must be in interval [1 ; 100]")
             self._level = level
         
-        if not isisntance(stats, Stats):
+        if not isinstance(stats, Stats):
             raise TypeError("stats must be a Stats's instance")
         self._stats = stats
     
-        self.move_list = move_list
+        self._move_list = move_list
 
 
         try:
