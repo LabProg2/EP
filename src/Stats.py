@@ -99,3 +99,14 @@ class Stats:
         if random() <= self._speed / 512:
             return True 
         return False
+
+    def decrease_life(self, amount):
+        '''TODO: description
+
+        :param amount: TODO
+        :returns: TODO
+        '''
+        if amount < 0:
+            raise ValueError("amount must be greater than or equal to 0")
+        self._hp -= amount
+
