@@ -36,13 +36,29 @@ class Pokemon:
     
         self.move_list = move_list
 
+        try:
+            type_list = list(type_list)
+        except ValueError:
+            raise ValueError("type_list must be a list")
+
+        try:
+            type_list[0] = int(type_list[0])
+        except ValueError:
+            raise ValueError("an element of a type_list must be an int")
+
+        try:
+            type_list[1] = int(type_list[1])
+        except ValueError:
+            raise ValueError("an element of a type_list must be an int")
+
         if isinstance(type_list, Type):
             type_list = [type_list]
         else:
             raise TypeError("type_list must have only Type instances")
+
         type_list.append(Type.Blank)
         type_list = type_list[0 : 2]
-        if len(type_list) == 1:
+        if len(type_list) <= 1:
             raise ValueError("type_list must have at least one type")
         for typ in type_list:
             if not isinstance(typ, Type):
