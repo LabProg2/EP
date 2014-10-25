@@ -115,29 +115,35 @@
 <span class="target" id="module-PokeIO"></span><dl class="class">
 <dt id="PokeIO.PokeIO">
 <em class="property">class </em><tt class="descclassname">PokeIO.</tt><tt class="descname">PokeIO</tt><a class="headerlink" href="#PokeIO.PokeIO" title="Permalink to this definition">¶</a></dt>
-<dd><p>TODO: Class description</p>
+<dd><p>This class is responsible for every interaction between user and this pokemon game</p>
 <dl class="method">
-<dt id="PokeIO.PokeIO.print_hp">
-<tt class="descname">print_hp</tt><big>(</big><big>)</big><a class="headerlink" href="#PokeIO.PokeIO.print_hp" title="Permalink to this definition">¶</a></dt>
-<dd><p>TODO: description</p>
+<dt id="PokeIO.PokeIO.__init__">
+<tt class="descname">__init__</tt><big>(</big><big>)</big><a class="headerlink" href="#PokeIO.PokeIO.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="PokeIO.PokeIO.print_move_list">
-<tt class="descname">print_move_list</tt><big>(</big><big>)</big><a class="headerlink" href="#PokeIO.PokeIO.print_move_list" title="Permalink to this definition">¶</a></dt>
-<dd><p>TODO: descritpion</p>
+<tt class="descname">print_move_list</tt><big>(</big><em>move_list</em><big>)</big><a class="headerlink" href="#PokeIO.PokeIO.print_move_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prints the list of movements a pokemon can make
+:param move_list: The list of movements thats going to be printed</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="PokeIO.PokeIO.print_poke_info">
 <tt class="descname">print_poke_info</tt><big>(</big><em>pokemon</em>, <em>is_on_turn=False</em><big>)</big><a class="headerlink" href="#PokeIO.PokeIO.print_poke_info" title="Permalink to this definition">¶</a></dt>
-<dd><p>TODO: descritpion</p>
+<dd><p>Prints the info of a pokemon
+:param pokemon: The pokemon that will have its info printed
+:param is_on_turn: A flag to inform if the pokemon is on its is_on_turn</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="PokeIO.PokeIO.read_move">
-<tt class="descname">read_move</tt><big>(</big><big>)</big><a class="headerlink" href="#PokeIO.PokeIO.read_move" title="Permalink to this definition">¶</a></dt>
-<dd><p>TODO: description</p>
+<tt class="descname">read_move</tt><big>(</big><em>upper_limit</em>, <em>restriction_list=[]</em><big>)</big><a class="headerlink" href="#PokeIO.PokeIO.read_move" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reads a movement from the users keyboard
+:param upper_limit: The upper limit for the number entry
+:param restriction_list: Restrictions for the number entry
+:returns: An integer representing the movement the user selected</p>
 </dd></dl>
 
 </dd></dl>
