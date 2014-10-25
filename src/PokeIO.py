@@ -39,7 +39,7 @@ class PokeIO:
             typ2 = Type(tp)
         except ValueError:
             print("Pokemon Type must be an integer")
-        typ_list = typ1, typ2
+        typ_list = [typ1, typ2]
         nat = poke_file.readline()
         stats = Stats(hp, atk, defe, spd, spc)
         move_list = []
@@ -64,10 +64,9 @@ class PokeIO:
                 print("A move pp must be an integer")
             move = Move(move_name, move_type, move_acu, move_pwr, move_pp)
             move_list.append(move)
-        print(move_list)
         return Pokemon(typ_list, stats, name, lvl, move_list)
 
-    def read_move(self, upper_limit, restriction_list = []):
+    def read_move(self, upper_limit = 4, restriction_list = []):
         ''' Reads a movement from the users keyboard
         :param upper_limit: The upper limit for the number entry
         :param restriction_list: Restrictions for the number entry
@@ -76,7 +75,7 @@ class PokeIO:
         #aqui preicsa dar uns rise violento
         x = None 
         while x in restriction_list or type(x) is not int:
-            s = input("Escolha seu movimento!")
+            s = input()
             try:
                 x = int(s)
             except: 
@@ -90,9 +89,10 @@ class PokeIO:
         :param move_list: The list of movements thats going to be printed
         '''
         #precisa dar uns rise aqui
+        print("Choose your move:")
         i = 1
         for move in move_list:
-            print("[" + i + "] - " + move.name + " (" + move.pp + ")")
+            print("[" + str(i) + "] - " + move.name + " (" + str(move.pp) + ")")
             i = i + 1
 
     def print_poke_info(self, pokemon, is_on_turn = False):
@@ -101,6 +101,7 @@ class PokeIO:
         :param is_on_turn: A flag to inform if the pokemon is on its is_on_turn
         '''
         #precisa dar uns dois rise aqui
-        print(pokemon.name + "HP: " + pokemon.stats.hp, end = " ")
+        print(pokemon.name + " HP: " + str(pokemon.hp), end = "")
         if is_on_turn:
-            print("[Em sua vez]", end = "")
+            print(" [Em sua vez]")
+        print('')

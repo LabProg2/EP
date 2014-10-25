@@ -1,5 +1,6 @@
 from Type import Type
 from random import randrange
+import re
 
 class Move:
     ''' Represents a pokemon's move'''
@@ -17,7 +18,7 @@ class Move:
         except ValueError:
             raise ValueError('name must be a string')
         else:
-            self._name = name
+            self._name = re.sub('[\s\t\n]*', '', name)
 
         if not isinstance(elm_type, Type):
             raise TypeError('elm_type must be an instance of Type')
@@ -55,18 +56,27 @@ class Move:
     def power(self):
         return self._power
 
-    def stab(self, poke_type):
+    @property
+    def name(self):
+        return self._name
+
+    @property
+    def pp(self):
+        return self._pp
+
+    def stab(self, poke_type1, poke_type2):
         ''' Same Type Attack Bonus
 
-        :param poke_type: A type to compare to the current Move type
+        :param poke_type1: A type to compare to the current Move type
+        :param poke_type1: A type to compare to the current Move type
         :returns: The stab coefficient of the damage formula
         '''
-        if not isinstance(poke_type, Type):
-            raise TypeError('poke_type must be an instance of Type')
+        if not isinstance(poke_type1, Type) or not isinstance(poke_type2, Type):
+            raise TypeError('Pokemon type must be an instance of Type')
         
-        if self._elm_type == poke_type :
+        if self._elm_type == poke_type1 or self._elm_type == poke_type2:
             return 1.5
         return 1
 
     def missed(self):
-        return randrange(0, 100) <= accuracy
+        return randrange(0, 100) <= self._accuracy

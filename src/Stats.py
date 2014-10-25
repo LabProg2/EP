@@ -67,6 +67,11 @@ class Stats:
         '''Get the pokemon's hp'''
         return self._hp
 
+    @property
+    def spd(self):
+        ''' Get the pokemon's spd'''
+        return self._speed
+
 ######### METHODS #######################################################################
 
     def attack_force(self, level):
@@ -84,14 +89,14 @@ class Stats:
         else:
             return (2 * level + 10) * self._attack
 
-    def defense_force():
+    def defense_force(self):
         '''TODO: description
 
         :returns: TODO
         '''
         return 250 * self._defense
 
-    def critical():
+    def critical(self):
         '''TODO: description
 
         :returns: TODO

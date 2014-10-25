@@ -1,7 +1,8 @@
 from Move import Move
 from Type import Type
 from Stats import Stats
-from random import random
+from random import uniform
+import re
 
 class Pokemon:
     '''
@@ -19,7 +20,7 @@ class Pokemon:
         :returns: TODO
         '''
 
-        self.name = name
+        self._name = re.sub('[\s\t\n]*', '', name)
 
         try:
             level = int(level)
@@ -33,9 +34,8 @@ class Pokemon:
         if not isinstance(stats, Stats):
             raise TypeError("stats must be a Stats's instance")
         self._stats = stats
-    
-        self._move_list = move_list
 
+        self._move_list = move_list
 
         if isinstance(type_list, Type):
             type_list = [type_list]
@@ -48,6 +48,7 @@ class Pokemon:
         for typ in type_list:
             if not isinstance(typ, Type):
                 raise TypeError("type_list must have only Type instances")
+        self._type_list = type_list
         
 ############# PROPERTIES ################################################################
 
@@ -93,8 +94,20 @@ class Pokemon:
         self._move_list = move_list
 
     @property
+    def type_list(self):
+        return self._type_list
+
+    @property
     def defense_force(self):
         return self._stats.defense_force()
+
+    @property
+    def spd(self):
+        return self._stats.spd
+
+    @property
+    def hp(self):
+        return self._stats.hp
 
 ########## METHODS ######################################################################
     
@@ -115,11 +128,15 @@ class Pokemon:
         if not isinstance(onPokemon, Pokemon):
             raise TypeError("onPokemon must be a Pokemon instance")
 
+        if not isinstance(move, Move):
+            raise TypeError("move must be a Move instance")
+
         damage = -1
         if not move.missed():
             compare_modifier = self.compare_types_to(onPokemon)
-            modifier = compare_modifier * move.stab(self._poke_type) * stats.critical() * random.uniform(0.85,1)
-            damage = (self._stats.attack_force() * move.power / onPokemon.defense_force() + 2) * modifier
+            modifier = compare_modifier * move.stab(self._type_list[0], self._type_list[1]) * self._stats.critical() * uniform(0.85,1)
+            print("Types - move: " + str(type(move)) + " onPokemon: " + str(type(onPokemon)))
+            damage = (self._stats.attack_force(self._level) * move.power / onPokemon.defense_force() + 2) * modifier
             onPokemon.receive_damage(damage)
 
         return damage
@@ -136,7 +153,7 @@ class Pokemon:
         type_coef = 1
         for type1 in self._type_list:
             for type2 in pokemon.type_list:
-                type_coef *= type1.compare_to(type2)
+                type_coef = type_coef * type1.compare_to(type2)
 
         return type_coef
 
@@ -151,4 +168,4 @@ class Pokemon:
         except ValueError:
             raise ValueError("damage must be an int greater than 0") 
         else:
-            stats.decrease_life(damage)
+            self._stats.decrease_life(damage)
