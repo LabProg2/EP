@@ -3,7 +3,9 @@ from random import randrange
 import re
 
 class Move:
-    ''' Represents a pokemon's move'''
+    '''
+    Represents a Pokemon's move
+    '''
     def __init__(self, name, elm_type, accuracy, power, pp):
         '''Move's constructor
         

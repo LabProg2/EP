@@ -9,7 +9,7 @@ class Pokemon:
     Class that defines the properties, attack and defense of the Pokemon
     '''
     def __init__(self, type_list, stats, name = 'unknown', level = 1, move_list = []):
-        ''' Description TODO
+        '''Pokemon's constructor
 
         :param poke_type1: Pokemon's principal type
         :param poke_type2: Pokemon's secondary type (default: none)
@@ -17,7 +17,7 @@ class Pokemon:
         :param name: Pokemon's name (for example, a Zubat's name is 'Batman')
         :param level: Pokemon's level
         :param move_list: Pokemon's moves, object of the Move class.
-        :returns: TODO
+        :returns: A Pokemon instance with all attributes set
         '''
 
         self._name = re.sub('[\s\t\n]*', '', name)
@@ -112,17 +112,17 @@ class Pokemon:
 ########## METHODS ######################################################################
     
     def is_alive(self):
-        ''' TODO: description
+        ''' Tests if the Pokemon is alive, i.e. if it's hp is bigger than zero
 
-        :returns: TODO
+        :returns: True or False if the hp is bigger or less than zero
         '''
         return self._stats.hp > 0
 
     def perform_move(self, move, onPokemon):
         ''' Calculates the damage of Pokemon's attack over the onPokemon
         
-        :param move: TODO
-        :param onPokemon: TODO
+        :param move: Pokemon's move that will be performed, object of the Move class.
+        :param onPokemon: The Pokemon's opponent in the battle
         :returns: The damage received by the pokemon. If the pokemon missed the attack it returns -1 
         '''
         if not isinstance(onPokemon, Pokemon):
@@ -158,10 +158,9 @@ class Pokemon:
         return type_coef
 
     def receive_damage(self, damage = 0):
-        ''' TODO: description
+        ''' Decreases the hp of the Pokemon of a damage.
 
-        :param damage: TODO
-        :returns: TODO
+        :param damage: Value of damage that will be received
         '''
         try:
             damage = int(damage)

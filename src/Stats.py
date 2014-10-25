@@ -2,17 +2,17 @@ from random import random
 
 class Stats:
     '''
-    TODO: description
+    Pokemon's stats, including hp, attack, defense, etc.
     '''
     def __init__(self, hp, attack, defense, speed, special): # Se houvessem valores padroes deveriamos por? ou definir setters para se um dia houvessem 10 stats fosse mais facil de inicializar? x_x
-        '''TODO: description
+        '''Stats constructor
 
-        :param hp: TODO
-        :param attack: TODO
-        :param defense: TODO
-        :param speed: TODO
-        :param special: TODO
-        :returns: TODO
+        :param hp: Hp (health points) of the Pokemon
+        :param attack: Attack of the Pokemon
+        :param defense: Deffense of the Pokemon
+        :param speed: Speed of the Pokemon
+        :param special: Special points of the Pokemon
+        :returns: A Stats instance with all attributes set
         '''
 
         try:
@@ -75,10 +75,10 @@ class Stats:
 ######### METHODS #######################################################################
 
     def attack_force(self, level):
-        '''TODO: description
+        '''Calculates the attack force of a Pokemon, based on it's stats. Used in Pokemon.perform_attack
 
-        :param level: TODO
-        :returns: TODO
+        :param level: Level of the Pokemon (It's not a Stats attribute, It's a Pokemon attribute)
+        :returns: returns the attack force = (2 * level + 10) * attack
         '''
         try:
             level = int(level)
@@ -90,26 +90,25 @@ class Stats:
             return (2 * level + 10) * self._attack
 
     def defense_force(self):
-        '''TODO: description
+        '''Calculates the defence force of a Pokemon, based on it's stats. Used in Pokemon.perform_attack
 
-        :returns: TODO
+        :returns: returns the defence force = 250 * defense
         '''
         return 250 * self._defense
 
     def critical(self):
-        '''TODO: description
+        '''Verifies if the attack is critical or not. Used in Pokemon.perform_attack
 
-        :returns: TODO
+        :returns: True or False, if is a critical attack or not.
         '''
         if random() <= self._speed / 512:
             return True 
         return False
 
     def decrease_life(self, amount):
-        '''TODO: description
+        '''Decreases the hp (health points) of the Pokemon by the value of amount
 
-        :param amount: TODO
-        :returns: TODO
+        :param amount: Value that hp (health points) will be decreased
         '''
         if amount < 0:
             raise ValueError("amount must be greater than or equal to 0")
