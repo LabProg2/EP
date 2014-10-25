@@ -32,6 +32,7 @@ class Battle:
             move_int = self._pokeio.read_move()
             move = self._active_poke.move_list[move_int - 1]
             damage = self._active_poke.perform_move(move, self._idle_poke)
+            print("damage: " + str(damage)) 
             self._switch_turns()
 
     def _switch_turns(self):
