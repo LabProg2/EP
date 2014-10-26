@@ -32,6 +32,9 @@ class Battle:
 
             self._pokeio.print_move_list(self._active_poke.move_list)
             move = self._pokeio.read_move(self._active_poke.move_list)
+            if move == None:
+                self._pokeio.print_winner(self._idle_poke)
+                return
             print(self._active_poke.name, "used", move._name)
             damage = self._active_poke.perform_move(move, self._idle_poke)
             if damage == -1:
@@ -40,6 +43,11 @@ class Battle:
                 print("It caused a damage of " + str(damage) + "\n") 
             sleep(2)
             self._switch_turns()
+        
+        if self._active_poke.is_alive():
+            self._pokeio.print_winner(self._active_poke)
+        else:
+            self._pokeio.print_winner(self._idle_poke)
 
     def _switch_turns(self):
         ''' Changes the turn of pokemons'''

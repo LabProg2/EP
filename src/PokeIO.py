@@ -92,6 +92,9 @@ class PokeIO:
             if move.pp != 0:
                 available_list.append(i + 1)
 
+        if available_list == []:
+            return None
+
         x = input()
         try:
             x = int(x)
@@ -138,3 +141,13 @@ class PokeIO:
         if is_on_turn:
             print(" [Em sua vez]")
         print('')
+
+    def print_winner(self, pokemon):
+        ''' Prints the winner pokemon
+        :param pokemon: The winner pokemon
+        '''
+
+        if not isinstance(pokemon, Pokemon):
+            raise TypeError("pokemon must be a Pokemon instance")
+
+        print(pokemon.name + " is the winner!")
