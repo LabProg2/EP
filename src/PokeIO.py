@@ -7,6 +7,8 @@ class PokeIO:
     This class is responsible for every interaction between user and this pokemon game
     '''
     def read_poke(self, poke_file):
+        if not type(f).__name__ == "TextIOWrapper":
+            raise TypeError("poke_file must be a instance of TextIOWrapper")
         name = poke_file.readline()
         try:
             lvl = poke_file.readline()
@@ -66,13 +68,18 @@ class PokeIO:
             move_list.append(move)
         return Pokemon(typ_list, stats, name, lvl, move_list)
 
-    def read_move(self, upper_limit = 4, restriction_list = []):
+    def read_move(self, upper_limit = 10, restriction_list = []):
         ''' Reads a movement from the users keyboard
         :param upper_limit: The upper limit for the number entry
         :param restriction_list: Restrictions for the number entry
         :returns: An integer representing the movement the user selected
         '''
-        #aqui preicsa dar uns rise violento
+        if not isinstance(restriction_list, list):
+            raise TypeError("Restriction list for moves must be a list")
+        for x in restriction_list:
+            if type(x) is not int:
+                raise TypeError("Each element of restriction list for moves must be an integer")
+        
         x = None 
         while x in restriction_list or type(x) is not int:
             s = input()
@@ -82,13 +89,18 @@ class PokeIO:
                 pass
             if x in restriction_list or type(x) is not int:
                 print("Por favor, seja bonzinho e digite um movimento válido.")
-        return x #+ 1 ou não? hehe acho que sim
+        return x - 1
                 
     def print_move_list(self, move_list):
         ''' Prints the list of movements a pokemon can make
         :param move_list: The list of movements thats going to be printed
         '''
-        #precisa dar uns rise aqui
+        if not isinstance(move_list, list):
+            raise TypeError("Move list for moves must be a list")
+        for x in move_list:
+            if not isinstance(x, Move) is not int:
+                raise TypeError("Each element of the move list must be of type Move")
+        
         print("Choose your move:")
         i = 1
         for move in move_list:
@@ -100,7 +112,11 @@ class PokeIO:
         :param pokemon: The pokemon that will have its info printed
         :param is_on_turn: A flag to inform if the pokemon is on its is_on_turn
         '''
-        #precisa dar uns dois rise aqui
+        if not isinstance(is_on_turn, bool):
+            raise TypeError("is_on_turn must be a bool instance")
+        if not isinstance(pokemon, Pokemon):
+            raise TypeError("pokemon must be a Pokemon instance")
+
         print(pokemon.name + " HP: " + str(pokemon.hp), end = "")
         if is_on_turn:
             print(" [Em sua vez]")
