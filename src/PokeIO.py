@@ -77,6 +77,7 @@ class PokeIO:
 
     def read_move(self, move_list):
         ''' Reads a movement from the users keyboard
+
         :param move_list: The move_list from which the user must choose a attack
         :returns: An integer representing the movement the user selected
         '''
@@ -107,6 +108,7 @@ class PokeIO:
                 
     def print_move_list(self, move_list):
         ''' Prints the list of movements a pokemon can make
+
         :param move_list: The list of movements thats going to be printed
         '''
         if not isinstance(move_list, list):
@@ -123,6 +125,7 @@ class PokeIO:
 
     def print_poke_info(self, pokemon, is_on_turn = False):
         ''' Prints the info of a pokemon
+
         :param pokemon: The pokemon that will have its info printed
         :param is_on_turn: A flag to inform if the pokemon is on its is_on_turn
         '''
