@@ -79,7 +79,11 @@ class PokeIO:
         print(available_list)
 
         #aqui preicsa dar uns rise violento
-        x = int(input())
+        x = input()
+        try:
+            x = int(x)
+        except:
+            pass
         while x not in available_list or type(x) is not int:
             print("Por favor, seja bonzinho e digite um movimento válido.")
             x = input()
