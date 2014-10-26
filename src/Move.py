@@ -81,4 +81,4 @@ class Move:
         return 1
 
     def missed(self):
-        return randrange(0, 100) <= self._accuracy
+        return randrange(0, 100) >= self._accuracy
