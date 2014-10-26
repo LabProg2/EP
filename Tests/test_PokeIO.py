@@ -34,8 +34,29 @@ class Test_PokeIO(unittest.TestCase):
 		self.assertEqual(self.pokeio.read_poke(self.pokeio, self.poketest_path).defense_force, self.poketest.defense_force)
 		self.assertEqual(self.pokeio.read_poke(self.pokeio, self.poketest_path).spd, self.poketest.spd)
 		self.assertEqual(self.pokeio.read_poke(self.pokeio, self.poketest_path).hp, self.poketest.hp)
+	
+	def test_read_move(self):
+		# Teste com um lista de movimentos que não é uma lista de movimentos
+		something = object()
+		self.assertRaises(TypeError, self.pokeio.read_move, self.pokeio, something)
+		somelist = [object()]
+		self.assertRaises(TypeError, self.pokeio.read_move, self.pokeio, somelist)
 
+		# Teste com uma lista de movimentos válidos
+		print("Digite um inteiro entre 1 e 3")
+		self.assertTrue(self.pokeio.read_move(self.pokeio, self.v_move_list) in self.v_move_list)
 
+	def test_print_move_list(self):
+		# Teste com um lista de movimentos que não é uma lista de movimentos
+		something = object()
+		self.assertRaises(TypeError, self.pokeio.print_move_list, self.pokeio, something)
+		somelist = [object()]
+		self.assertRaises(TypeError, self.pokeio.print_move_list, self.pokeio, somelist)
+
+	def test_print_poke_info(self):
+		# Teste com um pokemon que não é pokemon
+		something = object()
+		self.assertRaises(TypeError, self.pokeio.print_poke_info, self.pokeio, something)
 
 if __name__ == '__main__':
     unittest.main()

@@ -83,7 +83,7 @@ class PokeIO:
         if not isinstance(move_list, list):
             raise TypeError("Move list for moves must be a list")
         for x in move_list:
-            if not isinstance(x, Move) is not int:
+            if not isinstance(x, Move):
                 raise TypeError("Each element of the move list must be of type Move")
         
         available_list = []
@@ -112,7 +112,7 @@ class PokeIO:
         if not isinstance(move_list, list):
             raise TypeError("Move list for moves must be a list")
         for x in move_list:
-            if not isinstance(x, Move) is not int:
+            if not isinstance(x, Move):
                 raise TypeError("Each element of the move list must be of type Move")
         
         print("Choose your move:")
