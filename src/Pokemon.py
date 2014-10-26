@@ -8,7 +8,7 @@ class Pokemon:
     '''
     Class that defines the properties, attack and defense of the Pokemon
     '''
-    def __init__(self, type_list, stats, name = 'unknown', level = 1, move_list = []):
+    def __init__(self, type_list, stats, move_list, name = 'unknown', level = 1):
         '''Pokemon's constructor
 
         :param poke_type1: Pokemon's principal type

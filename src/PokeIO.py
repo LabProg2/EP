@@ -73,7 +73,7 @@ class PokeIO:
             move = Move(move_name, move_type, move_acu, move_pwr, move_pp)
             move_list.append(move)
         poke_file.close()
-        return Pokemon(typ_list, stats, name, lvl, move_list)
+        return Pokemon(typ_list, stats, move_list, name, lvl)
 
     def read_move(self, move_list):
         ''' Reads a movement from the users keyboard
