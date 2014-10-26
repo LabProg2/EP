@@ -6,9 +6,15 @@ class PokeIO:
     ''' 
     This class is responsible for every interaction between user and this pokemon game
     '''
-    def read_poke(self, poke_file):
-        if not type(poke_file).__name__ == "TextIOWrapper":
-            raise TypeError("poke_file must be a instance of TextIOWrapper")
+    def read_poke(self, poke_path):
+        if type(poke_path) is not str:
+            raise TypeError("poke_path must be a string")
+        try:
+            poke_file = open(poke_path, 'r')
+        except FileNotFoundError:
+            print("The pokemon file couldn't be read")
+            raise FileNotFoundError
+
         name = poke_file.readline()
         try:
             lvl = poke_file.readline()
@@ -66,6 +72,7 @@ class PokeIO:
                 print("A move pp must be an integer")
             move = Move(move_name, move_type, move_acu, move_pwr, move_pp)
             move_list.append(move)
+            poke_file.close()
         return Pokemon(typ_list, stats, name, lvl, move_list)
 
     def read_move(self, move_list):
@@ -73,6 +80,12 @@ class PokeIO:
         :param move_list: The move_list from which the user must choose a attack
         :returns: An integer representing the movement the user selected
         '''
+        if not isinstance(move_list, list):
+            raise TypeError("Move list for moves must be a list")
+        for x in move_list:
+            if not isinstance(x, Move):
+                raise TypeError("Each element of the move list must be of type Move")
+        
         available_list = []
         for i, move in enumerate(move_list):
             if move.pp != 0:
@@ -84,7 +97,7 @@ class PokeIO:
         except:
             pass
         while x not in available_list or type(x) is not int:
-            print("Por favor, seja bonzinho e digite um movimento válido.")
+            print("Please, be a good boy and choose a valid movement")
             x = input()
             try:
                 x = int(x)
@@ -99,7 +112,7 @@ class PokeIO:
         if not isinstance(move_list, list):
             raise TypeError("Move list for moves must be a list")
         for x in move_list:
-            if not isinstance(x, Move) is not int:
+            if not isinstance(x, Move):
                 raise TypeError("Each element of the move list must be of type Move")
         
         print("Choose your move:")

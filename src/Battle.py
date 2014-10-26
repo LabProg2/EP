@@ -8,19 +8,15 @@ class Battle:
     def __init__(self, poke1_path, poke2_path):
         ''' Prepare battle between poke1 and poke2'''
         self._pokeio = PokeIO()
-        try:
-            poke1_f = open(poke1_path, 'r')
-        except FileNotFoundError:
-            print("The first pokemon file couldn't be read")
-            raise FileNotFoundError
-        try:
-            poke2_f = open(poke2_path, 'r')
-        except FileNotFoundError:
-            print("The second pokemon file couldn't be read")
-            raise FileNotFoundError
 
-        poke1 = self._pokeio.read_poke(poke1_f)
-        poke2 = self._pokeio.read_poke(poke2_f)
+        if type(poke1_path) is not str:
+            raise TypeError("poke1_path must be a string")
+
+        if type(poke1_path) is not str:
+            raise TypeError("poke2_path must be a string")
+
+        poke1 = self._pokeio.read_poke(poke1_path)
+        poke2 = self._pokeio.read_poke(poke2_path)
 
         if poke1.spd >= poke2.spd:
             self._active_poke, self._idle_poke = poke1, poke2
