@@ -13,7 +13,7 @@ class Move:
         :param elm_type: Move's type
         :param accuracy: Move's accuracy
         :param pp: Move's power points. How many attacks you can use
-        :returns: An Move instance with all attributes set
+        :returns: A Move instance with all attributes set
         '''
         # name
         try:
