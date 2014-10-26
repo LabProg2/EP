@@ -79,15 +79,18 @@ class PokeIO:
         for x in restriction_list:
             if type(x) is not int:
                 raise TypeError("Each element of restriction list for moves must be an integer")
-        
+
+        if len(restriction_list) == 0 and upper_limit > 0:
+            restriction_list = list(range(1, upper_limit + 1))
+
         x = None 
-        while x in restriction_list or type(x) is not int:
+        while x not in restriction_list or type(x) is not int:
             s = input()
             try:
                 x = int(s)
             except: 
                 pass
-            if x in restriction_list or type(x) is not int:
+            if x not in restriction_list or type(x) is not int:
                 print("Por favor, seja bonzinho e digite um movimento válido.")
         return x - 1
                 

@@ -96,14 +96,16 @@ class Stats:
         '''
         return 250 * self._defense
 
-    def critical(self):
+    def critical(self, level):
         '''Verifies if the attack is critical or not. Used in Pokemon.perform_attack
 
+        :param level: The pokemon's level
         :returns: True or False, if is a critical attack or not.
         '''
         if random() <= self._speed / 512:
-            return True 
-        return False
+            print("It was a critical hit!")
+            return (2 * level + 5) / (level + 5)
+        return 1
 
     def decrease_life(self, amount):
         '''Decreases the hp (health points) of the Pokemon by the value of amount

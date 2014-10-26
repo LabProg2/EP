@@ -21,7 +21,8 @@ class Pokemon:
         '''
 
         self._name = re.sub('[\s\t\n]*', '', name)
-
+        
+        # Level
         try:
             level = int(level)
         except ValueError:
@@ -31,12 +32,14 @@ class Pokemon:
                 raise ValueError("level must be in interval [1 ; 100]")
             self._level = level
         
+        # Stats
         if not isinstance(stats, Stats):
             raise TypeError("stats must be a Stats's instance")
         self._stats = stats
 
         self._move_list = move_list
 
+        # Type
         if isinstance(type_list, Type):
             type_list = [type_list]
         if not isinstance(type_list, list):
@@ -125,6 +128,7 @@ class Pokemon:
         :param onPokemon: The Pokemon's opponent in the battle
         :returns: The damage received by the pokemon. If the pokemon missed the attack it returns -1 
         '''
+
         if not isinstance(onPokemon, Pokemon):
             raise TypeError("onPokemon must be a Pokemon instance")
 
@@ -132,11 +136,12 @@ class Pokemon:
             raise TypeError("move must be a Move instance")
 
         damage = -1
-        if not move.missed():
+        if not move.missed() and move.pp > 0:
+            move.use_move()
             compare_modifier = self.compare_types_to(onPokemon)
-            modifier = compare_modifier * move.stab(self._type_list[0], self._type_list[1]) * self._stats.critical() * uniform(0.85,1)
-            print("Types - move: " + str(type(move)) + " onPokemon: " + str(type(onPokemon)))
+            modifier = compare_modifier * move.stab(self._type_list[0], self._type_list[1]) * self._stats.critical(self._level) * uniform(0.85,1)
             damage = (self._stats.attack_force(self._level) * move.power / onPokemon.defense_force + 2) * modifier
+            damage = int(damage)
             onPokemon.receive_damage(damage)
 
         return damage
