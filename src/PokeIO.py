@@ -77,7 +77,7 @@ class PokeIO:
         for i, move in enumerate(move_list):
             if move.pp != 0:
                 available_list.append(i + 1)
-        #aqui preicsa dar uns rise violento
+
         x = input()
         try:
             x = int(x)
@@ -90,7 +90,7 @@ class PokeIO:
                 x = int(x)
             except: 
                 pass
-        return move_list[x - 1] #+ 1 ou não? hehe acho que sim
+        return move_list[x - 1]
                 
     def print_move_list(self, move_list):
         ''' Prints the list of movements a pokemon can make

@@ -116,7 +116,7 @@
 <span class="target" id="module-Move"></span><dl class="class">
 <dt id="Move.Move">
 <em class="property">class </em><tt class="descclassname">Move.</tt><tt class="descname">Move</tt><big>(</big><em>name</em>, <em>elm_type</em>, <em>accuracy</em>, <em>power</em>, <em>pp</em><big>)</big><a class="headerlink" href="#Move.Move" title="Permalink to this definition">¶</a></dt>
-<dd><p>Represents a pokemon&#8217;s move</p>
+<dd><p>Represents a Pokemon&#8217;s move</p>
 <dl class="method">
 <dt id="Move.Move.__init__">
 <tt class="descname">__init__</tt><big>(</big><em>name</em>, <em>elm_type</em>, <em>accuracy</em>, <em>power</em>, <em>pp</em><big>)</big><a class="headerlink" href="#Move.Move.__init__" title="Permalink to this definition">¶</a></dt>
@@ -141,19 +141,44 @@
 </dd></dl>
 
 <dl class="method">
+<dt id="Move.Move.missed">
+<tt class="descname">missed</tt><big>(</big><big>)</big><a class="headerlink" href="#Move.Move.missed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Verifies if the attack will be missed or not</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">True if it will be missed or False if it will not</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
 <dt id="Move.Move.stab">
-<tt class="descname">stab</tt><big>(</big><em>poke_type</em><big>)</big><a class="headerlink" href="#Move.Move.stab" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">stab</tt><big>(</big><em>poke_type1</em>, <em>poke_type2</em><big>)</big><a class="headerlink" href="#Move.Move.stab" title="Permalink to this definition">¶</a></dt>
 <dd><p>Same Type Attack Bonus</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>poke_type</strong> &#8211; A type to compare to the current Move type</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>poke_type1</strong> &#8211; A type to compare to the current Move type</li>
+<li><strong>poke_type1</strong> &#8211; A type to compare to the current Move type</li>
+</ul>
+</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The stab coefficient of the damage formula</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">The stab coefficient of the damage formula</p>
+</td>
 </tr>
 </tbody>
 </table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Move.Move.use_move">
+<tt class="descname">use_move</tt><big>(</big><big>)</big><a class="headerlink" href="#Move.Move.use_move" title="Permalink to this definition">¶</a></dt>
+<dd><p>It decreases the PP of the move</p>
 </dd></dl>
 
 </dd></dl>

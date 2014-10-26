@@ -120,7 +120,7 @@
 <dl class="method">
 <dt id="Pokemon.Pokemon.__init__">
 <tt class="descname">__init__</tt><big>(</big><em>type_list</em>, <em>stats</em>, <em>name='unknown'</em>, <em>level=1</em>, <em>move_list=[]</em><big>)</big><a class="headerlink" href="#Pokemon.Pokemon.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Description TODO</p>
+<dd><p>Pokemon&#8217;s constructor</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -135,7 +135,7 @@
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">TODO</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">A Pokemon instance with all attributes set</p>
 </td>
 </tr>
 </tbody>
@@ -161,12 +161,12 @@
 <dl class="method">
 <dt id="Pokemon.Pokemon.is_alive">
 <tt class="descname">is_alive</tt><big>(</big><big>)</big><a class="headerlink" href="#Pokemon.Pokemon.is_alive" title="Permalink to this definition">¶</a></dt>
-<dd><p>TODO: description</p>
+<dd><p>Tests if the Pokemon is alive, i.e. if it&#8217;s hp is bigger than zero</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">TODO</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">True or False if the hp is bigger or less than zero</td>
 </tr>
 </tbody>
 </table>
@@ -181,8 +181,8 @@
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>move</strong> &#8211; TODO</li>
-<li><strong>onPokemon</strong> &#8211; TODO</li>
+<li><strong>move</strong> &#8211; Pokemon&#8217;s move that will be performed, object of the Move class.</li>
+<li><strong>onPokemon</strong> &#8211; The Pokemon&#8217;s opponent in the battle</li>
 </ul>
 </td>
 </tr>
@@ -196,14 +196,12 @@
 <dl class="method">
 <dt id="Pokemon.Pokemon.receive_damage">
 <tt class="descname">receive_damage</tt><big>(</big><em>damage=0</em><big>)</big><a class="headerlink" href="#Pokemon.Pokemon.receive_damage" title="Permalink to this definition">¶</a></dt>
-<dd><p>TODO: description</p>
+<dd><p>Decreases the hp of the Pokemon of a damage.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>damage</strong> &#8211; TODO</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">TODO</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>damage</strong> &#8211; Value of damage that will be received</td>
 </tr>
 </tbody>
 </table>
