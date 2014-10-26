@@ -65,13 +65,12 @@ class testPokemon(unittest.TestCase):
 
 
     def test_receive_damage(self):
+        valid_pokemon1.receive_damage(3)
+        assertEqual(stats.hp, 7)
 
-    valid_pokemon1.receive_damage(3)
-    assertEqual(stats.hp, 7)
+        assertRaises(ValueError, valid_pokemon1.receive_damage, self, 1.23)
 
-    assertRaises(ValueError, valid_pokemon1.receive_damage, self, 1.23)
-
-    assertRaises(ValueError, valid_pokemon1.receive_damage, self, -100)
+        assertRaises(ValueError, valid_pokemon1.receive_damage, self, -100)
 
 if __name__ == '__main__':
     unittest.main()
