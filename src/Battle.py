@@ -7,16 +7,17 @@ class Battle:
 
     def __init__(self, poke1_path, poke2_path):
         ''' Prepare battle between poke1 and poke2'''
-        #verificar se poke1 e poke2 são pokemons e levantar exception
         self._pokeio = PokeIO()
         try:
             poke1_f = open(poke1_path, 'r')
         except FileNotFoundError:
             print("The first pokemon file couldn't be read")
+            raise FileNotFoundError
         try:
             poke2_f = open(poke2_path, 'r')
         except FileNotFoundError:
             print("The second pokemon file couldn't be read")
+            raise FileNotFoundError
 
         poke1 = self._pokeio.read_poke(poke1_f)
         poke2 = self._pokeio.read_poke(poke2_f)

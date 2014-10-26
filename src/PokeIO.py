@@ -7,6 +7,8 @@ class PokeIO:
     This class is responsible for every interaction between user and this pokemon game
     '''
     def read_poke(self, poke_file):
+        if not type(poke_file).__name__ == "TextIOWrapper":
+            raise TypeError("poke_file must be a instance of TextIOWrapper")
         name = poke_file.readline()
         try:
             lvl = poke_file.readline()
@@ -75,9 +77,6 @@ class PokeIO:
         for i, move in enumerate(move_list):
             if move.pp != 0:
                 available_list.append(i + 1)
-
-        print(available_list)
-
         #aqui preicsa dar uns rise violento
         x = input()
         try:
@@ -97,7 +96,12 @@ class PokeIO:
         ''' Prints the list of movements a pokemon can make
         :param move_list: The list of movements thats going to be printed
         '''
-        #precisa dar uns rise aqui
+        if not isinstance(move_list, list):
+            raise TypeError("Move list for moves must be a list")
+        for x in move_list:
+            if not isinstance(x, Move) is not int:
+                raise TypeError("Each element of the move list must be of type Move")
+        
         print("Choose your move:")
         i = 1
         for move in move_list:
@@ -109,7 +113,11 @@ class PokeIO:
         :param pokemon: The pokemon that will have its info printed
         :param is_on_turn: A flag to inform if the pokemon is on its is_on_turn
         '''
-        #precisa dar uns dois rise aqui
+        if not isinstance(is_on_turn, bool):
+            raise TypeError("is_on_turn must be a bool instance")
+        if not isinstance(pokemon, Pokemon):
+            raise TypeError("pokemon must be a Pokemon instance")
+
         print(pokemon.name + " HP: " + str(pokemon.hp), end = "")
         if is_on_turn:
             print(" [Em sua vez]")
