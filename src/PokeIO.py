@@ -6,9 +6,15 @@ class PokeIO:
     ''' 
     This class is responsible for every interaction between user and this pokemon game
     '''
-    def read_poke(self, poke_file):
-        if not type(poke_file).__name__ == "TextIOWrapper":
-            raise TypeError("poke_file must be a instance of TextIOWrapper")
+    def read_poke(self, poke_path):
+        if type(poke_path) is not str:
+            raise TypeError("poke_path must be a string")
+        try:
+            poke_file = open(poke_path, 'r')
+        except FileNotFoundError:
+            print("The pokemon file couldn't be read")
+            raise FileNotFoundError
+
         name = poke_file.readline()
         try:
             lvl = poke_file.readline()
