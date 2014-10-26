@@ -103,6 +103,7 @@ class Stats:
         :returns: True or False, if is a critical attack or not.
         '''
         if random() <= self._speed / 512:
+            print("It was a critical hit!")
             return (2 * level + 5) / (level + 5)
         return 1
 

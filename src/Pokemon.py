@@ -136,7 +136,8 @@ class Pokemon:
             raise TypeError("move must be a Move instance")
 
         damage = -1
-        if not move.missed():
+        if not move.missed() and move.pp > 0:
+            move.use_move()
             compare_modifier = self.compare_types_to(onPokemon)
             modifier = compare_modifier * move.stab(self._type_list[0], self._type_list[1]) * self._stats.critical(self._level) * uniform(0.85,1)
             damage = (self._stats.attack_force(self._level) * move.power / onPokemon.defense_force + 2) * modifier

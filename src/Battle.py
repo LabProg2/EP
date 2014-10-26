@@ -1,5 +1,6 @@
 from PokeIO import PokeIO
 from Stats import Stats
+from time import sleep
 class Battle:
     ''' The battle between two pokemons'''
     def __init__(self, poke1_path, poke2_path):
@@ -28,14 +29,17 @@ class Battle:
         while self._active_poke.is_alive() or self._idle_poke.is_alive():
             self._pokeio.print_poke_info(self._idle_poke, False)
             self._pokeio.print_poke_info(self._active_poke, True)
+            sleep(2)
+
             self._pokeio.print_move_list(self._active_poke.move_list)
-            move_int = self._pokeio.read_move()
+            move_int = self._pokeio.read_move(upper_limit = len(self._active_poke.move_list))
             move = self._active_poke.move_list[move_int - 1]
             damage = self._active_poke.perform_move(move, self._idle_poke)
             if damage == -1:
                 print("The attack was missed")
             else:
-                print("damage: " + str(damage)) 
+                print("It caused a damage of " + str(damage)) 
+            sleep(2)
             self._switch_turns()
 
     def _switch_turns(self):
