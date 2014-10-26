@@ -7,7 +7,7 @@ class PokeIO:
     This class is responsible for every interaction between user and this pokemon game
     '''
     def read_poke(self, poke_file):
-        if not type(f).__name__ == "TextIOWrapper":
+        if not type(poke_file).__name__ == "TextIOWrapper":
             raise TypeError("poke_file must be a instance of TextIOWrapper")
         name = poke_file.readline()
         try:
