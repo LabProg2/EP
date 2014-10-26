@@ -1,11 +1,25 @@
+==========
 How To Use
 ==========
 
 .. toctree::
    :maxdepth: 2
 
-| **To execute:** 
+---------- 
+To execute
+----------
 |   On EP/src/ directory, execute: 
 |   ``python3.4 main.py poke_file1 poke_file2``
 |
+-----------------------------
+To generate the documentation
+-----------------------------
+|   Install sphinx and sphinx_rtd_theme:
+|   ``python3.4 -m pip install sphinx``
+|   ``python3.4 -m pip install sphinx_rtd_theme``
+|   
+|   In EP/Docs/ directory, execute:
+|   ``make html``
+|   The html files will be generated on EP/Docs/build/html directory
+|   
 

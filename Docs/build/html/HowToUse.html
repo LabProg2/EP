@@ -72,7 +72,9 @@
 <li class="toctree-l1"><a class="reference internal" href="PokeIOClass.html">PokeIO Class</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">How To Use</a><ul class="simple">
+<li class="toctree-l1 current"><a class="current reference internal" href="">How To Use</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#to-execute">To execute</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#to-generate-the-documentation">To generate the documentation</a></li>
 </ul>
 </li>
 </ul>
@@ -115,11 +117,24 @@
 <ul class="simple">
 </ul>
 </div>
-<div class="line-block">
-<div class="line"><strong>To execute:</strong></div>
+<div class="section" id="to-execute">
+<h2>To execute<a class="headerlink" href="#to-execute" title="Permalink to this headline">¶</a></h2>
 <div class="line-block">
 <div class="line">On EP/src/ directory, execute:</div>
 <div class="line"><tt class="docutils literal"><span class="pre">python3.4</span> <span class="pre">main.py</span> <span class="pre">poke_file1</span> <span class="pre">poke_file2</span></tt></div>
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="to-generate-the-documentation">
+<h2>To generate the documentation<a class="headerlink" href="#to-generate-the-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="line-block">
+<div class="line">Install sphinx and sphinx_rtd_theme:</div>
+<div class="line"><tt class="docutils literal"><span class="pre">python3.4</span> <span class="pre">-m</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">sphinx</span></tt></div>
+<div class="line"><tt class="docutils literal"><span class="pre">python3.4</span> <span class="pre">-m</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">sphinx_rtd_theme</span></tt></div>
+<div class="line"><br /></div>
+<div class="line">In EP/Docs/ directory, execute:</div>
+<div class="line"><tt class="docutils literal"><span class="pre">make</span> <span class="pre">html</span></tt></div>
+<div class="line">The html files will be generated on EP/Docs/build/html directory</div>
 <div class="line"><br /></div>
 </div>
 </div>
