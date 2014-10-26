@@ -1,0 +1,11 @@
+How To Use
+==========
+
+.. toctree::
+   :maxdepth: 2
+
+| **To execute:** 
+|   On EP/src/ directory, execute: 
+|   ``python3.4 main.py poke_file1 poke_file2``
+|
+
