@@ -19,8 +19,10 @@ class Pokemon:
         :param move_list: Pokemon's moves, object of the Move class.
         :returns: A Pokemon instance with all attributes set
         '''
+        if type(name) is not str:
+            raise TypeError("A pokemon name must be a string")
 
-        self._name = re.sub('[\s\t\n]*', '', name)
+        self._name = re.sub('[\t\n]*', '', name)
         self.move_list = move_list
 
         self.level = level
