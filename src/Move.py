@@ -15,6 +15,7 @@ class Move:
         :param pp: Move's power points. How many attacks you can use
         :returns: An Move instance with all attributes set
         '''
+        # name
         try:
             name = str(name)
         except ValueError:
@@ -22,11 +23,13 @@ class Move:
         else:
             self._name = re.sub('[\s\t\n]*', '', name)
 
+        # elm_type
         if not isinstance(elm_type, Type):
             raise TypeError('elm_type must be an instance of Type')
         else:
             self._elm_type = elm_type
 
+        # accuracy
         try:
             accuracy = int(accuracy)
             if accuracy > 100 or accuracy < 0:
@@ -36,6 +39,7 @@ class Move:
         else:
             self._accuracy = accuracy
 
+        # power
         try:
             power = int(power)
             if power < 0:
@@ -45,6 +49,7 @@ class Move:
         else:
             self._power = power
 
+        # pp
         try:
             pp = int(pp)
             if pp < 0:
@@ -53,6 +58,8 @@ class Move:
             raise ValueError('pp must be an int greater than or equal to 0')
         else:
             self._pp = pp
+
+######### PROPERTIES ####################################################################
 
     @property
     def power(self):
@@ -65,6 +72,8 @@ class Move:
     @property
     def pp(self):
         return self._pp
+
+######### METHODS #######################################################################
 
     def stab(self, poke_type1, poke_type2):
         ''' Same Type Attack Bonus
@@ -81,8 +90,13 @@ class Move:
         return 1
 
     def missed(self):
+        ''' Verifies if the attack will be missed or not
+
+        :returns: True if it will be missed or False if it will not
+        '''
         return randrange(0, 100) >= self._accuracy
     
     def use_move(self):
+        ''' It decreases the PP of the move'''
         if self._pp > 0:
             self._pp -= 1

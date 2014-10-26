@@ -21,23 +21,15 @@ class Pokemon:
         '''
 
         self._name = re.sub('[\s\t\n]*', '', name)
-        
-        # Level
-        try:
-            level = int(level)
-        except ValueError:
-            raise ValueError("level must be an int")
-        else:
-            if level < 1 or level > 100:
-                raise ValueError("level must be in interval [1 ; 100]")
-            self._level = level
+        self.move_list = move_list
+
+        self.level = level
         
         # Stats
         if not isinstance(stats, Stats):
             raise TypeError("stats must be a Stats's instance")
         self._stats = stats
 
-        self._move_list = move_list
 
         # Type
         if isinstance(type_list, Type):
@@ -74,10 +66,12 @@ class Pokemon:
     def level(self, level):
         try:
             level = int(level)
+            if level < 1 or level > 100:
+                raise ValueError
         except ValueError:
-            raise ValueError("level must be an int")
+            raise ValueError("level must be an int in interval [1 ; 100]")
         else:
-            self._level = value 
+            self._level = level
     
     @property
     def move_list(self):
@@ -86,8 +80,6 @@ class Pokemon:
     def move_list(self, move_list):
         if isinstance(move_list, Move):
             move_list = [move_list]
-        else:
-            raise TypeError("move_list must have only Move instances")
         move_list = move_list[0 : 4]
         if len(move_list) == 0:
             raise ValueError("move_list must have at least one move")
