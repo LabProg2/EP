@@ -72,11 +72,12 @@ class PokeIO:
                 print("A move pp must be an integer")
             move = Move(move_name, move_type, move_acu, move_pwr, move_pp)
             move_list.append(move)
-            poke_file.close()
+        poke_file.close()
         return Pokemon(typ_list, stats, name, lvl, move_list)
 
     def read_move(self, move_list):
         ''' Reads a movement from the users keyboard
+
         :param move_list: The move_list from which the user must choose a attack
         :returns: An integer representing the movement the user selected
         '''
@@ -90,7 +91,7 @@ class PokeIO:
         for i, move in enumerate(move_list):
             if move.pp != 0:
                 available_list.append(i + 1)
-        
+
         x = input()
         try:
             x = int(x)
@@ -103,10 +104,11 @@ class PokeIO:
                 x = int(x)
             except: 
                 pass
-        return move_list[x - 1] 
+        return move_list[x - 1]
                 
     def print_move_list(self, move_list):
         ''' Prints the list of movements a pokemon can make
+
         :param move_list: The list of movements thats going to be printed
         '''
         if not isinstance(move_list, list):
@@ -123,6 +125,7 @@ class PokeIO:
 
     def print_poke_info(self, pokemon, is_on_turn = False):
         ''' Prints the info of a pokemon
+
         :param pokemon: The pokemon that will have its info printed
         :param is_on_turn: A flag to inform if the pokemon is on its is_on_turn
         '''

@@ -26,8 +26,8 @@ class Battle:
     def run_battle(self):
         ''' Start the battle'''
         while self._active_poke.is_alive() or self._idle_poke.is_alive():
-            self._pokeio.print_poke_info(self._idle_poke, False)
-            self._pokeio.print_poke_info(self._active_poke, True)
+            self._pokeio.print_poke_info(self._idle_poke, is_on_turn = False)
+            self._pokeio.print_poke_info(self._active_poke, is_on_turn = True)
             sleep(2)
 
             self._pokeio.print_move_list(self._active_poke.move_list)
