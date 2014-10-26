@@ -115,4 +115,6 @@ class Stats:
         if amount < 0:
             raise ValueError("amount must be greater than or equal to 0")
         self._hp -= amount
+        if self._hp < 0:
+            self._hp = 0
 

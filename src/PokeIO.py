@@ -66,26 +66,28 @@ class PokeIO:
             move_list.append(move)
         return Pokemon(typ_list, stats, name, lvl, move_list)
 
-    def read_move(self, upper_limit = 4, restriction_list = []):
+    def read_move(self, move_list):
         ''' Reads a movement from the users keyboard
-        :param upper_limit: The upper limit for the number entry
-        :param restriction_list: Restrictions for the number entry
+        :param move_list: The move_list from which the user must choose a attack
         :returns: An integer representing the movement the user selected
         '''
-        #aqui preicsa dar uns rise violento
-        if len(restriction_list) == 0 and upper_limit > 0:
-            restriction_list = list(range(1, upper_limit + 1))
+        available_list = []
+        for i, move in enumerate(move_list):
+            if move.pp != 0:
+                available_list.append(i + 1)
 
-        x = None 
-        while x not in restriction_list or type(x) is not int:
-            s = input()
+        print(available_list)
+
+        #aqui preicsa dar uns rise violento
+        x = int(input())
+        while x not in available_list or type(x) is not int:
+            print("Por favor, seja bonzinho e digite um movimento válido.")
+            x = input()
             try:
-                x = int(s)
+                x = int(x)
             except: 
                 pass
-            if x not in restriction_list or type(x) is not int:
-                print("Por favor, seja bonzinho e digite um movimento válido.")
-        return x #+ 1 ou não? hehe acho que sim
+        return move_list[x - 1] #+ 1 ou não? hehe acho que sim
                 
     def print_move_list(self, move_list):
         ''' Prints the list of movements a pokemon can make
