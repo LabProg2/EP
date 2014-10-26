@@ -18,6 +18,7 @@ Welcome to Pokemon Battle's documentation!
    BattleClass
    PokeIOClass
 
+   HowToUse
 
 Indices and tables
 ==================
