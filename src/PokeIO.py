@@ -72,6 +72,7 @@ class PokeIO:
                 print("A move pp must be an integer")
             move = Move(move_name, move_type, move_acu, move_pwr, move_pp)
             move_list.append(move)
+            poke_file.close()
         return Pokemon(typ_list, stats, name, lvl, move_list)
 
     def read_move(self, move_list):
@@ -79,24 +80,30 @@ class PokeIO:
         :param move_list: The move_list from which the user must choose a attack
         :returns: An integer representing the movement the user selected
         '''
+        if not isinstance(move_list, list):
+            raise TypeError("Move list for moves must be a list")
+        for x in move_list:
+            if not isinstance(x, Move) is not int:
+                raise TypeError("Each element of the move list must be of type Move")
+        
         available_list = []
         for i, move in enumerate(move_list):
             if move.pp != 0:
                 available_list.append(i + 1)
-        #aqui preicsa dar uns rise violento
+        
         x = input()
         try:
             x = int(x)
         except:
             pass
         while x not in available_list or type(x) is not int:
-            print("Por favor, seja bonzinho e digite um movimento válido.")
+            print("Please, be a good boy and choose a valid movement")
             x = input()
             try:
                 x = int(x)
             except: 
                 pass
-        return move_list[x - 1] #+ 1 ou não? hehe acho que sim
+        return move_list[x - 1] 
                 
     def print_move_list(self, move_list):
         ''' Prints the list of movements a pokemon can make
