@@ -26,6 +26,8 @@ class Move:
         # elm_type
         if not isinstance(elm_type, Type):
             raise TypeError('elm_type must be an instance of Type')
+        elif elm_type == Type.Blank:
+            raise ValueError('elm_type cannot be Type.Blank')
         else:
             self._elm_type = elm_type
 

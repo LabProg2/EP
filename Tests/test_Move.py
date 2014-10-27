@@ -8,58 +8,56 @@ class TestMove(unittest.TestCase):
     def setUp(self):
         self.valid_name="Tackle"
         self.valid_elm_type = Type.Normal
-        self.valid_accuracy = 100 #Sera que isso não é um float de 0 ~ 1??
+        self.valid_accuracy = 100 
         self.valid_power = 50
         self.valid_pp = 35
 
     def test_stab(self):
-        fire_type = Type.Fire
-        normal_type = Type.Normal
-        water_type = Type.Water
-        atk = Move(self.valid_name, Type.Fire, \
-                self.valid_accuracy, self.valid_power, self.valid_pp)
+        for i in range(0, 16):
+            a_type = Type(i)
+            dif_type = Type(i + 1)
 
-        # Test results
-        self.assertEqual(atk.stab(fire_type, normal_type), 1.5)
-        self.assertEqual(atk.stab(water_type, normal_type), 1)
+            atk = Move(self.valid_name, a_type, \
+                    self.valid_accuracy, self.valid_power, self.valid_pp)
 
-        # Test exceptions
-        self.assertRaises(TypeError, atk.stab, "fire")
-        self.assertRaises(TypeError, atk.stab, 0)
+            # Test results
+            self.assertEqual(atk.stab(a_type, a_type), 1.5)
+            self.assertEqual(atk.stab(a_type, dif_type), 1.5)
+            self.assertEqual(atk.stab(dif_type, a_type), 1.5)
+            self.assertEqual(atk.stab(dif_type, dif_type), 1)
+
+            # Test exceptions
+            self.assertRaises(TypeError, atk.stab, "fire")
+            self.assertRaises(TypeError, atk.stab, 0)
 
     def test_init(self):
-        a = Move(self.valid_name, self.valid_elm_type, self.valid_accuracy, \
-                self.valid_power, self.valid_pp)
         # Test wrong parameters passing
-        self.assertRaises(ValueError, Move.__init__, a, self, self.valid_elm_type, \
-                self.valid_accuracy, self.valid_power, self.valid_pp)
-        self.assertRaises(ValueError, Move.__init__, a, self.valid_name, "forninho", \
-                self.valid_accuracy, self.valid_power, self.valid_pp)
-        self.assertRaises(ValueError, Move.__init__, a, self.valid_name, self.valid_elm_type, \
-                "something", self.valid_power, self.valid_pp)
-        self.assertRaises(ValueError, Move.__init__, a, self.valid_name, self.valid_elm_type, \
-                self.valid_accuracy, "Catorze", self.valid_pp)
-        self.assertRaises(ValueError, Move.__init__, a, self.valid_name, self.valid_elm_type, \
-                self.valid_accuracy, self.valid_power, "Catorze")
-        
-        # Test valid parameters passing
-        self.assertRaises(None, Move.__init__, a, self.valid_name, self.valid_elm_type, \
-                self.valid_accuracy, self.valid_power, self.valid_pp)
-        self.assertRaises(None, Move.__init__, a, name=1234, elm_type=self.valid_elm_type, \
-                accuracy="7", power="7", pp="7")
+        self.assertRaises(TypeError, Move, self.valid_name, "Abobora", self.valid_accuracy, \
+                          self.valid_power, self.valid_pp)
+        self.assertRaises(ValueError, Move, self.valid_name, self.valid_elm_type, "Abobora", \
+                          self.valid_power, self.valid_pp)
+        self.assertRaises(ValueError, Move, self.valid_name, self.valid_elm_type, self.valid_accuracy, \
+                            "abobora", self.valid_pp)
+        self.assertRaises(ValueError, Move, self.valid_name, self.valid_elm_type, self.valid_accuracy, \
+                          self.valid_power, "abobora")
 
-        # Test absurds!
-        self.assertRaises(ValueError, Move.__init__, a, self.valid_name, Type.Blank, \
-                self.valid_accuracy, self.valid_power, self.valid_pp)
+        for i in range(1, 100):
+            self.assertRaises(ValueError, Move, self.valid_name, self.valid_elm_type, 0 - i, \
+                              self.valid_power, self.valid_pp)
+            self.assertRaises(ValueError, Move, self.valid_name, self.valid_elm_type, 100 + i, \
+                              self.valid_power, self.valid_pp)
+            self.assertRaises(ValueError, Move, self.valid_name, self.valid_elm_type, self.valid_accuracy, \
+                          0 - i, self.valid_pp)
+            self.assertRaises(ValueError, Move, self.valid_name, self.valid_elm_type, self.valid_accuracy, \
+                          self.valid_power, 0 - i)
 
-        self.assertRaises(ValueError, Move.__init__, a, self.valid_name, self.valid_elm_type, \
-                101, self.valid_power, self.valid_pp)
-        self.assertRaises(ValueError, Move.__init__, a, self.valid_name, self.valid_elm_type, \
-                -1, self.valid_power, self.valid_pp)
-        self.assertRaises(ValueError, Move.__init__, a, self.valid_name, self.valid_elm_type, \
-                self.valid_accuracy, -1, self.valid_pp)
-        self.assertRaises(ValueError, Move.__init__, a, self.valid_name, self.valid_elm_type, \
-                self.valid_accuracy, self.valid_power, -1)
+        self.assertRaises(ValueError, Move, self.valid_name, Type.Blank, self.valid_accuracy, \
+                          self.valid_power, self.valid_pp)
+
+        self.assertTrue(isinstance(Move(self.valid_name, self.valid_elm_type, self.valid_accuracy, \
+                        self.valid_power, self.valid_pp), Move))
+        self.assertTrue(isinstance(Move(1234, self.valid_elm_type, "7", "7", "7"), Move))
+
 
 if __name__ == '__main__':
     unittest.main()
