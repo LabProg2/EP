@@ -83,9 +83,9 @@ class Stats:
         try:
             level = int(level)
             if level < 0:
-                raise ValueError
-        except ValueError:
-            raise ValueError('level must be an int greater than or equal to 0')
+                raise ValueError('level must be an integer greater than 0')
+        except TypeError:
+            raise TypeError('level must be an integer')
         else:
             return (2 * level + 10) * self._attack
 
@@ -102,6 +102,13 @@ class Stats:
         :param level: The pokemon's level
         :returns: True or False, if is a critical attack or not.
         '''
+        try:
+            level = int(level)
+            if level < 0:
+                raise ValueError('level must be an integer greater than 0')
+        except TypeError:
+            raise TypeError('level must be an integer')
+            
         if random() <= self._speed / 512:
             print("It was a critical hit!")
             return (2 * level + 5) / (level + 5)

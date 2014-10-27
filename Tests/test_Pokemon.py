@@ -1,17 +1,16 @@
 import unittest
 import sys
 import os
-
 sys.path.insert(0, os.path.abspath('../src/'));
-from src.Pokemon import Pokemon
-from src.Stats import Stats
-from src.Type import Type
-from src.Move import Move
+from Pokemon import Pokemon
+from Stats import Stats
+from Type import Type
+from Move import Move
 
 class testPokemon(unittest.TestCase):
     def setUp(self):
-        self.valid_pokemon1 = Pokemon([Type(7), Type(8)], Stats(10, 3, 4, 5, 6), "NameTest", 5, [Move("atk", Type(2), 100, 30, 5)])
-        self.valid_pokemon2 = Pokemon([Type(3), Type(4)], Stats(10, 11, 3, 13, 14), "NameTest2", 1, [Move("atk", Type(1), 7, 8, 9)])
+        self.valid_pokemon1 = Pokemon([Type(7),Type(8)], Stats(2, 3, 4, 5, 6), [Move("atk", Type(2), 100, 30, 5)], "teste", 5)
+        self.valid_pokemon2 = Pokemon([Type(3),Type(4)], Stats(10, 11, 3, 13, 14), [Move("atk", Type(1), 7, 8, 9)], "NameTest2", 1)
 
         self.valid_type_list = [Type(7),Type(8)]
         self.valid_stats = Stats(10, 3, 4, 5, 6)
@@ -21,59 +20,41 @@ class testPokemon(unittest.TestCase):
         pass
 
     def test_is_alive(self):
-
-        self.assertTrue(Pokemon.is_alive(self.valid_stats.hp))
-
-        self.valid_stats.hp = 0
-        self.assertFalse(Pokemon.is_alive(self.valid_stats.hp))
-
-        self.valid_stats.hp = -10
-        self.assertFalse(Pokemon.is_alive(self.valid_stats.hp))
+        # Test regular use of function
+        self.assertTrue(self.valid_pokemon1.is_alive())
+        dead_pokemon = Pokemon([Type(7),Type(8)], Stats(0, 3, 4, 5, 6), [Move("atk", Type(2), 100, 30, 5)], "teste", 5)
+        self.assertFalse(dead_pokemon.is_alive())
 
     def test_perform_move(self):
-       
-        #Test for a valid damage
+        # Test for a regular damage
+        damage = self.valid_pokemon1.perform_move(self.valid_pokemon1.move_list[0], self.valid_pokemon2)
+        self.assertTrue(damage >= 0)
+        self.assertTrue(type(damage) is int)
+        
+        # Test absurd parameters
+        self.assertRaises(TypeError, self.valid_pokemon1.perform_move, self.valid_pokemon1, object(), self.valid_pokemon2)
+        self.assertRaises(TypeError, self.valid_pokemon1.perform_move, self.valid_pokemon1, self.valid_pokemon1.move_list[0], object())
 
-        self.assertAlmostEqual(Pokemon.perform_move(self.valid_move, self.valid_pokemon2), 10, 2)
-
-        # compare_modifier = 1 * 1 * 2 * 2 = 4
-        # move.stab() = 1
-        # critical() = if is a critical 7 / 6 = 1.167 , else 1
-        # attack_force = (2 * 5 + 10) * 3 = 60
-        # move.power = 30
-        # valid_pokemon2.defense_force = 250 * 3 = 750
-        # minimum damage = 4 * 60 * 30 * 0.85 / 750 = 8.16
-        # maximum damage = 4 * 60 * 30 * 1 * 1.167 / 750 = 11.2
-
-        #Test if the moves fails for move.accuracy = 0
-        self.valid_move = [Move("atk", Type(2), 0, 30, 5)]
-
-        self.assertEqual(Pokemon.perform_move(self.valid_move,self.valid_pokemon2), 0)
 
     def test_compare_types_to(self):
+        # Test valid entries
+        self.assertEqual(self.valid_pokemon1.compare_types_to(self.valid_pokemon2), 2)
+        self.assertEqual(self.valid_pokemon1.compare_types_to(self.valid_pokemon1), 1)
+        self.assertEqual(self.valid_pokemon2.compare_types_to(self.valid_pokemon1), 0.5)
 
-        self.assertEqual(self.compare_types_to(self.valid_pokemon2),4)
-
-        self.valid_pokemon1 = Pokemon([Type(1000),Type(8)], Stats(2, 3, 4, 5, 6), "NameTest", 5 ,[Move("atk", Type(2), 100, 30, 5)])
-        self.assertRaises(ValueError, self.compare_types_to, self, self.valid_pokemon2)
-
-        self.valid_pokemon1 = Pokemon([Type(7),Type(1000)], Stats(2, 3, 4, 5, 6), "NameTest", 5 ,[Move("atk", Type(2), 100, 30, 5)])
-        self.assertRaises(ValueError, self.compare_types_to, self, self.valid_pokemon2)
-
-        self.valid_pokemon2 = Pokemon([Type(-10),Type(4)], Stats(10, 11, 3, 13, 14), "NameTest2", 1 ,[Move("atk", Type(1), 7, 8, 9)])
-        self.assertRaises(ValueError, self.compare_types_to, self, self.valid_pokemon2)
-
-        self.valid_pokemon2 = Pokemon([Type(2),Type(10000)], Stats(10, 11, 3, 13, 14), "NameTest2", 1 ,[Move("atk", Type(1), 7, 8, 9)])
-        self.assertRaises(ValueError, self.compare_types_to, self, self.valid_pokemon2)
-
+        # Test exceptions
+        self.assertRaises(TypeError, self.valid_pokemon1.compare_types_to, self.valid_pokemon1, object())
 
     def test_receive_damage(self):
-        self.valid_pokemon1.receive_damage(3)
-        self.assertEqual(Stats.hp, 7)
+        # Test regular use of the function
+        self.valid_pokemon2.receive_damage(5)
+        self.assertEqual(self.valid_pokemon2.hp, 5)
+        self.valid_pokemon2.receive_damage(0)
+        self.assertEqual(self.valid_pokemon2.hp, 5)
 
-        self.assertRaises(ValueError, self.valid_pokemon1.receive_damage, self, 1.23)
-
-        self.assertRaises(ValueError, self.valid_pokemon1.receive_damage, self, -100)
+        # Test absurds
+        self.assertRaises(TypeError, self.valid_pokemon1.receive_damage, object())        
+        self.assertRaises(ValueError, self.valid_pokemon1.receive_damage, -100)        
 
 if __name__ == '__main__':
     unittest.main()

@@ -163,7 +163,9 @@ class Pokemon:
         '''
         try:
             damage = int(damage)
-        except ValueError:
-            raise ValueError("damage must be an int greater than 0") 
+        except TypeError:
+            raise TypeError("damage must be of type int") 
         else:
+            if damage < 0:
+                raise ValueError("damage must be greater than 0")
             self._stats.decrease_life(damage)

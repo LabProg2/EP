@@ -14,13 +14,14 @@ class TestMove(unittest.TestCase):
 
     def test_stab(self):
         fire_type = Type.Fire
+        normal_type = Type.Normal
         water_type = Type.Water
         atk = Move(self.valid_name, Type.Fire, \
                 self.valid_accuracy, self.valid_power, self.valid_pp)
 
         # Test results
-        self.assertEqual(atk.stab(fire_type), 1.5)
-        self.assertEqual(atk.stab(water_type), 1)
+        self.assertEqual(atk.stab(fire_type, normal_type), 1.5)
+        self.assertEqual(atk.stab(water_type, normal_type), 1)
 
         # Test exceptions
         self.assertRaises(TypeError, atk.stab, "fire")
