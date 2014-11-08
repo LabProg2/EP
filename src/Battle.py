@@ -1,22 +1,22 @@
-from PokeIO import PokeIO
+from BattleIO import BattleIO
 from Stats import Stats
 from time import sleep
 
 class Battle:
     ''' The battle between two pokemons'''
 
-    def __init__(self, poke1_path, poke2_path):
+    def __init__(self, poke1, poke2):
         ''' Prepare battle between poke1 and poke2'''
-        self._pokeio = PokeIO()
+        self._battleio = BattleIO()
 
-        if type(poke1_path) is not str:
-            raise TypeError("poke1_path must be a string")
+        # if type(poke1_path) is not str:
+        #     raise TypeError("poke1_path must be a string")
 
-        if type(poke1_path) is not str:
-            raise TypeError("poke2_path must be a string")
+        # if type(poke1_path) is not str:
+        #     raise TypeError("poke2_path must be a string")
 
-        poke1 = self._pokeio.read_poke(poke1_path)
-        poke2 = self._pokeio.read_poke(poke2_path)
+        # poke1 = self._battleio.read_poke(poke1_path)
+        # poke2 = self._battleio.read_poke(poke2_path)
 
         if poke1.spd >= poke2.spd:
             self._active_poke, self._idle_poke = poke1, poke2
@@ -26,14 +26,14 @@ class Battle:
     def run_battle(self):
         ''' Start the battle'''
         while self._active_poke.is_alive() or self._idle_poke.is_alive():
-            self._pokeio.print_poke_info(self._idle_poke, is_on_turn = False)
-            self._pokeio.print_poke_info(self._active_poke, is_on_turn = True)
+            self._battleio.print_poke_info(self._idle_poke, is_on_turn = False)
+            self._battleio.print_poke_info(self._active_poke, is_on_turn = True)
             sleep(2)
 
-            self._pokeio.print_move_list(self._active_poke.move_list)
-            move = self._pokeio.read_move(self._active_poke.move_list)
+            self._battleio.print_move_list(self._active_poke.move_list)
+            move = self._battleio.read_move(self._active_poke.move_list)
             if move == None:
-                self._pokeio.print_winner(self._idle_poke)
+                self._battleio.print_winner(self._idle_poke)
                 return
             print(self._active_poke.name, "used", move._name)
             damage = self._active_poke.perform_move(move, self._idle_poke)
@@ -45,9 +45,9 @@ class Battle:
             self._switch_turns()
         
         if self._active_poke.is_alive():
-            self._pokeio.print_winner(self._active_poke)
+            self._battleio.print_winner(self._active_poke)
         else:
-            self._pokeio.print_winner(self._idle_poke)
+            self._battleio.print_winner(self._idle_poke)
 
     def _switch_turns(self):
         ''' Changes the turn of pokemons'''

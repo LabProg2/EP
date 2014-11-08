@@ -1,17 +1,10 @@
 import sys
 from Battle import Battle
+from PokeReader import PokeReader
 
-try:
-    poke1_path = sys.argv[1]
-except IndexError:
-    print("Please, enter the first pokemon file path")
-
-try:
-    poke2_path = sys.argv[2]
-except IndexError:
-    print("Please, enter the second pokemon file path")
-
-battle = Battle(poke1_path, poke2_path)
+pokereader = PokeReader()
+poke1, poke2 = pokereader.read_pokemons()
+battle = Battle(poke1, poke2)
 battle.run_battle()
 
 

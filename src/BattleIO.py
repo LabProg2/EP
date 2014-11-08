@@ -2,79 +2,10 @@ from Stats import Stats
 from Move import Move
 from Type import Type
 from Pokemon import Pokemon
-class PokeIO:
+class BattleIO:
     ''' 
-    This class is responsible for every interaction between user and this pokemon game
+    This class is responsible for every interaction between the battle and the user
     '''
-    def read_poke(self, poke_path):
-        if type(poke_path) is not str:
-            raise TypeError("poke_path must be a string")
-        try:
-            poke_file = open(poke_path, 'r')
-        except FileNotFoundError:
-            print("The pokemon file couldn't be read")
-            raise FileNotFoundError
-
-        name = poke_file.readline()
-        try:
-            lvl = poke_file.readline()
-        except ValueError:
-            print("Level must be an integer")
-        try:
-            hp = poke_file.readline()
-        except ValueError:
-            print("Health powe must be an integer")
-        try:
-            atk = poke_file.readline()
-        except ValueError:
-            print("Attack must be an integer")
-        try:
-            defe = int(poke_file.readline())
-        except ValueError:
-            print("Defence must be an integer")
-        try:
-            spd = int(poke_file.readline())
-        except ValueError:
-            print("Speed must be an integer")
-        try:
-            spc = int(poke_file.readline())
-        except ValueError:
-            print("Special must be an integer")
-        try:
-            tp = int(poke_file.readline())
-            typ1 = Type(tp)
-            tp = int(poke_file.readline())
-            typ2 = Type(tp)
-        except ValueError:
-            print("Pokemon Type must be an integer")
-        typ_list = [typ1, typ2]
-        nat = poke_file.readline()
-        stats = Stats(hp, atk, defe, spd, spc)
-        move_list = []
-        for i in range(int(nat)):
-            move_name = poke_file.readline()
-            try:
-                tp = int(poke_file.readline())
-                move_type = Type(tp)
-            except ValueError:
-                print("A move type must be an integer")
-            try:
-                move_acu = int(poke_file.readline())
-            except ValueError:
-                print("A move accuracy must be an integer")
-            try:
-                move_pwr = int(poke_file.readline())
-            except ValueError:
-                print("A move power must be an integer")
-            try:
-                move_pp = int(poke_file.readline())
-            except ValueError:
-                print("A move pp must be an integer")
-            move = Move(move_name, move_type, move_acu, move_pwr, move_pp)
-            move_list.append(move)
-        poke_file.close()
-        return Pokemon(typ_list, stats, move_list, name, lvl)
-
     def read_move(self, move_list):
         ''' Reads a movement from the users keyboard
 
