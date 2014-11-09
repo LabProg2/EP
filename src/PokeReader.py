@@ -13,7 +13,6 @@ class PokeReader:
 
     def read_pokemon(self):     
         name = stdin.readline()
-        print("Estou lendo o " + name)
         try:
             lvl = stdin.readline()
         except ValueError:
