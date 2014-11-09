@@ -46,7 +46,7 @@ class Pokemon:
             if not isinstance(typ, Type):
                 raise TypeError("type_list must have only Type instances")
         self._type_list = type_list
-        
+        self._struggle = Move("struggle", Type.Normal, 100, 50, 1)
 ############# PROPERTIES ################################################################
 
     @property
@@ -106,6 +106,10 @@ class Pokemon:
     def hp(self):
         return self._stats.hp
 
+    @property
+    def struggle(self):
+        return self._struggle
+
 ########## METHODS ######################################################################
     
     def is_alive(self):
@@ -128,16 +132,37 @@ class Pokemon:
 
         if not isinstance(move, Move):
             raise TypeError("move must be a Move instance")
+        if move.name == "struggle":
+            damage = self._perform_struggle(move, onPokemon)
+        else:
+            damage = self._perform_regular_move(move, onPokemon)
+        return damage
 
+    def _perform_regular_move(self, move, onPokemon):
         damage = -1
         if not move.missed() and move.pp > 0:
             move.use_move()
-            compare_modifier = self.compare_types_to(onPokemon)
-            modifier = compare_modifier * move.stab(self._type_list[0], self._type_list[1]) * self._stats.critical(self._level) * uniform(0.85,1)
-            damage = (self._stats.attack_force(self._level) * move.power / onPokemon.defense_force + 2) * modifier
-            damage = int(damage)
+            damage = self._calc_damage(move, onPokemon)
             onPokemon.receive_damage(damage)
+        return damage
 
+    def _perform_struggle(self, move, onPokemon):
+        damage = self._calc_damage(move, onPokemon)
+        if Type.Ghost in onPokemon.type_list:
+            damage = 0
+        elif Type.Rock in onPokemon.type_list:
+            damage = damage / 2
+        else:
+            pass
+        onPokemon.receive_damage(damage)
+        self.receive_damage(damage / 2)
+        return damage
+
+    def _calc_damage(self, move, onPokemon):
+        compare_modifier = self.compare_types_to(onPokemon)
+        modifier = compare_modifier * move.stab(self._type_list[0], self._type_list[1]) * self._stats.critical(self._level) * uniform(0.85,1)
+        damage = (self._stats.attack_force(self._level) * move.power / onPokemon.defense_force + 2) * modifier
+        damage = int(damage)
         return damage
 
     def compare_types_to(self, pokemon):

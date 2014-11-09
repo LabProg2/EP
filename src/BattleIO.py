@@ -1,6 +1,5 @@
 from Stats import Stats
 from Move import Move
-from Type import Type
 from Pokemon import Pokemon
 class BattleIO:
     ''' 
