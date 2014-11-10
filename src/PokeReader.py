@@ -8,7 +8,7 @@ class PokeReader:
     '''This class reads two pokemons from the standart in'''
     def read_pokemons(self, n = 2):
         pokemon_list = []
-        for i in range (n):
+        for _ in range (n):
             pokemon_list.append(self.read_pokemon())
         return tuple(pokemon_list)
 
