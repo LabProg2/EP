@@ -1,5 +1,6 @@
 Electrode
-560
+5
+60
 50
 70
 140
@@ -7,24 +8,23 @@ Electrode
 12
 16
 4
-Dynamic Punch
-1
-50
-5
-100
-Thunder Punch
-12
-100
-15
-75
-Low Sweep
-1
-100
-20
-65
-Take Down
+Hex
 0
-85
+100
+10
+65
+Oblivion Wing
+2
+100
+10
+80
+Focus Punch
+1
+100
 20
+150
+Freeze Shock
+14
 90
-
+5
+140

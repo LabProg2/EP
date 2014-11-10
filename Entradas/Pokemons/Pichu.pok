@@ -1,5 +1,6 @@
 Pichu
-520
+5
+20
 40
 15
 60
@@ -7,24 +8,23 @@ Pichu
 12
 16
 4
-Ice Ball
-14
+Earth Power
+4
+100
+10
 90
-20
-30
-Thief
-0
-100
-25
-60
-Attack Order
-8
-100
+Fire Fang
+9
+95
 15
-90
-Tackle
+65
+Frustration
 0
 100
-35
-50
-
+20
+1
+Super Fang
+0
+90
+10
+1
