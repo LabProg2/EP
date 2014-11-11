@@ -18,6 +18,7 @@ class BattleIO:
             if not isinstance(x, Move):
                 raise TypeError("Each element of the move list must be of type Move")
         
+
         available_list = []
         for i, move in enumerate(move_list):
             if move.pp != 0:
@@ -30,9 +31,8 @@ class BattleIO:
         try:
             x = int(x)
         except:
-            pass
-        while x not in available_list or type(x) is not int:
             print("Please, be a good boy and choose a valid movement")
+        while x not in available_list or type(x) is not int:
             x = input()
             try:
                 x = int(x)
