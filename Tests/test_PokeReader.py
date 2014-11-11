@@ -14,13 +14,12 @@ class testPokeReader(unittest.TestCase):
 
     def test_read_pokemons(self):
         # Test for for x random entry files in entry_path
-        x = 10
         filenames = os.listdir(self.entry_path)
         pr = PokeReader.PokeReader()
-        for n in range(x): 
+        for n in range(len(filenames)): 
             tmp = open(".tmp", "w")
             for _ in range(n + 1):
-                f = open(self.entry_path + choice(filenames), "r")
+                f = open(self.entry_path + filenames[n], "r")
                 #f = open(self.entry_path + "Pikachu.pok", "r")
                 tmp.write(f.read())
                 f.close()

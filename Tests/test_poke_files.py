@@ -81,6 +81,7 @@ class testPokeFiles(unittest.TestCase):
                     int(f.readline())
                 except ValueError:
                     raise ValueError("Error reading pp of: " + filename)
+            f.close()
 
 if __name__ == "__main__":
     unittest.main()
