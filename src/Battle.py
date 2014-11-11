@@ -23,6 +23,7 @@ class Battle:
         while self._active_poke.is_alive() or self._idle_poke.is_alive():
             self._battleio.print_poke_info(self._idle_poke, is_on_turn = False)
             self._battleio.print_poke_info(self._active_poke, is_on_turn = True)
+
             sleep(0.5)
 
             self._battleio.print_move_list(self._active_poke.move_list)
