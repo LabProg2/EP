@@ -17,34 +17,34 @@ class PokeReader:
         try:
             lvl = stdin.readline()
         except ValueError:
-            print("Level must be an integer")
+            raise ValueError("Level must be an integer")
         try:
             hp = stdin.readline()
         except ValueError:
-            print("Health powe must be an integer")
+            raise ValueError("Health powe must be an integer")
         try:
             atk = stdin.readline()
         except ValueError:
-            print("Attack must be an integer")
+            raise ValueError("Attack must be an integer")
         try:
             defe = int(stdin.readline())
         except ValueError:
-            print("Defence must be an integer")
+            raise ValueError("Defence must be an integer")
         try:
             spd = int(stdin.readline())
         except ValueError:
-            print("Speed must be an integer")
+            raise ValueError("Speed must be an integer")
         try:
             spc = int(stdin.readline())
         except ValueError:
-            print("Special must be an integer")
+            raise ValueError("Special must be an integer")
         try:
             tp = int(stdin.readline())
             typ1 = Type(tp)
             tp = int(stdin.readline())
             typ2 = Type(tp)
         except ValueError:
-            print("Pokemon Type must be an integer")
+            raise ValueError("Pokemon Type must be an integer")
         typ_list = [typ1, typ2]
         nat = stdin.readline()
         stats = Stats(hp, atk, defe, spd, spc)
@@ -55,20 +55,19 @@ class PokeReader:
                 tp = int(stdin.readline())
                 move_type = Type(tp)
             except ValueError:
-                print("A move type must be an integer")
+                raise ValueError("A move type must be an integer")
             try:
                 move_acu = int(stdin.readline())
             except ValueError:
-                print("A move accuracy must be an integer")
+                raise ValueError("A move accuracy must be an integer")
             try:
                 move_pwr = int(stdin.readline())
             except ValueError:
-                print("A move power must be an integer")
+                raise ValueError("A move power must be an integer")
             try:
                 move_pp = int(stdin.readline())
             except ValueError:
-                print("A move pp must be an integer")
+                raise ValueError("A move pp must be an integer")
             move = Move(move_name, move_type, move_acu, move_pwr, move_pp)
             move_list.append(move)
-        #stdin.close()
         return Pokemon(typ_list, stats, move_list, name, lvl)
