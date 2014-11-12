@@ -22,12 +22,9 @@ class Battle:
             self._battleio.print_poke_info(self._active_poke, is_on_turn = True)
 
             sleep(0.5)
-            self._battleio.print_move_list(self._active_poke.move_list)
-            move = self._battleio.read_move(self._active_poke.move_list)
-            damage = self._active_poke.perform_move(move, self._idle_poke)
-            self._battleio.print_move_result(self._active_poke, move, damage)
+            self._perform_play(self._active_poke, self._idle_poke, self._active_poke.move_list)
+            self._switch_turns()    
             sleep(0.5)
-            self._switch_turns()
         
         if self._idle_poke.is_alive():
             self._battleio.print_winner(self._idle_poke)
@@ -43,3 +40,9 @@ class Battle:
             return (poke1, poke2)
         else:
             return (poke2, poke1)
+
+    def _perform_play(self, atking_poke, atked_poke, move_list):
+        self._battleio.print_move_list(atking_poke.move_list)
+        move = self._battleio.read_move(atking_poke.move_list)
+        damage = self._active_poke.perform_move(move, atked_poke)
+        self._battleio.print_move_result(atking_poke, move, damage)
