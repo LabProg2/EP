@@ -93,18 +93,27 @@ class Pokemon:
     @property
     def type_list(self):
         return self._type_list
-
-    @property
-    def defense_force(self):
-        return self._stats.defense_force()
-
-    @property
-    def spd(self):
-        return self._stats.spd
-
+    
     @property
     def hp(self):
         return self._stats.hp
+
+    @property
+    def attack(self):
+        return self._stats.attack
+
+    @property
+    def defense(self):
+        return self._stats.defense        
+
+    @property
+    def speed(self):
+        return self._stats.speed
+
+    @property
+    def special(self):
+        return self._stats.special   
+
 
 ########## METHODS ######################################################################
     
@@ -157,7 +166,7 @@ class Pokemon:
     def _calc_damage(self, move, onPokemon):
         compare_modifier = self.compare_types_to(onPokemon)
         modifier = compare_modifier * move.stab(self._type_list[0], self._type_list[1]) * self._stats.critical(self._level) * uniform(0.85,1)
-        damage = (self._stats.attack_force(self._level) * move.power / onPokemon.defense_force + 2) * modifier
+        damage = (self._stats.attack_force(self._level) * move.power / onPokemon._stats.defense_force() + 2) * modifier
         damage = int(damage)
         return damage
 

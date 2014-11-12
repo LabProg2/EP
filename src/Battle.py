@@ -14,7 +14,6 @@ class Battle:
             raise TypeError("poke2 must be a Pokemon instance")
         self._active_poke, self._idle_poke = self._starting_poke(poke1, poke2)
 
-
     def run_battle(self):
         ''' Start the battle'''
         while self._active_poke.is_alive() and self._idle_poke.is_alive():
@@ -32,7 +31,7 @@ class Battle:
         self._active_poke, self._idle_poke = self._idle_poke, self._active_poke
 
     def _starting_poke(self, poke1, poke2):
-        if poke1.spd >= poke2.spd:
+        if poke1.speed >= poke2.speed:
             return (poke1, poke2)
         else:
             return (poke2, poke1)

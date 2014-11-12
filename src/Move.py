@@ -64,12 +64,20 @@ class Move:
 ######### PROPERTIES ####################################################################
 
     @property
-    def power(self):
-        return self._power
-
-    @property
     def name(self):
         return self._name
+
+    @property
+    def elm_type(self):
+        return self._elm_type
+    
+    @property
+    def accuracy(self):
+        return self._accuracy        
+
+    @property
+    def power(self):
+        return self._power
 
     @property
     def pp(self):
