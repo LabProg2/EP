@@ -68,9 +68,22 @@ class Stats:
         return self._hp
 
     @property
-    def spd(self):
-        ''' Get the pokemon's spd'''
+    def attack(self):
+        return self._attack
+
+    @property
+    def defense(self):
+        return self._defense
+
+    @property
+    def speed(self):
+        ''' Get the pokemon's speed'''
         return self._speed
+
+    @property
+    def special(self):
+        return self._special
+    
 
 ######### METHODS #######################################################################
 

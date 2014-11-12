@@ -13,7 +13,7 @@ class Battle:
         if not isinstance(poke2, Pokemon):
             raise TypeError("poke2 must be a Pokemon instance")
 
-        if poke1.spd >= poke2.spd:
+        if poke1.speed >= poke2.speed:
             self._active_poke, self._idle_poke = poke1, poke2
         else:
             self._active_poke, self._idle_poke = poke2, poke1
