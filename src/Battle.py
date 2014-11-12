@@ -24,14 +24,8 @@ class Battle:
             sleep(0.5)
             self._battleio.print_move_list(self._active_poke.move_list)
             move = self._battleio.read_move(self._active_poke.move_list)
-            if move == None:
-                move = self._active_poke.struggle    
-            print(self._active_poke.name, "used", move.name)
             damage = self._active_poke.perform_move(move, self._idle_poke)
-            if damage == -1:
-                print("The attack was missed\n")
-            else:
-                print("It caused a damage of " + str(damage) + "\n") 
+            self._battleio.print_move_result(self._active_poke, move, damage)
             sleep(0.5)
             self._switch_turns()
         

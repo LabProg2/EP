@@ -46,7 +46,6 @@ class Pokemon:
             if not isinstance(typ, Type):
                 raise TypeError("type_list must have only Type instances")
         self._type_list = type_list
-        self._struggle = Move("struggle", Type.Normal, 100, 50, 1)
 ############# PROPERTIES ################################################################
 
     @property
@@ -82,8 +81,9 @@ class Pokemon:
     def move_list(self, move_list):
         if isinstance(move_list, Move):
             move_list = [move_list]
-        move_list = move_list[0 : 4]
-        if len(move_list) == 0:
+        struggle = Move("struggle", Type.Normal, 100, 50, 1)
+        move_list = [struggle] + move_list[0 : 4]
+        if len(move_list) == 1:
             raise ValueError("move_list must have at least one move")
         for mov in move_list:
             if not isinstance(mov, Move):
@@ -105,10 +105,6 @@ class Pokemon:
     @property
     def hp(self):
         return self._stats.hp
-
-    @property
-    def struggle(self):
-        return self._struggle
 
 ########## METHODS ######################################################################
     

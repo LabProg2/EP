@@ -19,11 +19,12 @@ class BattleIO:
         
         available_list = []
         for i, move in enumerate(move_list):
-            if move.pp != 0:
-                available_list.append(i + 1)
+            if i > 0 and move.pp != 0:
+                available_list.append(i)
 
         if available_list == []:
-            return None
+            # the struggle
+            return move_list[0]
 
         x = input()
         try:
@@ -37,7 +38,7 @@ class BattleIO:
                 x = int(x)
             except: 
                 pass
-        return move_list[x - 1]
+        return move_list[x]
                 
     def print_move_list(self, move_list):
         ''' Prints the list of movements a pokemon can make
@@ -51,10 +52,9 @@ class BattleIO:
                 raise TypeError("Each element of the move list must be of type Move")
         
         print("Choose your move:")
-        i = 1
-        for move in move_list:
-            print("[" + str(i) + "] - " + move.name + " (" + str(move.pp) + ")")
-            i = i + 1
+        for i, move in enumerate(move_list):
+            if i > 0:
+                print("[" + str(i) + "] - " + move.name + " (" + str(move.pp) + ")")
 
     def print_poke_info(self, pokemon, is_on_turn = False):
         ''' Prints the info of a pokemon
@@ -71,6 +71,13 @@ class BattleIO:
         if is_on_turn:
             print(" [Em sua vez]")
         print('')
+
+    def print_move_result(self, atking_poke, move, damage):
+        print(atking_poke.name, "used", move.name)
+        if damage == -1:
+            print("The attack was missed\n")
+        else:
+            print("It caused a damage of " + str(damage) + "\n") 
 
     def print_winner(self, pokemon):
         ''' Prints the winner pokemon
