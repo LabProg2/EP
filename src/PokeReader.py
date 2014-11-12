@@ -6,10 +6,11 @@ from Stats import Stats
 
 class PokeReader:
     '''This class reads two pokemons from the standart in'''
-    def read_pokemons(self):
-        pokemon1 = self.read_pokemon()
-        pokemon2 = self.read_pokemon()
-        return (pokemon1, pokemon2)
+    def read_pokemons(self, n = 2):
+        pokemon_list = []
+        for _ in range (n):
+            pokemon_list.append(self.read_pokemon())
+        return tuple(pokemon_list)
 
     def read_pokemon(self):     
         name = stdin.readline()
