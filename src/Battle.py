@@ -20,16 +20,12 @@ class Battle:
         while self._active_poke.is_alive() and self._idle_poke.is_alive():
             self._battleio.print_poke_info(self._idle_poke, is_on_turn = False)
             self._battleio.print_poke_info(self._active_poke, is_on_turn = True)
-
             sleep(0.5)
             self._perform_play(self._active_poke, self._idle_poke, self._active_poke.move_list)
             self._switch_turns()    
             sleep(0.5)
+        self._end_battle()
         
-        if self._idle_poke.is_alive():
-            self._battleio.print_winner(self._idle_poke)
-        else:
-            self._battleio.print_winner(self._active_poke)
 
     def _switch_turns(self):
         ''' Changes the turn of pokemons'''
@@ -46,3 +42,9 @@ class Battle:
         move = self._battleio.read_move(atking_poke.move_list)
         damage = self._active_poke.perform_move(move, atked_poke)
         self._battleio.print_move_result(atking_poke, move, damage)
+
+    def _end_battle(self):
+        if self._idle_poke.is_alive():
+            self._battleio.print_winner(self._idle_poke)
+        else:
+            self._battleio.print_winner(self._active_poke)
