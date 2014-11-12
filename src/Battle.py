@@ -12,11 +12,8 @@ class Battle:
             raise TypeError("poke1 must be a Pokemon instance")
         if not isinstance(poke2, Pokemon):
             raise TypeError("poke2 must be a Pokemon instance")
+        self._active_poke, self._idle_poke = self._starting_poke(poke1, poke2)
 
-        if poke1.spd >= poke2.spd:
-            self._active_poke, self._idle_poke = poke1, poke2
-        else:
-            self._active_poke, self._idle_poke = poke2, poke1
 
     def run_battle(self):
         ''' Start the battle'''
@@ -47,3 +44,9 @@ class Battle:
     def _switch_turns(self):
         ''' Changes the turn of pokemons'''
         self._active_poke, self._idle_poke = self._idle_poke, self._active_poke
+
+    def _starting_poke(self, poke1, poke2):
+        if poke1.spd >= poke2.spd:
+            return (poke1, poke2)
+        else:
+            return (poke2, poke1)
