@@ -1,1 +1,2 @@
 Os arquivos de pokemons tem que possuir uma linha em branca no final, se não teremos problemas com a leitura pela entrada padrão. Isso está acontecendo porque estou lendo cada pokemon com um readLine. Se não tem \n no final ele não le a linha.
+Implementamos o struggle, tinhamos esquecido dele na primeira fase.
