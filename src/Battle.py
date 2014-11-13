@@ -16,9 +16,9 @@ class Battle:
         else:
             return (poke2, poke1)
 
-    def _perform_play(self, atking_poke, atked_poke, move_list):
-        self._battleio.print_move_list(atking_poke.move_list)
-        move = self._battleio.read_move(atking_poke.move_list, atking_poke.available_moves())
+    def _perform_play(self, atking_poke, atked_poke):
+        self._battleio.print_moves_of(atking_poke)
+        move = self._battleio.read_move_of(atking_poke)
         damage = self._active_poke.perform_move(move, atked_poke)
         self._battleio.print_move_result(atking_poke, move, damage)
 

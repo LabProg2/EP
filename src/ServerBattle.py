@@ -39,7 +39,7 @@ class ServerBattle(Battle):
         ############
         self._active_poke, self._idle_poke = self._starting_poke(self._server_poke, client_poke)
         if self._active_poke == self._server_poke:
-            self._perform_play(self._active_poke, self._idle_poke, self._active_poke._move_list)
+            self._perform_play(self._active_poke, self._idle_poke)
             #atualiza o xml
             self._switch_turns()
         return 'aqui eu devo mandar o xml como uma string'

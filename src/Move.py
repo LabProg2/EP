@@ -110,3 +110,7 @@ class Move:
         ''' It decreases the PP of the move'''
         if self._pp > 0:
             self._pp -= 1
+
+    def isavailable(self):
+        ''' Verifies if there's pp to be used '''
+        return self._pp > 0

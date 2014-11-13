@@ -32,7 +32,7 @@ class Test_BattleIO(unittest.TestCase):
     def test_print_move_list(self):
         # Teste com um lista de movimentos que não é uma lista de movimentos
         something = object()
-        self.assertRaises(TypeError, self.pokeio.print_move_list, self.pokeio, something)
+        self.assertRaises(TypeError, self.pokeio.print_moves_of, self.pokeio, something)
         somelist = [object()]
         self.assertRaises(TypeError, self.pokeio.print_move_list, self.pokeio, somelist)
 

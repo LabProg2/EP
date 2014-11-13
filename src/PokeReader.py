@@ -3,6 +3,7 @@ from sys import stdin
 from Type import Type
 from Move import Move
 from Stats import Stats
+from movelist import MoveList
 
 class PokeReader:
     '''This class reads two pokemons from the standart in'''
@@ -49,10 +50,14 @@ class PokeReader:
         except ValueError:
             raise ValueError("Pokemon Type must be an integer")
         typ_list = [typ1, typ2]
-        nat = stdin.readline()
+        try:
+            natks = int(stdin.readline())
+        except ValueError:
+            raise ValueError("nat must be an integer")
+
         stats = Stats(hp, atk, defe, spd, spc)
-        move_list = []
-        for i in range(int(nat)):
+        moves = MoveList(max_moves = natks + 1)
+        for i in range(natks):
             move_name = stdin.readline()
             try:
                 tp = int(stdin.readline())
@@ -71,6 +76,6 @@ class PokeReader:
                 move_pp = int(stdin.readline())
             except ValueError:
                 raise ValueError("A move pp must be an integer")
-            move = Move(move_name, move_type, move_acu, move_pwr, move_pp)
-            move_list.append(move)
-        return Pokemon(typ_list, stats, move_list, name, lvl)
+            moves.add_move(Move(move_name, move_type, move_acu, move_pwr, move_pp))
+
+        return Pokemon(typ_list, stats, moves, name, lvl)

@@ -1,57 +1,49 @@
 from Stats import Stats
 from Move import Move
 from Pokemon import Pokemon
+from movelist import MoveList
+
 class BattleIO:
     ''' 
     This class is responsible for every interaction between the battle and the user
     '''
-    def read_move(self, move_list, available_list):
+    def read_move_of(self, pokemon):
         ''' Reads a movement from the users keyboard
 
         :param move_list: The move_list from which the user must choose a attack
         :returns: An integer representing the movement the user selected
         '''
-        if not isinstance(move_list, list):
-            raise TypeError("Move list for moves must be a list")
+        if not isinstance(pokemon, Pokemon):
+            raise TypeError("pokemon must be an instance of Pokemon")
 
-        if not isinstance(available_list, list):
-            raise TypeError("available_list must be a list")
-
-        for x in move_list:
-            if not isinstance(x, Move):
-                raise TypeError("Each element of the move list must be of type Move")
-
-        if len(available_list) == 1:
+        if not pokemon.moves.has_available_moves():
             # the struggle
-            return move_list[0]
-        print(len(available_list))
+            return pokemo.moves.get_move(0)
+
         x = input()
         try:
             x = int(x)
         except:
             pass
-        while type(x) is not int or x not in range(1, len(available_list)):
+        while type(x) is not int or not pokemon.moves.get_move(x).isavailable():
             print("Please, be a good boy and choose a valid movement")
             x = input()
             try:
                 x = int(x)
             except: 
                 pass
-        return move_list[x]
+        return pokemon.moves.get_move(x)
                 
-    def print_move_list(self, move_list):
+    def print_moves_of(self, pokemon):
         ''' Prints the list of movements a pokemon can make
 
         :param move_list: The list of movements thats going to be printed
         '''
-        if not isinstance(move_list, list):
-            raise TypeError("Move list for moves must be a list")
-        for x in move_list:
-            if not isinstance(x, Move):
-                raise TypeError("Each element of the move list must be of type Move")
+        if not isinstance(pokemon, Pokemon):
+            raise TypeError("pokemon must be an instance of Pokemon")
         
         print("Choose your move:")
-        for i, move in enumerate(move_list):
+        for i, move in enumerate(pokemon.moves):
             if i > 0:
                 print("[" + str(i) + "] - " + move.name + " (" + str(move.pp) + ")")
 
