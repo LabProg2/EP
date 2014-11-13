@@ -10,7 +10,10 @@ class PokeReader:
         pokemon_list = []
         for _ in range (n):
             pokemon_list.append(self.read_pokemon())
-        return tuple(pokemon_list)
+        if len(pokemon_list) is 1:
+            return pokemon_list[0]
+        else:
+            return tuple(pokemon_list)
 
     def read_pokemon(self):     
         name = stdin.readline()
