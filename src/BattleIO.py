@@ -53,8 +53,11 @@ class BattleIO:
         :param pokemon: The pokemon that will have its info printed
         :param is_on_turn: A flag to inform if the pokemon is on its is_on_turn
         '''
-        if not isinstance(is_on_turn, bool):
-            raise TypeError("is_on_turn must be a bool instance")
+        try:
+            is_on_turn = bool(is_on_turn)
+        except TypeError:
+            raise TypeError("is_on_turn must be a bool")
+
         if not isinstance(pokemon, Pokemon):
             raise TypeError("pokemon must be a Pokemon instance")
 

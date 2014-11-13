@@ -16,11 +16,10 @@ class testPokeReader(unittest.TestCase):
         # Test for for x random entry files in entry_path
         filenames = os.listdir(self.entry_path)
         pr = PokeReader.PokeReader()
-        for n in range(len(filenames)): 
+        for n in range(2, len(filenames)): 
             tmp = open(".tmp", "w")
             for _ in range(n + 1):
                 f = open(self.entry_path + filenames[n], "r")
-                #f = open(self.entry_path + "Pikachu.pok", "r")
                 tmp.write(f.read())
                 f.close()
             tmp.close()
@@ -35,15 +34,13 @@ class testPokeReader(unittest.TestCase):
         # Test arguments
         pr = PokeReader.PokeReader()
         PokeReader.stdin = self.open_valid_file(entries = self.valid_entries)
-        poke_tuple = pr.read_pokemons(1)
-        self.assertEqual(len(poke_tuple), 1)
-        self.assertTrue(isinstance(poke_tuple[0], Pokemon))
+        poke = pr.read_pokemons(1)
+        self.assertTrue(isinstance(poke, Pokemon))
         self.close_valid_file(PokeReader.stdin)
 
         PokeReader.stdin = self.open_valid_file(entries = self.valid_entries)
-        poke_tuple = pr.read_pokemons(n = 1)
-        self.assertEqual(len(poke_tuple), 1)
-        self.assertTrue(isinstance(poke_tuple[0], Pokemon))
+        poke = pr.read_pokemons(n = 1)
+        self.assertTrue(isinstance(poke, Pokemon))
         self.close_valid_file(PokeReader.stdin)
         
         
