@@ -7,8 +7,7 @@ from sys import argv
 pokereader = PokeReader()
 if argv[1] == "-s":
     server_poke = pokereader.read_pokemons(1)
-    print(server_poke)
-    server_battle = ServerBattle(server_poke)
+    server_battle = ServerBattle(server_poke, port=8000)
     server_battle.start()
 
 

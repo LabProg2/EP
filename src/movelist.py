@@ -57,7 +57,7 @@ class MoveList:
             return None
 
     def has_available_moves(self):
-        for move in self._moves:
+        for move in self._moves[1:]:
             if move.isavailable():
                 return True
         return False

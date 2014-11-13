@@ -10,7 +10,7 @@ class BattleIO:
     def read_move_of(self, pokemon):
         ''' Reads a movement from the users keyboard
 
-        :param move_list: The move_list from which the user must choose a attack
+        :param pokemon: The pokemon that is going the perform the next attack
         :returns: An integer representing the movement the user selected
         '''
         if not isinstance(pokemon, Pokemon):
@@ -18,14 +18,14 @@ class BattleIO:
 
         if not pokemon.moves.has_available_moves():
             # the struggle
-            return pokemo.moves.get_move(0)
+            return pokemon.moves.get_move(0)
 
         x = input()
         try:
             x = int(x)
         except:
             pass
-        while type(x) is not int or not pokemon.moves.get_move(x).isavailable():
+        while type(x) is not int or pokemon.moves.get_move(x) == None or not pokemon.moves.get_move(x).isavailable():
             print("Please, be a good boy and choose a valid movement")
             x = input()
             try:
