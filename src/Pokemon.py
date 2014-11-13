@@ -8,7 +8,7 @@ class Pokemon:
     '''
     Class that defines the properties, attack and defense of the Pokemon
     '''
-    def __init__(self, type_list, stats, move_list, name = 'unknown', level = 1):
+    def __init__(self, type_list, stats, moves, name = 'unknown', level = 1):
         '''Pokemon's constructor
 
         :param poke_type1: Pokemon's principal type
@@ -16,14 +16,14 @@ class Pokemon:
         :param stats: Pokemon's stats, object of the Stats class.
         :param name: Pokemon's name (for example, a Zubat's name is 'Batman')
         :param level: Pokemon's level
-        :param move_list: Pokemon's moves, object of the Move class.
+        :param moves: Pokemon's moves, object of the MoveList class.
         :returns: A Pokemon instance with all attributes set
         '''
         if type(name) is not str:
             raise TypeError("A pokemon name must be a string")
 
         self._name = re.sub('[\t\n]*', '', name)
-        self.move_list = move_list
+        self._moves = moves
 
         self.level = level
         
@@ -76,19 +76,8 @@ class Pokemon:
             self._level = level
     
     @property
-    def move_list(self):
-        return self._move_list
-    @move_list.setter
-    def move_list(self, move_list):
-        if isinstance(move_list, Move):
-            move_list = [move_list]
-        move_list = move_list[0 : 4]
-        if len(move_list) == 0:
-            raise ValueError("move_list must have at least one move")
-        for mov in move_list:
-            if not isinstance(mov, Move):
-                raise TypeError("move_list must have only Move instances")
-        self._move_list = move_list
+    def moves(self):
+        return self._moves
 
     @property
     def type_list(self):

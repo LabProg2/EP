@@ -48,7 +48,7 @@ class PokeReader:
         typ_list = [typ1, typ2]
         nat = stdin.readline()
         stats = Stats(hp, atk, defe, spd, spc)
-        move_list = []
+        moves = MoveList(max_moves = nat + 1)
         for i in range(int(nat)):
             move_name = stdin.readline()
             try:
@@ -68,7 +68,6 @@ class PokeReader:
                 move_pp = int(stdin.readline())
             except ValueError:
                 print("A move pp must be an integer")
-            move = Move(move_name, move_type, move_acu, move_pwr, move_pp)
-            move_list.append(move)
-        #stdin.close()
-        return Pokemon(typ_list, stats, move_list, name, lvl)
+            moves.add_move(Move(move_name, move_type, move_acu, move_pwr, move_pp))
+
+        return Pokemon(typ_list, stats, moves, name, lvl)
