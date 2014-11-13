@@ -27,13 +27,13 @@ class testPokemon(unittest.TestCase):
 
     def test_perform_move(self):
         # Test for a regular damage
-        damage = self.valid_pokemon1.perform_move(self.valid_pokemon1.move_list[0], self.valid_pokemon2)
+        damage = self.valid_pokemon1.perform_move(self.valid_pokemon1.moves.get_move(0), self.valid_pokemon2)
         self.assertTrue(damage >= 0)
         self.assertTrue(type(damage) is int)
         
         # Test absurd parameters
         self.assertRaises(TypeError, self.valid_pokemon1.perform_move, self.valid_pokemon1, object(), self.valid_pokemon2)
-        self.assertRaises(TypeError, self.valid_pokemon1.perform_move, self.valid_pokemon1, self.valid_pokemon1.move_list[0], object())
+        self.assertRaises(TypeError, self.valid_pokemon1.perform_move, self.valid_pokemon1, self.valid_pokemon1.moves.get_move(0), object())
 
 
     def test_compare_types_to(self):

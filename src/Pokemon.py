@@ -1,4 +1,5 @@
 from Move import Move
+from movelist import MoveList
 from Type import Type
 from Stats import Stats
 from random import uniform
@@ -23,7 +24,7 @@ class Pokemon:
             raise TypeError("A pokemon name must be a string")
 
         self._name = re.sub('[\t\n]*', '', name)
-        self._moves = moves
+        self._moves = MoveList(moves)
 
         self.level = level
         
@@ -77,7 +78,7 @@ class Pokemon:
     
     @property
     def moves(self):
-        return self._moves
+        return self._moves 
 
     @property
     def type_list(self):
@@ -126,37 +127,17 @@ class Pokemon:
 
         if not isinstance(move, Move):
             raise TypeError("move must be a Move instance")
-        if move.name == "struggle":
-            damage = self._perform_struggle(move, onPokemon)
-        else:
-            damage = self._perform_regular_move(move, onPokemon)
-        return damage
 
-    def _perform_regular_move(self, move, onPokemon):
+        
         damage = -1
         if not move.missed() and move.pp > 0:
             move.use_move()
-            damage = self._calc_damage(move, onPokemon)
+            compare_modifier = self.compare_types_to(onPokemon)
+            modifier = compare_modifier * move.stab(self._type_list[0], self._type_list[1]) * self._stats.critical(self._level) * uniform(0.85,1)
+            damage = (self._stats.attack_force(self._level) * move.power / onPokemon._stats.defense_force() + 2) * modifier
+            damage = int(damage)
             onPokemon.receive_damage(damage)
-        return damage
 
-    def _perform_struggle(self, move, onPokemon):
-        damage = self._calc_damage(move, onPokemon)
-        if Type.Ghost in onPokemon.type_list:
-            damage = 0
-        elif Type.Rock in onPokemon.type_list:
-            damage = damage / 2
-        else:
-            pass
-        onPokemon.receive_damage(damage)
-        self.receive_damage(damage / 2)
-        return damage
-
-    def _calc_damage(self, move, onPokemon):
-        compare_modifier = self.compare_types_to(onPokemon)
-        modifier = compare_modifier * move.stab(self._type_list[0], self._type_list[1]) * self._stats.critical(self._level) * uniform(0.85,1)
-        damage = (self._stats.attack_force(self._level) * move.power / onPokemon._stats.defense_force() + 2) * modifier
-        damage = int(damage)
         return damage
 
     def compare_types_to(self, pokemon):
