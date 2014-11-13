@@ -11,9 +11,16 @@ class ServerBattle(Battle):
         :param host: The address of the server
         :param port: The port used in the server
         '''
-        self._battleio = BattleIO()
         if not isinstance(server_poke, Pokemon):
             raise TypeError("server_poke must be a Pokemon instance")
+
+        if type(host) is not str:
+            raise TypeError("host name must be a string") 
+
+        if type(port) is not int and type(port) is not str:
+            raise TypeError("port must be an integer or a string")
+
+        self._battleio = BattleIO()
         self._server_poke = server_poke
 
         #bottle things
