@@ -20,18 +20,20 @@ class Battle:
         else:
             return (poke2, poke1)
 
-    def _select_move(self, atking_poke, move_list):
+    def _select_move(self, atking_poke):
         '''Let the atking_poke choose a move
         :param atking_poke: The pokemon that is attacking
         :param move_list: The move list of the pokemon
         '''
-        self._battleio.print_move_list(atking_poke.move_list)
-        return self._battleio.read_move(atking_poke.move_list, atking_poke.available_moves())
+        self._battleio.print_moves_of(atking_poke)
+        move = self._battleio.read_move_of(atking_poke)
+        return move
     
     def _perform_play(self, atking_poke, atked_poke, move):
         '''The attacking poke attacks the attacked poke
         :param atking_poke: The pokemon that's attacking
         :param atked_poke: The pokemon that's being attacked
+        :param move: The atking_poke move against the atked_poke
         '''
         damage = atking_poke.perform_move(move, atked_poke)
         self._battleio.print_move_result(atking_poke, move, damage)

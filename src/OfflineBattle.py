@@ -4,7 +4,7 @@ from Pokemon import Pokemon
 from time import sleep
 
 class OfflineBattle(Battle):
-    '''The offline battle'''
+    ''' The offline battle '''
     def __init__(self, poke1, poke2):
         ''' Prepare battle between poke1 and poke2
         :param poke1: A Pokemon
@@ -18,15 +18,15 @@ class OfflineBattle(Battle):
         self._active_poke, self._idle_poke = self._starting_poke(poke1, poke2)
 
     def run_battle(self):
-        ''' Start the battle'''
+        ''' Start the battle '''
         while self._active_poke.is_alive() and self._idle_poke.is_alive():
             self._battleio.print_poke_info(self._idle_poke, is_on_turn = False)
             self._battleio.print_poke_info(self._active_poke, is_on_turn = True)
+
             sleep(0.5)
-
-            move = self._select_move(self._active_poke, self._active_poke.move_list)
+            move = self._select_move(self._active_poke)
             self._perform_play(self._active_poke, self._idle_poke, move)
-
             self._switch_turns()    
+
             sleep(0.5)
         self._end_battle()
