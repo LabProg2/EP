@@ -5,7 +5,7 @@ class BattleIO:
     ''' 
     This class is responsible for every interaction between the battle and the user
     '''
-    def read_move(self, move_list):
+    def read_move(self, move_list, available_list):
         ''' Reads a movement from the users keyboard
 
         :param move_list: The move_list from which the user must choose a attack
@@ -13,25 +13,24 @@ class BattleIO:
         '''
         if not isinstance(move_list, list):
             raise TypeError("Move list for moves must be a list")
+
+        if not isinstance(available_list, list):
+            raise TypeError("available_list must be a list")
+
         for x in move_list:
             if not isinstance(x, Move):
                 raise TypeError("Each element of the move list must be of type Move")
-        
-        available_list = []
-        for i, move in enumerate(move_list):
-            if i > 0 and move.pp != 0:
-                available_list.append(i)
 
-        if available_list == []:
+        if len(available_list) == 1:
             # the struggle
             return move_list[0]
-
+        print(len(available_list))
         x = input()
         try:
             x = int(x)
         except:
             pass
-        while x not in available_list or type(x) is not int:
+        while type(x) is not int or x not in range(1, len(available_list)):
             print("Please, be a good boy and choose a valid movement")
             x = input()
             try:

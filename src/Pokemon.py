@@ -199,3 +199,10 @@ class Pokemon:
             if damage < 0:
                 raise ValueError("damage must be greater than 0")
             self._stats.decrease_life(damage)
+
+    def available_moves(self):
+        available_list = []
+        for move in self.move_list:
+            if move.pp != 0:
+                available_list.append(move)
+        return available_list

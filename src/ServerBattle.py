@@ -46,10 +46,7 @@ class ServerBattle(Battle):
         #return the_xml_final
 
     def _client_attack(self, idx):
-        if idx not in 
-
+        pass
+        #if idx not in self
         #perform user atk
-        #perform server play
-    
-    def _valid_moves(self, move_list):
-        
+        #perform server pla
