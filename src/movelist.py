@@ -7,26 +7,33 @@ class MoveList:
         if max_moves < 0:
             raise ValueError("max_moves must be greater or equal to 0")
 
+
         move_list = []
         move_list.append(Move("struggle", Type.Normal, 100, 50, 1))
         max_moves += 1 # Struggle
 
-        for arg in moves:
-            if isinstance(arg, MoveList):
-                for move in arg:
-                    move_list.append(move)
-            elif isinstance(arg, list):
-                for move in arg:
-                    if isinstance(move, Move):
+        # isso ta errado... eu tenho que consertar no iterator pra só devolver coisas que não são struggle
+        if len(moves) == 1 and isinstance(moves[0], MoveList):
+            for move in moves[0]:
+                move_list.append(move)
+
+        else:
+            for arg in moves:
+                if isinstance(arg, MoveList):
+                    for move in arg:
                         move_list.append(move)
-            elif isinstance(arg, Move):
-                move_list.append(arg)
-            else:
-                pass
+                elif isinstance(arg, list):
+                    for move in arg:
+                        if isinstance(move, Move):
+                            move_list.append(move)
+                elif isinstance(arg, Move):
+                    move_list.append(arg)
+                else:
+                    pass
 
         self._max_moves = max_moves
         self._moves = move_list[:max_moves]
-        self._index = 0
+        self._index = 1
 
     def __iter__(self):
         # return iter(self.moves)
@@ -36,7 +43,7 @@ class MoveList:
         try:
             result = self._moves[self._index]
         except IndexError:
-            self._index = 0
+            self._index = 1
             raise StopIteration
         self._index += 1
         return result
@@ -57,7 +64,7 @@ class MoveList:
             return None
 
     def has_available_moves(self):
-        for move in self._moves[1:]:
+        for move in self._moves:
             if move.isavailable():
                 return True
         return False
