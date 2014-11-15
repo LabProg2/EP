@@ -59,7 +59,7 @@ class MoveList:
 
     def get_move(self, n):
         try:
-            return self._moves[n]
+            return self._moves[n + 1]
         except IndexError:
             return None
 
