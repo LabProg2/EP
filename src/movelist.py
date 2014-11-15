@@ -49,7 +49,7 @@ class MoveList:
         return result
 
     def __len__(self):
-        return len(self._moves)
+        return len(self._moves) - 1
 
     def add_move(self, move):
         if len(self._moves) < self._max_moves:
