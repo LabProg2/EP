@@ -102,7 +102,7 @@ class pokexmler:
         numberofpokemons = xml.count('<pokemon>')
         auxiliar_listofpokemons = xml.split('<pokemon>') # used to count the number of attacks of ONE pokemon
         listofpokemons = []
-        for i in range(1, numberofpokemons):
+        for i in range(1, numberofpokemons + 1):
             name = main.pokemon[i].name
             level = main.pokemon[i].level
 
@@ -120,7 +120,7 @@ class pokexmler:
             stats = Stats(hp, attack, defense, speed, special)
 
             numberofattacks = str(auxiliar_listofpokemons[i]).count('<attacks>')
-            for j in range(1, numberofattacks):
+            for j in range(1, numberofattacks + 1):
                 attackname = main.pokemon[i].attacks[j].name
                 attacktype = Type(main.pokemon[i].attacks[j].type)
                 attackpower = main.pokemon[i].attacks[j].power
