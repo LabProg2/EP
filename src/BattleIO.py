@@ -17,8 +17,7 @@ class BattleIO:
             raise TypeError("pokemon must be an instance of Pokemon")
 
         if not pokemon.moves.has_available_moves():
-            # the struggle
-            return pokemon.moves.get_move(0)
+            return pokemon.moves.get_move(0) # the struggle
 
         x = input()
         try:
@@ -44,8 +43,7 @@ class BattleIO:
         
         print("Choose your move:")
         for i, move in enumerate(pokemon.moves):
-            if i > 0:
-                print("[" + str(i) + "] - " + move.name + " (" + str(move.pp) + ")")
+            print("[" + str(i) + "] - " + move.name + " (" + str(move.pp) + ")")
 
     def print_poke_info(self, pokemon, is_on_turn = False):
         ''' Prints the info of a pokemon

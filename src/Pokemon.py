@@ -128,7 +128,6 @@ class Pokemon:
         if not isinstance(move, Move):
             raise TypeError("move must be a Move instance")
 
-        
         damage = -1
         if not move.missed() and move.pp > 0:
             move.use_move()
