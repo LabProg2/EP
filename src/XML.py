@@ -1,0 +1,183 @@
+from lxml import etree, objectify
+from Pokemon import Pokemon
+from Stats import Stats
+from Type import Type
+from Move import Move
+from movelist import MoveList
+from bs4 import BeautifulSoup
+
+class XML:
+	'''
+	Class that receives a pokemon and returns a string with xml format
+	''' 
+
+	def generate(self, pokemon):
+
+		if not isinstance(pokemon, Pokemon):
+			raise TypeError("pokemon must be a Pokemon instance")
+
+		# Creating the elements:
+
+		xml = etree.Element("battle_state")
+
+		pokemonElm = etree.SubElement(xml,"pokemon")
+
+		nameElm = etree.SubElement(pokemonElm, "name")
+		levelElm = etree.SubElement(pokemonElm,"level")
+		attributesElm = etree.SubElement(pokemonElm,"attributes")
+
+		healthElm = etree.SubElement(attributesElm,"health")
+		attackElm = etree.SubElement(attributesElm,"attack")
+		defenseElm = etree.SubElement(attributesElm,"defense")
+		speedElm = etree.SubElement(attributesElm,"speed")
+		specialElm = etree.SubElement(attributesElm,"special")
+
+		typeElm = etree.SubElement(pokemonElm,"type")
+		typeElm2 = etree.SubElement(pokemonElm,"type")
+
+		# Creating the attacks/moves elements :
+
+		nameElm.text = str(pokemon.name)
+		levelElm.text = str(pokemon.level)
+
+		healthElm.text = str(pokemon.hp)
+		attackElm.text = str(pokemon.attack)
+		defenseElm.text = str(pokemon.defense)
+		speedElm.text = str(pokemon.speed)
+		specialElm.text = str(pokemon.special)
+
+		typeElm.text = str(pokemon.type_list[0])
+		if pokemon.type_list[1] is not Type.Blank :
+			typeElm2.text = str(pokemon.type_list[1])
+
+		attacksElm = etree.SubElement(pokemonElm, "attacks")
+		attackidElm = etree.SubElement(attacksElm, "id")
+
+		attackidElm.text = "1"
+
+		attacknameElm = etree.SubElement(attacksElm, "name")
+		attacknameElm.text = pokemon.moves.get_move(0).name
+
+		attacktypeElm = etree.SubElement(attacksElm, "type")
+		attacktypeElm.text = str(pokemon.moves.get_move(0).elm_type)
+
+		attackpowerElm = etree.SubElement(attacksElm, "power")
+		attackpowerElm.text = str(pokemon.moves.get_move(0).power)
+
+		attackaccuracyElm = etree.SubElement(attacksElm, "accuracy")
+		attackaccuracyElm.text = str(pokemon.moves.get_move(0).accuracy)
+
+		attackpowerpointsElm = etree.SubElement(attacksElm, "power_points")
+		attackpowerpointsElm.text = str(pokemon.moves.get_move(0).pp)
+
+		# Pokemons has many moves (probably there is a better way to do this)
+		if len(pokemon.moves) >= 2:
+
+			attacksElm2 = etree.SubElement(pokemonElm, "attacks")
+
+			attackidElm2 = etree.SubElement(attacksElm2, "id")
+			attackidElm2.text = "2"
+
+			attacknameElm2 = etree.SubElement(attacksElm2, "name")
+			attacknameElm2.text = pokemon.moves.get_move(1).name
+
+			attacktypeElm2 = etree.SubElement(attacksElm2, "type")
+			attacktypeElm2.text = str(pokemon.moves.get_move(1).elm_type)
+
+			attackpowerElm2 = etree.SubElement(attacksElm2, "power")
+			attackpowerElm2.text = str(pokemon.moves.get_move(1).power)
+
+			attackaccuracyElm2 = etree.SubElement(attacksElm2, "accuracy")
+			attackaccuracyElm2.text = str(pokemon.moves.get_move(1).accuracy)
+
+			attackpowerpointsElm2 = etree.SubElement(attacksElm2, "power_points")
+			attackpowerpointsElm2.text = str(pokemon.moves.get_move(1).pp)
+
+		if len(pokemon.moves) >= 3:
+
+			attacksElm3 = etree.SubElement(pokemonElm, "attacks")
+			attackidElm3 = etree.SubElement(attacksElm3, "id")
+
+			attackidElm3.text = "3"
+			attacknameElm3 = etree.SubElement(attacksElm3, "name")
+			attacknameElm3.text = pokemon.moves.get_move(2).name
+
+			attacktypeElm3 = etree.SubElement(attacksElm3, "type")
+			attacktypeElm3.text = str(pokemon.moves.get_move(2).elm_type)
+
+			attackpowerElm3 = etree.SubElement(attacksElm3, "power")
+			attackpowerElm3.text = str(pokemon.moves.get_move(2).power)
+
+			attackaccuracyElm3 = etree.SubElement(attacksElm3, "accuracy")
+			attackaccuracyElm3.text = str(pokemon.moves.get_move(2).accuracy)
+
+			attackpowerpointsElm3 = etree.SubElement(attacksElm3, "power_points")
+			attackpowerpointsElm3.text = str(pokemon.moves.get_move(2).pp)
+
+		if len(pokemon.moves) >= 4:
+
+			attacksElm4 = etree.SubElement(pokemonElm, "attacks")
+
+			attackidElm4 = etree.SubElement(attacksElm4, "id")
+			attackidElm4.text = "4"
+
+			attacknameElm4 = etree.SubElement(attacksElm4, "name")
+			attacknameElm4.text = pokemon.moves.get_move(4).name
+
+			attacktypeElm4 = etree.SubElement(attacksElm4, "type")
+			attacktypeElm4.text = str(pokemon.moves.get_move(4).elm_type)
+
+			attackpowerElm4 = etree.SubElement(attacksElm4, "power")
+			attackpowerElm4.text = str(pokemon.moves.get_move(4).power)
+
+			attackaccuracyElm4 = etree.SubElement(attacksElm4, "accuracy")
+			attackaccuracyElm4.text = str(pokemon.moves.get_move(4).accuracy)
+
+			attackpowerpointsElm4 = etree.SubElement(attacksElm4, "power_points")
+			attackpowerpointsElm4.text = str(pokemon.moves.get_move(4).pp)
+
+		return(etree.tostring(xml))
+
+	def funcaomagica(self, xml):
+
+		main = objectify.fromstring(xml)
+
+		numberofpokemons = str(xml).count('<pokemon>')
+
+		auxiliar_listofpokemons = str(xml).split('<pokemon>') # used to count the number of attacks of ONE pokemon
+
+
+		for i in range(1,numberofpokemons):
+
+			name = main.pokemon[i].name
+			level = main.pokemon[i].level
+
+			if str(auxiliar_listofpokemons[i].count('<type>')) == 1:
+				type_list = Type(main.pokemon[i].type)
+			else:
+				type_list[1] = Type(main.pokemon[i].type[1])
+				type_list[2] = Type(main.pokemon[i].type[2])
+
+			hp = main.pokemon[i].attributes.health
+			attack = main.pokemon[i].attributes.attack
+			defense = main.pokemon[i].attributes.defense
+			speed = main.pokemon[i].attributes.speed
+			special = main.pokemon[i].attributes.special
+
+			stats = Stats(hp, attack, defense, speed, special)
+
+			numberofattacks = str(auxiliar_listofpokemons[i]).count('<attacks>')
+
+			for j in range(1,numberofattacks):
+
+				attackname = main.pokemon[i].attacks[j].name
+				attacktype = Type(main.pokemon[i].attacks[j].type)
+				attackpower= main.pokemon[i].attacks[j].power
+				attackaccuracy = main.pokemon[i].attacks[j].accuracy
+				attackpowerpoints = main.pokemon[i].attacks[j].power_points
+
+				MoveList[j] = Move(attackname, attacktype, attackpower, attackaccuracy, attackpowerpoints)
+
+			listofpokemons[i] = Pokemon(type_list, stats, MoveList, name, level)
+
+		return(listofpokemons)
