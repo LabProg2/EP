@@ -49,7 +49,7 @@ class MoveList:
         return result
 
     def __len__(self):
-        return len(self._moves)
+        return len(self._moves) - 1
 
     def add_move(self, move):
         if len(self._moves) < self._max_moves:
@@ -59,7 +59,7 @@ class MoveList:
 
     def get_move(self, n):
         try:
-            return self._moves[n]
+            return self._moves[n + 1]
         except IndexError:
             return None
 
