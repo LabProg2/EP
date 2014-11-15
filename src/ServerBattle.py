@@ -2,7 +2,6 @@ from bottle import Bottle, request, FileUpload
 from Battle import Battle
 from BattleIO import BattleIO
 from Pokemon import Pokemon
-import re
 
 class ServerBattle(Battle):
     '''The server player in a client-server battle'''
@@ -61,13 +60,8 @@ class ServerBattle(Battle):
 
         f.save('./tmp_poke_state.xml', overwrite = True)
 
-        self._battle_state = re.sub(r'\\n|\\t|b\'', '', str(f.file.read()))
-        self._battle_state = re.sub(r'(<\?.*\?>)', '', self._battle_state)
-        print('battle state:\n' + self._battle_state)
-
-        ###########
+        self._battle_state = f.file.read()
         self._client_poke = self._updated_pokemons()
-        ############
 
         if self._server_poke.speed >= self._client_poke.speed:
             self._inform_pokes_info(self._server_poke, self._client_poke)
@@ -79,6 +73,8 @@ class ServerBattle(Battle):
 
         if not self._client_poke.is_alive():
             self._battleio.print_winner(self._server_poke)
+
+        print('terminou')
 
         return self._battle_state.tostring()
 

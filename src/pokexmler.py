@@ -1,6 +1,7 @@
 from xml.etree.ElementTree import Element, SubElement, tostring, fromstring
 from xml.dom import minidom 
 from lxml import objectify
+from re import sub
 
 class pokexmler:
     '''
@@ -91,6 +92,12 @@ class pokexmler:
         '''This class receives a string and returns a list of pokemons representing the pokemons of the xml
         :param xml: the string with the xml info
         '''
+        try:
+            xml = str(xml)
+        except:
+            raise TypeError("The xml must be a string")
+
+        xml = self._clean_xml(xml)
         x = fromstring(xml)
         main = objectify.x
         numberofpokemons = str(xml).count('<pokemon>')
@@ -124,3 +131,9 @@ class pokexmler:
 
             listofpokemons[i] = Pokemon(type_list, stats, MoveList, name, level)
         return(listofpokemons)    
+
+    def _clean_xml(self, xml):
+        xml = sub(r'\\n|\\t|b\'', '', xml)
+        xml = sub(r'(<\?.*\?>)', '', xml)
+        xml = sub(r'\'', '', xml)
+        return xml
