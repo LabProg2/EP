@@ -98,11 +98,10 @@ class pokexmler:
             raise TypeError("The xml must be a string")
 
         xml = self._clean_xml(xml)
-        x = fromstring(xml)
-        main = objectify.x
-        numberofpokemons = str(xml).count('<pokemon>')
-        auxiliar_listofpokemons = str(xml).split('<pokemon>') # used to count the number of attacks of ONE pokemon
-
+        main = objectify.fromstring(xml)
+        numberofpokemons = xml.count('<pokemon>')
+        auxiliar_listofpokemons = xml.split('<pokemon>') # used to count the number of attacks of ONE pokemon
+        listofpokemons = []
         for i in range(1, numberofpokemons):
             name = main.pokemon[i].name
             level = main.pokemon[i].level
@@ -128,9 +127,9 @@ class pokexmler:
                 attackaccuracy = main.pokemon[i].attacks[j].accuracy
                 attackpowerpoints = main.pokemon[i].attacks[j].power_points
                 MoveList[j] = Move(attackname, attacktype, attackpower, attackaccuracy, attackpowerpoints)
-
             listofpokemons[i] = Pokemon(type_list, stats, MoveList, name, level)
-        return(listofpokemons)    
+        print(listofpokemons)
+        return listofpokemons
 
     def _clean_xml(self, xml):
         xml = sub(r'\\n|\\t|b\'', '', xml)

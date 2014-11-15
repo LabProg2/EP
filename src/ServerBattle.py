@@ -61,7 +61,7 @@ class ServerBattle(Battle):
         f.save('./tmp_poke_state.xml', overwrite = True)
 
         self._battle_state = f.file.read()
-        self._client_poke = self._updated_pokemons()
+        self._client_poke = self._updated_pokemons()[0]
 
         if self._server_poke.speed >= self._client_poke.speed:
             self._inform_pokes_info(self._server_poke, self._client_poke)
