@@ -2,6 +2,7 @@ from bottle import Bottle, request, FileUpload
 from Battle import Battle
 from BattleIO import BattleIO
 from Pokemon import Pokemon
+import re
 
 class ServerBattle(Battle):
     '''The server player in a client-server battle'''
@@ -60,31 +61,26 @@ class ServerBattle(Battle):
 
         f.save('./tmp_poke_state.xml', overwrite = True)
 
-        ###########
-        #transforma o xml recebido em um pokemon 
-        #isso e totalmente temporario pra testar outras coisas antes#
-        self._client_poke = self._server_poke
-        ############
+        self._battle_state = re.sub(r'\\n|\\t|b\'', '', str(f.file.read()))
+        self._battle_state = re.sub(r'(<\?.*\?>)', '', self._battle_state)
+        print('battle state:\n' + self._battle_state)
 
-        #######
-        # coloca os dois pokemons no mesmo xml
-        #######
+        ###########
+        self._client_poke = self._updated_pokemons()
+        ############
 
         if self._server_poke.speed >= self._client_poke.speed:
             self._inform_pokes_info(self._server_poke, self._client_poke)
             move = self._select_move(self._server_poke)
             self._perform_play(self._server_poke, self._client_poke, move)
-            ######
-            # atualiza o xml
-            ######
+            ## pokes -> xml
+            self._update_battle_state(self._client_poke, self._server_poke)
+            ##
 
         if not self._client_poke.is_alive():
             self._battleio.print_winner(self._server_poke)
 
-        return 'aqui eu devo mandar o xml como uma string'
-        #####
-        # return the_xml_after_start
-        #####
+        return self._battle_state.tostring()
 
     def _receive_attack(self, idx):
         '''Callback for a post in a server at the path /battle/attack/<idx>
@@ -104,8 +100,8 @@ class ServerBattle(Battle):
             self.end()
 
         self._server_attack()
-        return 'aqui eu mando o xml atualizado de novo'
-        #return the_xml_after_play
+        self._update_battle_state(self._client_poke, self._server_poke)
+        return self._battle_state.tostring()
     
     def _server_attack(self):
         self._inform_pokes_info(self._server_poke, self._client_poke)

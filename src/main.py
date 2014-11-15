@@ -1,6 +1,7 @@
 import sys
 from ServerBattle import ServerBattle
 from OfflineBattle import OfflineBattle
+from ClientBattle import ClientBattle
 from PokeReader import PokeReader
 from sys import argv
 
@@ -19,6 +20,6 @@ elif argv[1] == "-o":
 elif argv[1] == "-c":
     client_poke = pokereader.read_pokemons(1)
     client_battle = ClientBattle(client_poke)
-    pass
+    client_battle.run_battle()
 else:
     print("Sevidor: -s\nCliente: -c\nOffline: -o")

@@ -2,6 +2,7 @@ from BattleIO import BattleIO
 from time import sleep
 from Pokemon import Pokemon
 from Move import Move
+from pokexmler import pokexmler
 
 class Battle:
     '''The battle between two pokemons'''
@@ -41,3 +42,20 @@ class Battle:
         '''
         self._battleio.print_poke_info(idle_pokemon, is_on_turn = False)
         self._battleio.print_poke_info(pokemon_on_turn, is_on_turn = True)
+
+    def _update_battle_state(self, poke1, poke2 = None):
+        '''This function receives two pokemons and update the battle_state of the battle
+        :param poke1: A fighting pokemon
+        :param poke2: Another fighting pokemon
+        '''
+        xmler = pokexmler()
+        if poke2 is None:
+            self._battle_state = xmler.pokes_to_xml(poke1)  
+        else:  
+            self._battle_state = xmler.pokes_to_xml(poke1, poke2)
+
+    def _updated_pokemons(self):
+        '''This function returns the list of pokemons that's
+           being represented by the battle_state'''
+        xmler = pokexmler()
+        return xmler.str_to_pokes(self._battle_state)

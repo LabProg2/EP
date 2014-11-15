@@ -1,12 +1,15 @@
 from xml.etree.ElementTree import Element, SubElement, tostring, fromstring
 from xml.dom import minidom 
+from lxml import objectify
 
-class PokeXmler:
+class pokexmler:
     '''
-	Class that receives a pokemon and returns a string with xml format
+	This class is used to transform xml to pokemons and pokemons to xml
 	'''
+    def __init__(self):
+        self._tree = None
 
-    def __init__(self, *pokemons):
+    def pokes_to_xml(self, *pokemons):
         ''' Class constructor
 			@param pokemon pokemon that will be used to create the xml
 		'''
@@ -69,23 +72,27 @@ class PokeXmler:
 
                 attackpowerpointsElm = SubElement(attacksElm, "power_points")
                 attackpowerpointsElm.text = str(move.pp)
-
         self._tree = xml
+        return self.tostring()
 
     @property
     def tree(self):
         return self._tree
     
     def tostring(self):
-        xmlstr = tostring(self._tree, encoding="UTF-8")
-        xmlstr = minidom.parseString(xmlstr)
+        try:
+            xmlstr = tostring(self._tree, encoding="UTF-8")
+            xmlstr = minidom.parseString(xmlstr)
+        except:
+            raise RuntimeError("It wasn't possible to produce a string from the xml")
         return xmlstr.toprettyxml(indent="\t")
 
-    def str_to_pokemon(self, xml):
+    def str_to_pokes(self, xml):
         '''This class receives a string and returns a list of pokemons representing the pokemons of the xml
         :param xml: the string with the xml info
         '''
-        main = objectify.fromstring(xml)
+        x = fromstring(xml)
+        main = objectify.x
         numberofpokemons = str(xml).count('<pokemon>')
         auxiliar_listofpokemons = str(xml).split('<pokemon>') # used to count the number of attacks of ONE pokemon
 

@@ -63,6 +63,11 @@ class MoveList:
         except IndexError:
             return None
 
+    def get_move_id(self, move):
+        for i in range(max_moves):
+            if move == self._moves[i + 1]:
+                return i + 1
+
     def has_available_moves(self):
         for move in self._moves:
             if move.isavailable():
