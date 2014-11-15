@@ -34,18 +34,30 @@ class ServerBattle(Battle):
         self._app.route('/battle', method = 'POST', callback = self._battle_start)
         self._app.route('/battle/attack/<idx>', method = 'POST', callback = self._client_attack)
 
-    def start(self, deb = True):
+    def start(self, muted = False):
         '''Starts the server'''
-        self._app.run(host=self._host, port=self._port, debug=deb)
+        try:
+            self._app.run(host = self._host, port = self._port, debug = True, quiet = muted)
+        except:
+            raise RuntimeError("The server couldn't be started")
+
+    def end(self):
+        self._app.close()
 
     def _battle_start(self):
         '''Callback for a post in a server at the path /battle'''
-        f = request.files.get('xml')
-        print(f)
+        try:
+            f = request.files.get('xml')
+        except:
+            raise RuntimeError("Your post must contain a xml archive")
+
+        s = f.filename.split('.')
+        if s[-1] != 'xml':
+            raise NameError("The xml must be a '.xml' file")
+
         f.save('./tmp_poke_state.xml', overwrite = True)
 
-        #transforma o xml recebido em um pokemon
-         
+        #transforma o xml recebido em um pokemon 
         ###########
         #isso e totalmente temporario pra testar outras coisas antes#
         self._client_poke = self._server_poke

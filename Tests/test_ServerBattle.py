@@ -7,13 +7,14 @@ from ServerBattle import ServerBattle
 from Type import Type
 from Stats import Stats
 from Move import Move
+from requests import post
 
 class TestServerBattle(unittest.TestCase):
 	def setUp(self):
 		self.valid_poke = Pokemon([Type(7),Type(8)], Stats(2, 3, 4, 5, 6), [Move("atk", Type(2), 100, 30, 5)], "teste", 5)
 		self.valid_host = 'localhost'
 		self.valid_port = 5000
-		self.valid_server = ServerBattle(self.valid_poke, 'localasfahost', '5000')
+		self.valid_server = ServerBattle(self.valid_poke, self.valid_host, self.valid_port)
 
 	def test_init(self):
 		#regular use of constructor
@@ -32,13 +33,9 @@ class TestServerBattle(unittest.TestCase):
 		self.assertRaises(TypeError, ServerBattle, self.valid_poke, self.valid_host, object())
 
 	def test_start(self):
-		self.valid_server.start()
-
-	def test_battle_start(self):
-		pass
-
-	def test_client_attack(self):
-		pass
+		#if the server couldn't be started an error should be raised
+		invalid_host_server = ServerBattle(self.valid_poke, 'anythingbutavalidhost', '5000')
+		self.assertRaises(RuntimeError, invalid_host_server.start)
 
 if __name__ == '__main__':
     unittest.main()

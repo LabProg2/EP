@@ -8,7 +8,7 @@ pokereader = PokeReader()
 if argv[1] == "-s":
     server_poke = pokereader.read_pokemons(1)
     server_battle = ServerBattle(server_poke)
-    server_battle.start(debugging = True)
+    server_battle.start(muted = False)
 
 
 elif argv[1] == "-o":
