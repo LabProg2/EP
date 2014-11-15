@@ -1,4 +1,4 @@
-from xml.etree.ElementTree import Element, SubElement, tostring
+from xml.etree.ElementTree import Element, SubElement, tostring, fromstring
 from xml.dom import minidom 
 
 class PokeXmler:
@@ -81,4 +81,6 @@ class PokeXmler:
         xmlstr = minidom.parseString(xmlstr)
         return xmlstr.toprettyxml(indent="\t")
 
+    def string_to_xml(self, string):
+        return fromstring(string)
 

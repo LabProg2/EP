@@ -20,8 +20,7 @@ class OfflineBattle(Battle):
     def run_battle(self):
         ''' Start the battle '''
         while self._active_poke.is_alive() and self._idle_poke.is_alive():
-            self._battleio.print_poke_info(self._idle_poke, is_on_turn = False)
-            self._battleio.print_poke_info(self._active_poke, is_on_turn = True)
+            self._inform_pokes_info(self._active_poke, self._idle_poke)
 
             sleep(0.5)
             move = self._select_move(self._active_poke)
@@ -29,4 +28,15 @@ class OfflineBattle(Battle):
             self._switch_turns()    
 
             sleep(0.5)
-        self._end_battle()
+        self._end_battle(self._idle_poke, self._active_poke)
+
+    def _switch_turns(self):
+        '''Changes the turn of pokemons'''
+        self._active_poke, self._idle_poke = self._idle_poke, self._active_poke
+
+    def _end_battle(self, poke1, poke2):
+        '''Prints the winner of a Battle'''
+        if poke1.is_alive():
+            self._battleio.print_winner(poke1)
+        else:
+            self._battleio.print_winner(poke2)

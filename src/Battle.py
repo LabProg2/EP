@@ -5,10 +5,6 @@ from Move import Move
 
 class Battle:
     '''The battle between two pokemons'''
-    
-    def _switch_turns(self):
-        '''Changes the turn of pokemons'''
-        self._active_poke, self._idle_poke = self._idle_poke, self._active_poke
 
     def _starting_poke(self, poke1, poke2):
         '''Decides whose pokemon starts to play
@@ -38,9 +34,10 @@ class Battle:
         damage = atking_poke.perform_move(move, atked_poke)
         self._battleio.print_move_result(atking_poke, move, damage)
 
-    def _end_battle(self):
-        '''Prints the winner of a Battle'''
-        if self._idle_poke.is_alive():
-            self._battleio.print_winner(self._idle_poke)
-        else:
-            self._battleio.print_winner(self._active_poke)
+    def _inform_pokes_info(self, pokemon_on_turn, idle_pokemon):
+        '''Inform player the info about the two pokemon
+        :param pokemon_on_turn: The pokemon that's attacking
+        :param idle_pokemon: The pokemons that's being attacked
+        '''
+        self._battleio.print_poke_info(idle_pokemon, is_on_turn = False)
+        self._battleio.print_poke_info(pokemon_on_turn, is_on_turn = True)

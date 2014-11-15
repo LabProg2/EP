@@ -1,4 +1,4 @@
-from bottle import Bottle, request
+from bottle import Bottle, request, FileUpload
 from Battle import Battle
 from BattleIO import BattleIO
 from Pokemon import Pokemon
@@ -32,7 +32,7 @@ class ServerBattle(Battle):
     def _route(self):
         '''This method is used to route requests to the server'''
         self._app.route('/battle', method = 'POST', callback = self._battle_start)
-        self._app.route('/battle/attack/<idx>', method = 'POST', callback = self._client_attack)
+        self._app.route('/battle/attack/<idx>', method = 'POST', callback = self._receive_attack)
 
     def start(self, muted = False):
         '''Starts the server'''
@@ -47,9 +47,12 @@ class ServerBattle(Battle):
     def _battle_start(self):
         '''Callback for a post in a server at the path /battle'''
         try:
-            f = request.files.get('xml')
+            f = request.files.get('battle_state')
         except:
-            raise RuntimeError("Your post must contain a xml archive")
+            raise RuntimeError("The server received a post without a battle_state")
+
+        if not isinstance(f, FileUpload):
+            raise RuntimeError("The server request couldn't create a FileUpload object")
 
         s = f.filename.split('.')
         if s[-1] != 'xml':
@@ -57,32 +60,57 @@ class ServerBattle(Battle):
 
         f.save('./tmp_poke_state.xml', overwrite = True)
 
-        #transforma o xml recebido em um pokemon 
         ###########
+        #transforma o xml recebido em um pokemon 
         #isso e totalmente temporario pra testar outras coisas antes#
         self._client_poke = self._server_poke
         ############
 
+        #######
+        # coloca os dois pokemons no mesmo xml
+        #######
+
         if self._server_poke.speed >= self._client_poke.speed:
+            self._inform_pokes_info(self._server_poke, self._client_poke)
             move = self._select_move(self._server_poke)
             self._perform_play(self._server_poke, self._client_poke, move)
-            #atualiza o xml
-        return 'aqui eu devo mandar o xml como uma string'
-        #return the_xml_after_start
+            ######
+            # atualiza o xml
+            ######
 
-    def _client_attack(self, idx):
-        '''Callback for a post in a server at the path /battle/attack/<idx>'''
+        if not self._client_poke.is_alive():
+            self._battleio.print_winner(self._server_poke)
+
+        return 'aqui eu devo mandar o xml como uma string'
+        #####
+        # return the_xml_after_start
+        #####
+
+    def _receive_attack(self, idx):
+        '''Callback for a post in a server at the path /battle/attack/<idx>
+        :param idx: the id of the client move
+        '''
         try:
             idx = int(idx)
         except:
             raise TypeError("The client sent an invalid move")
 
+        self._inform_pokes_info(self._client_poke, self._server_poke)
         move = self._client_poke.moves.get_move(idx)
         self._perform_play(self._client_poke, self._server_poke, move)
 
-        move = self._select_move(self._server_poke)
-        self._perform_play(self._server_poke, self._client_poke, move)
+        if not self._server_poke.is_alive():
+            self._battleio.print_winner(self._client_poke)
+            self.end()
 
+        self._server_attack()
         return 'aqui eu mando o xml atualizado de novo'
         #return the_xml_after_play
-        
+    
+    def _server_attack(self):
+        self._inform_pokes_info(self._server_poke, self._client_poke)
+        move = self._select_move(self._server_poke)
+        self._perform_play(self._server_poke, self._client_poke, move)
+        if not self._server_poke.is_alive():
+            self._battleio.print_winner(self._client_poke)
+            self.end()
