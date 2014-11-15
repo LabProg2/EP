@@ -7,8 +7,8 @@ from sys import argv
 pokereader = PokeReader()
 if argv[1] == "-s":
     server_poke = pokereader.read_pokemons(1)
-    server_battle = ServerBattle(server_poke, port=8000)
-    server_battle.start()
+    server_battle = ServerBattle(server_poke)
+    server_battle.start(debugging = True)
 
 
 elif argv[1] == "-o":
@@ -17,7 +17,8 @@ elif argv[1] == "-o":
     offline_battle.run_battle()
 
 elif argv[1] == "-c":
-    #cliente
+    client_poke = pokereader.read_pokemons(1)
+    client_battle = ClientBattle(client_poke)
     pass
 else:
     print("Sevidor: -s\nCliente: -c\nOffline: -o")

@@ -4,7 +4,7 @@ from BattleIO import BattleIO
 from Pokemon import Pokemon
 
 class ServerBattle(Battle):
-    '''The server player in a pokemon battle'''
+    '''The server player in a client-server battle'''
     def __init__(self, server_poke, host = 'localhost', port = '5000'):
         '''Prepare the server to host the battle
         :param server_poke: The pokemon used by the server player
@@ -34,9 +34,9 @@ class ServerBattle(Battle):
         self._app.route('/battle', method = 'POST', callback = self._battle_start)
         self._app.route('/battle/attack/<idx>', method = 'POST', callback = self._client_attack)
 
-    def start(self):
+    def start(self, deb = True):
         '''Starts the server'''
-        self._app.run(host=self._host, port=self._port, debug=True)
+        self._app.run(host=self._host, port=self._port, debug=deb)
 
     def _battle_start(self):
         '''Callback for a post in a server at the path /battle'''
