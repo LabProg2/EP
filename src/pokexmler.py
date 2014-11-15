@@ -81,6 +81,39 @@ class PokeXmler:
         xmlstr = minidom.parseString(xmlstr)
         return xmlstr.toprettyxml(indent="\t")
 
-    def string_to_xml(self, string):
-        return fromstring(string)
+    def str_to_pokemon(self, xml):
+        '''This class receives a string and returns a list of pokemons representing the pokemons of the xml
+        :param xml: the string with the xml info
+        '''
+        main = objectify.fromstring(xml)
+        numberofpokemons = str(xml).count('<pokemon>')
+        auxiliar_listofpokemons = str(xml).split('<pokemon>') # used to count the number of attacks of ONE pokemon
 
+        for i in range(1, numberofpokemons):
+            name = main.pokemon[i].name
+            level = main.pokemon[i].level
+
+            if str(auxiliar_listofpokemons[i].count('<type>')) == 1:
+                type_list = Type(main.pokemon[i].type)
+            else:
+                type_list[1] = Type(main.pokemon[i].type[1])
+                type_list[2] = Type(main.pokemon[i].type[2])
+
+            hp = main.pokemon[i].attributes.health
+            attack = main.pokemon[i].attributes.attack
+            defense = main.pokemon[i].attributes.defense
+            speed = main.pokemon[i].attributes.speed
+            special = main.pokemon[i].attributes.special
+            stats = Stats(hp, attack, defense, speed, special)
+
+            numberofattacks = str(auxiliar_listofpokemons[i]).count('<attacks>')
+            for j in range(1, numberofattacks):
+                attackname = main.pokemon[i].attacks[j].name
+                attacktype = Type(main.pokemon[i].attacks[j].type)
+                attackpower = main.pokemon[i].attacks[j].power
+                attackaccuracy = main.pokemon[i].attacks[j].accuracy
+                attackpowerpoints = main.pokemon[i].attacks[j].power_points
+                MoveList[j] = Move(attackname, attacktype, attackpower, attackaccuracy, attackpowerpoints)
+
+            listofpokemons[i] = Pokemon(type_list, stats, MoveList, name, level)
+        return(listofpokemons)    

@@ -138,17 +138,16 @@ class XML:
 
 		return(etree.tostring(xml))
 
-	def funcaomagica(self, xml):
+	def str_to_pokemon(self, xml):
+		'''This class receives a string and returns a list of pokemons representing the pokemons of the xml
+		:param xml: the string with the xml info
+		'''
 
 		main = objectify.fromstring(xml)
-
 		numberofpokemons = str(xml).count('<pokemon>')
-
 		auxiliar_listofpokemons = str(xml).split('<pokemon>') # used to count the number of attacks of ONE pokemon
 
-
-		for i in range(1,numberofpokemons):
-
+		for i in range(1, numberofpokemons):
 			name = main.pokemon[i].name
 			level = main.pokemon[i].level
 
