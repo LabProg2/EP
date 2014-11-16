@@ -61,7 +61,7 @@ class PokeXmler:
                 attacksElm = SubElement(pokemonElm, "attacks")
 
                 attackidElm = SubElement(attacksElm, "id")
-                attackidElm.text = str(i)
+                attackidElm.text = str(i+1)
 
                 attacknameElm = SubElement(attacksElm, "name")
                 attacknameElm.text = move.name
@@ -101,7 +101,6 @@ class PokeXmler:
         except:
             raise TypeError("The xml must be a string")
 
-
         xml = self._clean_xml(xml)
         battle_state = fromstring(xml)
 
@@ -136,7 +135,6 @@ class PokeXmler:
         return pokemons
 
     def _clean_xml(self, xml):
-        xml = sub(r'\\n|\\t|b\'', '', xml)
+        xml = sub(r'\s+', '', xml)
         xml = sub(r'(<\?.*\?>)', '', xml)
-        xml = sub(r'\'', '', xml)
         return xml

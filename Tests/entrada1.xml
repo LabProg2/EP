@@ -10,6 +10,7 @@
             <special>100</special>
         </attributes>
         <type>1</type>
+        <type>16</type>
         <attacks>
             <id>1</id>
             <name>Thunderbolt</name>
@@ -38,6 +39,7 @@
             <special>100</special>
         </attributes>
         <type>2</type>
+        <type>16</type>
         <attacks>
             <id>1</id>
             <name>Surf</name>
