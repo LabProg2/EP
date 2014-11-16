@@ -29,7 +29,7 @@ class TestPokeXmler(unittest.TestCase):
 
     def test_compares_pokes_to_xml(self, *pokemons):
 
-        valid_xml = open("../src/entrada1.xml","r").read()
+        valid_xml = open("entrada1.xml","r").read()
         valid_xml = sub(r'\s+', '', valid_xml)  # removes \t and spaces from valid_xml
 
         tested_xml = PokeXmler.pokes_to_xml(self.valid_pikachu,self.valid_marill)
