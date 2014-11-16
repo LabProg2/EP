@@ -26,25 +26,28 @@ class ClientBattle(Battle):
         self._server_adress = server_adress
         self._server_port = server_port
 
-    def run_battle(self, path = '/battle', attack_path = '/battle/attack'):
-        answer = post(self._server_adress + ':' + self._server_port + path, files = {'battle_state' : open('tmp_xml.xml', 'rb')})
+    def run_battle(self, start_path = '/battle', attack_path = '/battle/attack'):
+        '''This method runs a battle between a client and a server from the client-side
+        :param path: The path used to start a battle
+        :param attack_path: The path used to send the cliend attacks
+        '''
+        answer = post(self._server_adress + ':' + self._server_port + start_path, files = {'battle_state' : open('tmp_xml.xml', 'rb')})
         remove('tmp_xml.xml')
-        self._battle_state = answer.content
-        ####
-        # atualiza os dados dos meus pokemons com o xml recebido
-        self._client_poke, self._server_poke = self._updated_pokemons()
-        ####
 
+        self._battle_state = answer.content
+        self._client_poke, self._server_poke = self._updated_pokemons()
+        
         while self._client_poke.is_alive() and self._server_poke.is_alive():
             self._inform_pokes_info(self._client_poke, self._server_poke)
+
             move = self._select_move(self._client_poke)
             move_id = self._client_poke.moves.get_move_id(move)
-            self._perform_play(self._client_poke, self._server_poke, move)
-
             move_path = self._server_adress + ':' + self._server_port + attack_path + '/' + str(move_id)
             move_answer = post(move_path)
-            battle_state = move_answer.content
+            self._battle_state = move_answer.content
             self._client_poke, self._server_poke = self._updated_pokemons()
+            ## achar um jeito de mostrar como sucedeu o ataque pela resposta do servidor
+
         self._end_battle(self._client_poke, self._server_poke)
 
     def prepare_starting_xml(self):
@@ -53,4 +56,3 @@ class ClientBattle(Battle):
         f = open('tmp_xml.xml', 'w')
         f.write(self._battle_state)
         f.close()
-        

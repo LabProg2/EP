@@ -58,17 +58,13 @@ class ServerBattle(Battle):
         if s[-1] != 'xml':
             raise NameError("The xml must be a '.xml' file")
 
-        f.save('./tmp_poke_state.xml', overwrite = True)
+        #f.save('./tmp_poke_state.xml', overwrite = True) não tá mais usando isso pra nada
         self._battle_state = f.file.read()
         self._client_poke = self._updated_pokemons()[0]
 
         if self._server_poke.speed >= self._client_poke.speed:
-            self._inform_pokes_info(self._server_poke, self._client_poke)
-            move = self._select_move(self._server_poke)
-            self._perform_play(self._server_poke, self._client_poke, move)
-
-            self._update_battle_state(self._client_poke, self._server_poke)
-
+            self._server_attack()
+            
         if not self._client_poke.is_alive():
             self._battleio.print_winner(self._server_poke)
 
@@ -89,7 +85,6 @@ class ServerBattle(Battle):
 
         if not self._server_poke.is_alive():
             self._battleio.print_winner(self._client_poke)
-            self.end()
 
         self._server_attack()
         self._update_battle_state(self._client_poke, self._server_poke)
@@ -99,6 +94,8 @@ class ServerBattle(Battle):
         self._inform_pokes_info(self._server_poke, self._client_poke)
         move = self._select_move(self._server_poke)
         self._perform_play(self._server_poke, self._client_poke, move)
+        
+        self._update_battle_state(self._client_poke, self._server_poke)
+        
         if not self._server_poke.is_alive():
             self._battleio.print_winner(self._client_poke)
-            self.end()

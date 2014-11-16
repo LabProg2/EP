@@ -33,10 +33,3 @@ class OfflineBattle(Battle):
     def _switch_turns(self):
         '''Changes the turn of pokemons'''
         self._active_poke, self._idle_poke = self._idle_poke, self._active_poke
-
-    def _end_battle(self, poke1, poke2):
-        '''Prints the winner of a Battle'''
-        if poke1.is_alive():
-            self._battleio.print_winner(poke1)
-        else:
-            self._battleio.print_winner(poke2)

@@ -59,3 +59,13 @@ class Battle:
            being represented by the battle_state'''
         xmler = PokeXmler()
         return xmler.str_to_pokes(self._battle_state)
+
+    def _end_battle(self, poke1, poke2):
+        '''Prints the winner of a Battle'''
+        if poke1.is_alive():
+            self._battleio.print_winner(poke1)
+        else:
+            self._battleio.print_winner(poke2)
+
+    def pokeinfo_for_tests(self, poke):
+        print('nome: ' + poke.name + ' | hp: ' + str(poke.hp))
