@@ -64,7 +64,7 @@ class MoveList:
             return None
 
     def get_move_id(self, move):
-        for i in range(max_moves):
+        for i in range(self._max_moves):
             if move == self._moves[i + 1]:
                 return i + 1
 

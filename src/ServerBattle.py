@@ -59,7 +59,6 @@ class ServerBattle(Battle):
             raise NameError("The xml must be a '.xml' file")
 
         f.save('./tmp_poke_state.xml', overwrite = True)
-
         self._battle_state = f.file.read()
         self._client_poke = self._updated_pokemons()[0]
 
@@ -67,16 +66,13 @@ class ServerBattle(Battle):
             self._inform_pokes_info(self._server_poke, self._client_poke)
             move = self._select_move(self._server_poke)
             self._perform_play(self._server_poke, self._client_poke, move)
-            ## pokes -> xml
+
             self._update_battle_state(self._client_poke, self._server_poke)
-            ##
 
         if not self._client_poke.is_alive():
             self._battleio.print_winner(self._server_poke)
 
-        print('terminou')
-
-        return self._battle_state.tostring()
+        return self._battle_state
 
     def _receive_attack(self, idx):
         '''Callback for a post in a server at the path /battle/attack/<idx>
@@ -97,7 +93,7 @@ class ServerBattle(Battle):
 
         self._server_attack()
         self._update_battle_state(self._client_poke, self._server_poke)
-        return self._battle_state.tostring()
+        return self._battle_state
     
     def _server_attack(self):
         self._inform_pokes_info(self._server_poke, self._client_poke)

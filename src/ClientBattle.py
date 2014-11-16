@@ -37,14 +37,14 @@ class ClientBattle(Battle):
 
         while self._client_poke.is_alive() and self._server_poke.is_alive():
             self._inform_pokes_info(self._client_poke, self._server_poke)
-            move = self._selct_move(self._client_poke)
+            move = self._select_move(self._client_poke)
             move_id = self._client_poke.moves.get_move_id(move)
             self._perform_play(self._client_poke, self._server_poke, move)
 
-            move_path = self._server_adress + ':' + self._server_port + attack_path + '/' + move_id
+            move_path = self._server_adress + ':' + self._server_port + attack_path + '/' + str(move_id)
             move_answer = post(move_path)
             battle_state = move_answer.content
-            self._update_pokemons(battle_state)
+            self._client_poke, self._server_poke = self._updated_pokemons()
         self._end_battle(self._client_poke, self._server_poke)
 
     def prepare_starting_xml(self):
