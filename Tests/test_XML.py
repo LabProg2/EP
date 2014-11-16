@@ -2,12 +2,12 @@ import unittest
 import sys, os
 sys.path.insert(0, os.path.abspath('../src/'))
 
-from Pokemon import Pokemon
-from Stats import Stats
-from Type import Type
-from Move import Move
-from movelist import MoveList
-from pokexmler import pokexmler
+from src.Pokemon import Pokemon
+from src.Stats import Stats
+from src.Type import Type
+from src.Move import Move
+from src.movelist import MoveList
+from src.pokexmler import pokexmler
 
 class TestPokeXmler(unittest.TestCase):
     def setUp(self):
