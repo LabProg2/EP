@@ -1,9 +1,13 @@
 from xml.etree.ElementTree import Element, SubElement, tostring, fromstring
 from xml.dom import minidom 
-from lxml import objectify
+from Pokemon import Pokemon
+from Stats import Stats
+from Type import Type
+from Move import Move
+from movelist import MoveList
 from re import sub
 
-class pokexmler:
+class PokeXmler:
     '''
 	This class is used to transform xml to pokemons and pokemons to xml
 	'''
@@ -97,39 +101,37 @@ class pokexmler:
         except:
             raise TypeError("The xml must be a string")
 
-        xml = self._clean_xml(xml)
-        main = objectify.fromstring(xml)
-        numberofpokemons = xml.count('<pokemon>')
-        auxiliar_listofpokemons = xml.split('<pokemon>') # used to count the number of attacks of ONE pokemon
-        listofpokemons = []
-        for i in range(1, numberofpokemons + 1):
-            name = main.pokemon[i].name
-            level = main.pokemon[i].level
+        battle_state = fromstring(xml)
 
-            if str(auxiliar_listofpokemons[i].count('<type>')) == 1:
-                type_list = Type(main.pokemon[i].type)
-            else:
-                type_list[1] = Type(main.pokemon[i].type[1])
-                type_list[2] = Type(main.pokemon[i].type[2])
-
-            hp = main.pokemon[i].attributes.health
-            attack = main.pokemon[i].attributes.attack
-            defense = main.pokemon[i].attributes.defense
-            speed = main.pokemon[i].attributes.speed
-            special = main.pokemon[i].attributes.special
-            stats = Stats(hp, attack, defense, speed, special)
-
-            numberofattacks = str(auxiliar_listofpokemons[i]).count('<attacks>')
-            for j in range(1, numberofattacks + 1):
-                attackname = main.pokemon[i].attacks[j].name
-                attacktype = Type(main.pokemon[i].attacks[j].type)
-                attackpower = main.pokemon[i].attacks[j].power
-                attackaccuracy = main.pokemon[i].attacks[j].accuracy
-                attackpowerpoints = main.pokemon[i].attacks[j].power_points
-                MoveList[j] = Move(attackname, attacktype, attackpower, attackaccuracy, attackpowerpoints)
-            listofpokemons[i] = Pokemon(type_list, stats, MoveList, name, level)
-        print(listofpokemons)
-        return listofpokemons
+        pokemons = []
+        for poke in battle_state:
+            name = poke.find('name').text
+            level = poke.find('level').text
+            types = []
+            for typ in poke.findall('type'):
+                types.append(Type(int(typ.text)))   
+            attributes = poke.find('attributes')
+            hp = attributes.find('health').text
+            attack = attributes.find('attack').text
+            defense = attributes.find('defense').text
+            speed = attributes.find('speed').text
+            special = attributes.find('special').text
+            moves = []
+            for move in poke.findall('attacks'):
+                move_name = move.find('name').text
+                move_power = move.find('power').text
+                move_accuracy = move.find('accuracy').text
+                move_pp = move.find('power_points').text
+                move_id = int(move.find('id').text)
+                move_type = Type(int(move.find('type').text))
+                new_move = Move(name=move_name, elm_type=move_type, accuracy=move_accuracy, \
+                     power=move_power, pp=move_pp)
+                moves.insert(move_id, new_move)
+            moves = MoveList(moves)
+            stats = Stats(hp=hp, attack=attack, defense=defense, speed=speed, special=special)
+            pokemon = Pokemon(name=name, level=level, stats=stats, type_list=types, moves=moves)
+            pokemons.append(pokemon)
+        return pokemons
 
     def _clean_xml(self, xml):
         xml = sub(r'\\n|\\t|b\'', '', xml)
