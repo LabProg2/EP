@@ -1,36 +1,36 @@
 <?xml version="1.0" ?>
 <battle_state>
 	<pokemon>
-		<name>diliminhas2</name>
-		<level>13</level>
+		<name>aecionever</name>
+		<level>45</level>
 		<attributes>
-			<health>113</health>
-			<attack>73</attack>
-			<defense>51</defense>
-			<speed>40</speed>
-			<special>77</special>
+			<health>145</health>
+			<attack>54</attack>
+			<defense>45</defense>
+			<speed>66</speed>
+			<special>78</special>
 		</attributes>
-		<type>0</type>
-		<type>15</type>
+		<type>9</type>
+		<type>11</type>
 		<attacks>
 			<id>0</id>
-			<name>bolsa_familia</name>
+			<name>bolsa_vagabundo</name>
 			<type>13</type>
-			<power>13</power>
+			<power>33</power>
 			<accuracy>77</accuracy>
-			<power_points>2</power_points>
+			<power_points>1</power_points>
 		</attacks>
 		<attacks>
 			<id>1</id>
-			<name>csf</name>
-			<type>1</type>
+			<name>levianidade</name>
+			<type>2</type>
 			<power>33</power>
 			<accuracy>88</accuracy>
 			<power_points>1</power_points>
 		</attacks>
 		<attacks>
 			<id>2</id>
-			<name>minha_casa_minha_vida</name>
+			<name>mensalao_pt</name>
 			<type>4</type>
 			<power>33</power>
 			<accuracy>88</accuracy>

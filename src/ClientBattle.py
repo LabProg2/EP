@@ -1,5 +1,5 @@
 from requests import post
-from pokexmler import pokexmler
+from pokexmler import PokeXmler
 from Battle import Battle
 from os import remove
 from Pokemon import Pokemon
@@ -30,7 +30,6 @@ class ClientBattle(Battle):
         answer = post(self._server_adress + ':' + self._server_port + path, files = {'battle_state' : open('tmp_xml.xml', 'rb')})
         remove('tmp_xml.xml')
         self._battle_state = answer.content
-        print(self._battle_state)
         ####
         # atualiza os dados dos meus pokemons com o xml recebido
         self._client_poke, self._server_poke = self._updated_pokemons()
