@@ -101,6 +101,8 @@ class PokeXmler:
         except:
             raise TypeError("The xml must be a string")
 
+
+        xml = self._clean_xml(xml)
         battle_state = fromstring(xml)
 
         pokemons = []
