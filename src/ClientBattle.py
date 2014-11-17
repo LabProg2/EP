@@ -34,7 +34,7 @@ class ClientBattle(Battle):
         answer = post(self._server_adress + ':' + self._server_port + start_path, files = {'battle_state' : open('tmp_xml.xml', 'rb')})
         remove('tmp_xml.xml')
 
-        self._battle_state = answer.content
+        self._battle_state = answer.content.decode()
         self._client_poke, self._server_poke = self._updated_pokemons()
         
         while self._client_poke.is_alive() and self._server_poke.is_alive():
@@ -44,7 +44,7 @@ class ClientBattle(Battle):
             move_id = self._client_poke.moves.get_move_id(move)
             move_path = self._server_adress + ':' + self._server_port + attack_path + '/' + str(move_id)
             move_answer = post(move_path)
-            self._battle_state = move_answer.content
+            self._battle_state = move_answer.content.decode()
             self._client_poke, self._server_poke = self._updated_pokemons()
             ## achar um jeito de mostrar como sucedeu o ataque pela resposta do servidor
 
