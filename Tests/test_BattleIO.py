@@ -20,14 +20,14 @@ class Test_BattleIO(unittest.TestCase):
 
         self.valid_pokemon = Pokemon(name="Pokemon", level=5, moves=self.valid_movelist, type_list=Type.Normal, stats=self.valid_stats)
 
-        # self.poketest = Pokemon([Type(7),Type(8)], Stats(2, 3, 4, 5, 6), [Move("atk", Type(2), 3, 4, 5)], "teste", 1)
-        # self.poketest_path = "test.pok"
-        # v_stats = Stats(100, 50, 60, 70, 80)
-        # self.valid_poke_path = "../Entradas/aecio.pok"
-        # self.v_move_list = [Move("Movimento valido 1", Type.Normal, 70, 80, 10), Move("Movimento valido 2", Type.Normal, 70, 80, 10), Move("Movimento valido 3", Type.Normal, 70, 80, 10)]
-        # v_type_list = [Type.Normal, Type.Fighting]
-        # self.valid_poke = Pokemon(v_type_list, v_stats, self.v_move_list, "Validomon", 77)
-        # self.pokeio = BattleIO
+        self.poketest = Pokemon([Type(7),Type(8)], Stats(2, 3, 4, 5, 6), [Move("atk", Type(2), 3, 4, 5)], "teste", 1)
+        self.poketest_path = "test.pok"
+        v_stats = Stats(100, 50, 60, 70, 80)
+        self.valid_poke_path = "../Entradas/aecio.pok"
+        self.v_move_list = [Move("Movimento valido 1", Type.Normal, 70, 80, 10), Move("Movimento valido 2", Type.Normal, 70, 80, 10), Move("Movimento valido 3", Type.Normal, 70, 80, 10)]
+        v_type_list = [Type.Normal, Type.Fighting]
+        self.valid_poke = Pokemon(v_type_list, v_stats, self.v_move_list, "Validomon", 77)
+        self.pokeio = BattleIO
 
     def test_read_move_of(self):
         battleio = BattleIO()
@@ -48,18 +48,6 @@ class Test_BattleIO(unittest.TestCase):
     def test_print_move_list(self):
         battleio = BattleIO()
         self.assertRaises(TypeError, battleio.print_moves_of, object())
-
-    def test_print_move_result(self):
-        pass
-
-    def test_print_winer(self):
-        pass
-
-    def test_print_poke_info(self):
-        pass
-    #     # Teste com um pokemon que não é pokemon
-    #     something = object()
-    #     self.assertRaises(TypeError, self.pokeio.print_poke_info, self.pokeio, something)
 
 if __name__ == '__main__':
     unittest.main()

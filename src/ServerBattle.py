@@ -33,6 +33,7 @@ class ServerBattle(Battle):
         '''This method is used to route requests to the server'''
         self._app.route('/battle', method = 'POST', callback = self._battle_start)
         self._app.route('/battle/attack/<idx>', method = 'POST', callback = self._receive_attack)
+        self._app.route('/test', method = 'POST', callback = self._test_route)
 
     def start(self, muted = False):
         '''Starts the server'''
@@ -83,6 +84,9 @@ class ServerBattle(Battle):
 
         self._inform_pokes_info(self._client_poke, self._server_poke)
         move = self._client_poke.moves.get_move(idx)
+        print(self._client_poke.moves._moves)
+        print(idx)
+        print(move)
         self._perform_play(self._client_poke, self._server_poke, move)
 
         if not self._server_poke.is_alive():
@@ -101,3 +105,6 @@ class ServerBattle(Battle):
         
         if not self._server_poke.is_alive():
             self._battleio.print_winner(self._client_poke)
+
+    def _test_route(self):
+        return 'ok'

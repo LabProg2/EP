@@ -21,7 +21,7 @@ class ClientBattle(Battle):
         self._battleio = BattleIO()
         
         self._client_poke = client_poke
-        self.prepare_starting_xml()
+        self._prepare_starting_xml()
 
         self._server_adress = server_adress
         self._server_port = server_port
@@ -31,7 +31,15 @@ class ClientBattle(Battle):
         :param path: The path used to start a battle
         :param attack_path: The path used to send the cliend attacks
         '''
-        answer = post(self._server_adress + ':' + self._server_port + start_path, files = {'battle_state' : open('tmp_xml.xml', 'rb')})
+        if type(start_path) is not str:
+            raise TypeError("start_path must be a string")
+
+        if type(attack_path) is not str:
+            raise TypeError("attack_path must be a string")  
+        try:
+            answer = post(self._server_adress + ':' + self._server_port + start_path, files = {'battle_state' : open('tmp_xml.xml', 'rb')})
+        except:
+            raise RuntimeError("Sorry. We couldn't post to the server")
         remove('tmp_xml.xml')
 
         self._battle_state = answer.content.decode()
@@ -43,14 +51,17 @@ class ClientBattle(Battle):
             move = self._select_move(self._client_poke)
             move_id = self._client_poke.moves.get_move_id(move)
             move_path = self._server_adress + ':' + self._server_port + attack_path + '/' + str(move_id)
-            move_answer = post(move_path)
+            try:
+                move_answer = post(move_path)
+            except:
+                raise RuntimeError("Sorry. We couldn't post to the server")
             self._battle_state = move_answer.content.decode()
             self._client_poke, self._server_poke = self._updated_pokemons()
             ## achar um jeito de mostrar como sucedeu o ataque pela resposta do servidor
 
         self._end_battle(self._client_poke, self._server_poke)
 
-    def prepare_starting_xml(self):
+    def _prepare_starting_xml(self):
         '''Creates a xml containing data of the client poke'''
         self._update_battle_state(self._client_poke)
         f = open('tmp_xml.xml', 'w')

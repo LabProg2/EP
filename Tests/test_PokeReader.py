@@ -51,15 +51,12 @@ class testPokeReader(unittest.TestCase):
         self.assertTrue(isinstance(poke_tuple[1], Pokemon))
         self.close_valid_file(PokeReader.stdin)
 
-        # Test wrong files
-
         
-    def open_valid_file(self, entries, repeat = 1):
-        ''' 
-        Generates a file with the entries from the list 'entries'
-        repeated 'repeat' times.
-        By default 'repeat' is 1
-        '''
+    def open_valid_file(self, entries, repeat = 1): 
+        # Generates a file with the entries from the list 'entries'
+        # repeated 'repeat' times.
+        # By default 'repeat' is 1
+        
         if not isinstance(entries, list):
             raise TypeError("entires must be a list")
 
