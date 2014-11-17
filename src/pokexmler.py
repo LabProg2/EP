@@ -101,9 +101,7 @@ class PokeXmler:
         except:
             raise TypeError("The xml must be a string")
 
-        print(xml)
         xml = self._clean_xml(xml)
-        print(xml)
         battle_state = fromstring(xml)
 
         pokemons = []
@@ -134,11 +132,11 @@ class PokeXmler:
             stats = Stats(hp=hp, attack=attack, defense=defense, speed=speed, special=special)
             pokemon = Pokemon(name=name, level=level, stats=stats, type_list=types, moves=moves)
             pokemons.append(pokemon)
+        print(pokemons)
         return pokemons
 
     def _clean_xml(self, xml):
-        xml = sub(r'\n*', '', xml)
-        xml = sub(r'\t*', '', xml)
+        xml = sub(r'\\n|\\t|b\'', '', xml)
         xml = sub(r'(<\?.*\?>)', '', xml)
         xml = sub(r'\'', '', xml)
         return xml

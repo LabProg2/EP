@@ -68,6 +68,8 @@ class ServerBattle(Battle):
         if not self._client_poke.is_alive():
             self._battleio.print_winner(self._server_poke)
 
+        self._update_battle_state(self._client_poke, self._server_poke)
+
         return self._battle_state
 
     def _receive_attack(self, idx):
