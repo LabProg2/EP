@@ -35,7 +35,6 @@ class MoveList:
         return self._moves[0]
 
     def __iter__(self):
-        # return iter(self._moves)
         return self
 
     def __next__(self):
@@ -49,6 +48,7 @@ class MoveList:
 
     def enumerate(self):
         ''' Method to iter with indexes 
+
         :reutrns: an iterable class
         '''
         return MoveListEnumerator(self._moves)
@@ -57,12 +57,20 @@ class MoveList:
         return len(self._moves) - 1
 
     def add_move(self, move):
+        ''' Addes a new move to the list. If it's not possible, OverflowError is raised
+
+        :param move: the move to be added
+        '''
         if len(self) < self._max_moves:
             self._moves.append(move)
         else:
             raise OverflowError("movelist is full")
 
     def get_move(self, n):
+        ''' Get the move in index **n**
+
+        :param n: the index
+        '''
         if n < 0:
             return None
 
@@ -72,20 +80,32 @@ class MoveList:
             return None
 
     def get_move_id(self, move):
-        # self._moves.index(move)
+        ''' get the index of a given move
+
+        :param move: the move you want to know the index
+        :returns: The wanted index
+        '''
         for i in range(len(self._moves)):
             if move == self._moves[i]:
                 return i 
         return None
 
     def is_move_available(self, index):
+        ''' True if the move in index **index** is available for use
+
+        :param index: 
+        :returns: True or False
+        '''
         if not self.get_move(index) or (index == 0 and self.has_available_moves()):
             return False
         else:
             return self.get_move(index).isavailable()
 
-
     def has_available_moves(self):
+        ''' True if there's at least one available move on list. 
+
+        :returns: True or False
+        '''
         for move in self._moves[1:]:
             if move.isavailable():
                 return True

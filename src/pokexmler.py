@@ -16,7 +16,8 @@ class PokeXmler:
 
     def pokes_to_xml(self, *pokemons):
         ''' Class constructor
-			@param pokemon pokemon that will be used to create the xml
+
+		:param pokemon: pokemon that will be used to create the xml
 		'''
 
         # Creating the elements:
@@ -85,6 +86,10 @@ class PokeXmler:
         return self._tree
     
     def tostring(self):
+        ''' 
+
+        :returns: the string representation of the tree represented by this class
+        '''
         try:
             xmlstr = tostring(self._tree, encoding="UTF-8")
             xmlstr = minidom.parseString(xmlstr)
@@ -93,7 +98,8 @@ class PokeXmler:
         return xmlstr.toprettyxml(indent="\t")
 
     def str_to_pokes(self, xml):
-        '''This class receives a string and returns a list of pokemons representing the pokemons of the xml
+        ''' This class receives a string and returns a list of pokemons representing the pokemons of the xml
+        
         :param xml: the string with the xml info
         '''
         try:

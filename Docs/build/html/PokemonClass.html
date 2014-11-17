@@ -29,7 +29,7 @@
 
   
     <link rel="top" title="Pokemon Battle 1.0 documentation" href="index.html"/>
-        <link rel="next" title="Move Class" href="MoveClass.html"/>
+        <link rel="next" title="MoveList Class" href="MoveListClass.html"/>
         <link rel="prev" title="Welcome to Pokemon Battle’s documentation!" href="index.html"/> 
 
   
@@ -61,7 +61,13 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="">Pokemon Class</a><ul class="simple">
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="MoveListClass.html">MoveList Class</a><ul class="simple">
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="MoveClass.html">Move Class</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="StruggleClass.html">Struggle Class</a><ul class="simple">
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="TypeClass.html">Type Class</a><ul class="simple">
@@ -70,11 +76,27 @@
 <li class="toctree-l1"><a class="reference internal" href="BattleClass.html">Battle Class</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="PokeIOClass.html">PokeIO Class</a><ul class="simple">
+<li class="toctree-l1"><a class="reference internal" href="ClientBattleClass.html">ClientBattle Class</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ServerBattleClass.html">ServerBattle Class</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="OfflineBattleClass.html">OfflineBattle Class</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="BattleIOClass.html">BattleIO Class</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="PokeReaderClass.html">PokeReader Class</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="PokeXmlerClass.html">PokeXmler Class</a><ul class="simple">
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="HowToUse.html">How To Use</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="HowToUse.html#to-execute">To execute</a></li>
+<li class="toctree-l2"><a class="reference internal" href="HowToUse.html#modules-used">Modules used</a></li>
 <li class="toctree-l2"><a class="reference internal" href="HowToUse.html#to-generate-the-documentation">To generate the documentation</a></li>
 </ul>
 </li>
@@ -120,11 +142,11 @@
 </div>
 <span class="target" id="module-Pokemon"></span><dl class="class">
 <dt id="Pokemon.Pokemon">
-<em class="property">class </em><tt class="descclassname">Pokemon.</tt><tt class="descname">Pokemon</tt><big>(</big><em>type_list</em>, <em>stats</em>, <em>move_list</em>, <em>name='unknown'</em>, <em>level=1</em><big>)</big><a class="headerlink" href="#Pokemon.Pokemon" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">Pokemon.</tt><tt class="descname">Pokemon</tt><big>(</big><em>type_list</em>, <em>stats</em>, <em>moves</em>, <em>name='unknown'</em>, <em>level=1</em><big>)</big><a class="headerlink" href="#Pokemon.Pokemon" title="Permalink to this definition">¶</a></dt>
 <dd><p>Class that defines the properties, attack and defense of the Pokemon</p>
 <dl class="method">
 <dt id="Pokemon.Pokemon.__init__">
-<tt class="descname">__init__</tt><big>(</big><em>type_list</em>, <em>stats</em>, <em>move_list</em>, <em>name='unknown'</em>, <em>level=1</em><big>)</big><a class="headerlink" href="#Pokemon.Pokemon.__init__" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">__init__</tt><big>(</big><em>type_list</em>, <em>stats</em>, <em>moves</em>, <em>name='unknown'</em>, <em>level=1</em><big>)</big><a class="headerlink" href="#Pokemon.Pokemon.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Pokemon&#8217;s constructor</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -136,7 +158,7 @@
 <li><strong>stats</strong> &#8211; Pokemon&#8217;s stats, object of the Stats class.</li>
 <li><strong>name</strong> &#8211; Pokemon&#8217;s name (for example, a Zubat&#8217;s name is &#8216;Batman&#8217;)</li>
 <li><strong>level</strong> &#8211; Pokemon&#8217;s level</li>
-<li><strong>move_list</strong> &#8211; Pokemon&#8217;s moves, object of the Move class.</li>
+<li><strong>moves</strong> &#8211; Pokemon&#8217;s moves, object of the MoveList class.</li>
 </ul>
 </td>
 </tr>
@@ -222,7 +244,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="MoveClass.html" class="btn btn-neutral float-right" title="Move Class"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="MoveListClass.html" class="btn btn-neutral float-right" title="MoveList Class"/>Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="index.html" class="btn btn-neutral" title="Welcome to Pokemon Battle’s documentation!"><span class="fa fa-arrow-circle-left"></span> Previous</a>

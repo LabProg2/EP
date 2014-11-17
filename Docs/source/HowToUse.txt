@@ -8,8 +8,16 @@ How To Use
 ---------- 
 To execute
 ----------
+|   The entries are passed through stdin.
 |   On EP/src/ directory, execute: 
-|   ``python3.4 main.py poke_file1 poke_file2``
+|   ``cat entries - | python3.4 main.py [mode] [-@ address]``
+|   Where mode can be -s (server), -c (client) or -o (offline) and address is the address used by the server. For example:
+|   ``cat ../Entradas/Pokemons/Pikachu.pok - | python3.4 main.py -s -@ localhost:5000
+|
+------------
+Modules used
+------------
+|   The modules that need to be installed are: **bottle** and **requests** that can be installed through pip.
 |
 -----------------------------
 To generate the documentation

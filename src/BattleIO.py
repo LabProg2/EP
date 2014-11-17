@@ -65,6 +65,12 @@ class BattleIO:
         print('')
 
     def print_move_result(self, atking_poke, move, damage):
+        ''' Prints the result of using a move anda cause a damage
+
+        :param atking_poke: the pokemon that is attacking
+        :param move: the move that the pokemon is using
+        :param damage: the damage the pokemon caused
+        '''
         print(atking_poke.name, "used", move.name)
         if damage == -1:
             print("The attack was missed\n")

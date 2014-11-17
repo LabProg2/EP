@@ -12,11 +12,20 @@ Welcome to Pokemon Battle's documentation!
    :maxdepth: 2
 
    PokemonClass
+   MoveListClass
    MoveClass
+   StruggleClass
    TypeClass
    StatsClass
    BattleClass
-   PokeIOClass
+   ClientBattleClass
+   ServerBattleClass
+   OfflineBattleClass
+   BattleIOClass
+   PokeReaderClass
+   PokeXmlerClass
+
+
 
    HowToUse
 

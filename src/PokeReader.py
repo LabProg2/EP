@@ -8,6 +8,10 @@ from movelist import MoveList
 class PokeReader:
     '''This class reads two pokemons from the standart in'''
     def read_pokemons(self, n = 2):
+        ''' reads **n** pokemons from stdin
+
+        :param n: the number of pokemons it's read
+        '''
         pokemon_list = []
         for _ in range (n):
             pokemon_list.append(self.read_pokemon())
@@ -17,6 +21,7 @@ class PokeReader:
             return tuple(pokemon_list)
 
     def read_pokemon(self):     
+        ''' reads a pokemon from stdin '''
         name = stdin.readline()
         try:
             lvl = stdin.readline()

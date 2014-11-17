@@ -8,7 +8,7 @@ from BattleIO import BattleIO
 class ClientBattle(Battle):
     '''The client in a client-server battle'''
     def __init__(self, client_poke, server_address = 'http://localhost', server_port = '5000'):
-        '''Prepare the client to communicate with the server'''
+        ''' Prepare the client to communicate with the server '''
         if not isinstance(client_poke, Pokemon):
             raise TypeError("server_poke must be a Pokemon instance")
 
@@ -27,7 +27,8 @@ class ClientBattle(Battle):
         self._server_port = server_port
 
     def run_battle(self, start_path = '/battle', attack_path = '/battle/attack'):
-        '''This method runs a battle between a client and a server from the client-side
+        ''' This method runs a battle between a client and a server from the client-side
+        
         :param path: The path used to start a battle
         :param attack_path: The path used to send the cliend attacks
         '''
@@ -62,7 +63,7 @@ class ClientBattle(Battle):
         self._end_battle(self._client_poke, self._server_poke)
 
     def _prepare_starting_xml(self):
-        '''Creates a xml containing data of the client poke'''
+        ''' Creates a xml containing data of the client poke '''
         self._update_battle_state(self._client_poke)
         f = open('tmp_xml.xml', 'w')
         f.write(self._battle_state)

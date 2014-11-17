@@ -29,7 +29,7 @@
 
   
     <link rel="top" title="Pokemon Battle 1.0 documentation" href="index.html"/>
-        <link rel="prev" title="PokeIO Class" href="PokeIOClass.html"/> 
+        <link rel="prev" title="PokeXmler Class" href="PokeXmlerClass.html"/> 
 
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
@@ -60,7 +60,13 @@
 <li class="toctree-l1"><a class="reference internal" href="PokemonClass.html">Pokemon Class</a><ul class="simple">
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="MoveListClass.html">MoveList Class</a><ul class="simple">
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="MoveClass.html">Move Class</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="StruggleClass.html">Struggle Class</a><ul class="simple">
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="TypeClass.html">Type Class</a><ul class="simple">
@@ -69,11 +75,27 @@
 <li class="toctree-l1"><a class="reference internal" href="BattleClass.html">Battle Class</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="PokeIOClass.html">PokeIO Class</a><ul class="simple">
+<li class="toctree-l1"><a class="reference internal" href="ClientBattleClass.html">ClientBattle Class</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ServerBattleClass.html">ServerBattle Class</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="OfflineBattleClass.html">OfflineBattle Class</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="BattleIOClass.html">BattleIO Class</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="PokeReaderClass.html">PokeReader Class</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="PokeXmlerClass.html">PokeXmler Class</a><ul class="simple">
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">How To Use</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#to-execute">To execute</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#modules-used">Modules used</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#to-generate-the-documentation">To generate the documentation</a></li>
 </ul>
 </li>
@@ -120,8 +142,18 @@
 <div class="section" id="to-execute">
 <h2>To execute<a class="headerlink" href="#to-execute" title="Permalink to this headline">¶</a></h2>
 <div class="line-block">
+<div class="line">The entries are passed through stdin.</div>
 <div class="line">On EP/src/ directory, execute:</div>
-<div class="line"><tt class="docutils literal"><span class="pre">python3.4</span> <span class="pre">main.py</span> <span class="pre">poke_file1</span> <span class="pre">poke_file2</span></tt></div>
+<div class="line"><tt class="docutils literal"><span class="pre">cat</span> <span class="pre">entries</span> <span class="pre">-</span> <span class="pre">|</span> <span class="pre">python3.4</span> <span class="pre">main.py</span> <span class="pre">[mode]</span> <span class="pre">[-&#64;</span> <span class="pre">address]</span></tt></div>
+<div class="line">Where mode can be -s (server), -c (client) or -o (offline) and address is the address used by the server. For example:</div>
+<div class="line"><a href="#id1"><span class="problematic" id="id2">``</span></a>cat ../Entradas/Pokemons/Pikachu.pok - | python3.4 main.py -s -&#64; localhost:5000</div>
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="modules-used">
+<h2>Modules used<a class="headerlink" href="#modules-used" title="Permalink to this headline">¶</a></h2>
+<div class="line-block">
+<div class="line">The modules that need to be installed are: <strong>bottle</strong> and <strong>requests</strong> that can be installed through pip.</div>
 <div class="line"><br /></div>
 </div>
 </div>
@@ -147,7 +179,7 @@
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
       
-        <a href="PokeIOClass.html" class="btn btn-neutral" title="PokeIO Class"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="PokeXmlerClass.html" class="btn btn-neutral" title="PokeXmler Class"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

@@ -13,7 +13,7 @@
 		<type>7</type>
 		<type>8</type>
 		<attacks>
-			<id>0</id>
+			<id>1</id>
 			<name>atk</name>
 			<type>2</type>
 			<power>30</power>
