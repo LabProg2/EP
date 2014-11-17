@@ -57,7 +57,7 @@ class PokeXmler:
 
             # Creating the attacks/moves elements and inserting the attack/moves:
 
-            for i, move in enumerate(pokemon.moves):
+            for i, move in pokemon.moves.enumerate():
                 attacksElm = SubElement(pokemonElm, "attacks")
 
                 attackidElm = SubElement(attacksElm, "id")

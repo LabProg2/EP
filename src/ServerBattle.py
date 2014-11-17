@@ -59,7 +59,6 @@ class ServerBattle(Battle):
             raise NameError("The xml must be a '.xml' file")
 
         self._battle_state = f.file.read().decode()
-        print(type(self._battle_state))
         self._client_poke = self._updated_pokemons()[0]
 
         if self._server_poke.speed >= self._client_poke.speed:

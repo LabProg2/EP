@@ -17,14 +17,14 @@ class BattleIO:
             raise TypeError("pokemon must be an instance of Pokemon")
 
         if not pokemon.moves.has_available_moves():
-            return pokemon.moves.get_move(0) # the struggle
+            return pokemon.moves.struggle
 
         x = input()
         try:
             x = int(x)
         except:
             pass
-        while type(x) is not int or pokemon.moves.get_move(x) == None or not pokemon.moves.get_move(x).isavailable():
+        while not isinstance(x, int) or not pokemon.moves.is_move_available(x):
             print("Please, be a good boy and choose a valid movement")
             x = input()
             try:
@@ -42,7 +42,7 @@ class BattleIO:
             raise TypeError("pokemon must be an instance of Pokemon")
         
         print("Choose your move:")
-        for i, move in enumerate(pokemon.moves):
+        for i, move in pokemon.moves.enumerate():
             print("[" + str(i) + "] - " + move.name + " (" + str(move.pp) + ")")
 
     def print_poke_info(self, pokemon, is_on_turn = False):
