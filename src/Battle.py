@@ -66,6 +66,3 @@ class Battle:
             self._battleio.print_winner(poke1)
         else:
             self._battleio.print_winner(poke2)
-
-    def pokeinfo_for_tests(self, poke):
-        print('nome: ' + poke.name + ' | hp: ' + str(poke.hp))
