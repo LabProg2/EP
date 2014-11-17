@@ -1,4 +1,4 @@
-from bottle import Bottle, request, FileUpload
+from bottle import Bottle, request, FileUpload, response
 from Battle import Battle
 from BattleIO import BattleIO
 from Pokemon import Pokemon
@@ -38,6 +38,7 @@ class ServerBattle(Battle):
         self._app.route('/battle', method = 'POST', callback = self._battle_start)
         self._app.route('/battle/attack/<idx>', method = 'POST', callback = self._receive_attack)
         self._app.route('/test', method = 'POST', callback = self._test_route)
+        self._app.route('/end', method = 'POST', callback = self._end)
 
     def start(self, muted = False):
         '''Starts the server'''
@@ -46,11 +47,18 @@ class ServerBattle(Battle):
         except:
             raise RuntimeError("The server couldn't be started")
 
-    def end(self):
+    def _end(self):
         self._app.close()
 
     def _battle_start(self):
         '''Callback for a post in a server at the path /battle'''
+        try:
+            self._battle_state
+        except:
+            pass
+        else:
+            response.status = 423
+            return 'We are too busy for you'
         try:
             f = request.files.get('battle_state')
         except:
@@ -88,12 +96,13 @@ class ServerBattle(Battle):
         self._inform_pokes_info(self._client_poke, self._server_poke)
         move = self._client_poke.moves.get_move(idx)
         self._perform_play(self._client_poke, self._server_poke, move)
+        self._update_battle_state(self._client_poke, self._server_poke)
 
         if not self._server_poke.is_alive():
             self._battleio.print_winner(self._client_poke)
+            return self._battle_state
 
         self._server_attack()
-        self._update_battle_state(self._client_poke, self._server_poke)
         return self._battle_state
     
     def _server_attack(self):
@@ -103,8 +112,9 @@ class ServerBattle(Battle):
         
         self._update_battle_state(self._client_poke, self._server_poke)
         
-        if not self._server_poke.is_alive():
-            self._battleio.print_winner(self._client_poke)
+        if not self._client_poke.is_alive():
+            self._battleio.print_winner(self._server_poke)
+            return self._battle_state
 
     def _test_route(self):
         return 'ok'

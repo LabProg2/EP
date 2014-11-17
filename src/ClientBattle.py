@@ -57,9 +57,13 @@ class ClientBattle(Battle):
                 raise RuntimeError("Sorry. We couldn't post to the server")
             self._battle_state = move_answer.content.decode()
             self._client_poke, self._server_poke = self._updated_pokemons()
-            ## achar um jeito de mostrar como sucedeu o ataque pela resposta do servidor
 
         self._end_battle(self._client_poke, self._server_poke)
+        try:
+            end_path = self._server_address + ':' + self._server_port + '/end'
+            move_answer = post(end_path)
+        except:
+            raise RuntimeError("Sorry. We couldn't post to the server")
 
     def _prepare_starting_xml(self):
         '''Creates a xml containing data of the client poke'''
