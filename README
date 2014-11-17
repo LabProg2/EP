@@ -3,4 +3,15 @@ Os testes encontram-se na pasta Tests/
 Entradas validas para testar encontram-se na pasta Entradas/
 A documentação pode ser encontrada no endereço: http://www.ime.usp.br/~bsesso/PokemonBattle
 Os diagramas UML encontram-se na pasta UML
-O relatório se encontra na pasta Relatorio/ com nome Relatorio.pdf
+O relatório se encontra na pasta Relatorio/ com nome Relatorio 2a fase.pdf
+
+Para rodar:
+    Servidor:
+        cat ../Entradas/aecio.pok - | python3 main.py -s
+    Client:
+        cat ../Entradas/dilma.pok - | python3 main.py -c
+    Offline
+        cat ../Entradas/dilma.pok ../Entradas/aecio.pok - | python3 main.py -o
+
+Para ajuda
+    python3 main.py --help

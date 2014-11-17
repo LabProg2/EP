@@ -1,0 +1,11 @@
+ClientBattle Class
+==================
+.. toctree::
+   :maxdepth: 2
+
+.. automodule:: ClientBattle 
+.. autoclass:: ClientBattle
+   :members:
+
+   .. automethod:: __init__
+

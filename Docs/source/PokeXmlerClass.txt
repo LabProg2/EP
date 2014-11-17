@@ -1,0 +1,11 @@
+PokeXmler Class
+==================
+.. toctree::
+   :maxdepth: 2
+
+.. automodule:: pokexmler 
+.. autoclass:: PokeXmler
+   :members:
+
+   .. automethod:: __init__
+

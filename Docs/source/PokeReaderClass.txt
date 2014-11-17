@@ -1,0 +1,11 @@
+PokeReader Class
+================
+.. toctree::
+   :maxdepth: 2
+
+.. automodule:: PokeReader 
+.. autoclass:: PokeReader
+   :members:
+
+   .. automethod:: __init__
+

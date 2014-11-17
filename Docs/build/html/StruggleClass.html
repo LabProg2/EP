@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>How To Use &mdash; Pokemon Battle 1.0 documentation</title>
+  <title>Struggle Class &mdash; Pokemon Battle 1.0 documentation</title>
   
 
   
@@ -29,7 +29,8 @@
 
   
     <link rel="top" title="Pokemon Battle 1.0 documentation" href="index.html"/>
-        <link rel="prev" title="PokeXmler Class" href="PokeXmlerClass.html"/> 
+        <link rel="next" title="Type Class" href="TypeClass.html"/>
+        <link rel="prev" title="Move Class" href="MoveClass.html"/> 
 
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
@@ -66,7 +67,7 @@
 <li class="toctree-l1"><a class="reference internal" href="MoveClass.html">Move Class</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="StruggleClass.html">Struggle Class</a><ul class="simple">
+<li class="toctree-l1 current"><a class="current reference internal" href="">Struggle Class</a><ul class="simple">
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="TypeClass.html">Type Class</a><ul class="simple">
@@ -93,10 +94,10 @@
 <li class="toctree-l1"><a class="reference internal" href="PokeXmlerClass.html">PokeXmler Class</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">How To Use</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#to-execute">To execute</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#modules-used">Modules used</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#to-generate-the-documentation">To generate the documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="HowToUse.html">How To Use</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="HowToUse.html#to-execute">To execute</a></li>
+<li class="toctree-l2"><a class="reference internal" href="HowToUse.html#modules-used">Modules used</a></li>
+<li class="toctree-l2"><a class="reference internal" href="HowToUse.html#to-generate-the-documentation">To generate the documentation</a></li>
 </ul>
 </li>
 </ul>
@@ -122,10 +123,10 @@
   <ul class="wy-breadcrumbs">
     <li><a href="index.html">Docs</a> &raquo;</li>
       
-    <li>How To Use</li>
+    <li>Struggle Class</li>
       <li class="wy-breadcrumbs-aside">
         
-          <a href="_sources/HowToUse.txt" rel="nofollow"> View page source</a>
+          <a href="_sources/StruggleClass.txt" rel="nofollow"> View page source</a>
         
       </li>
   </ul>
@@ -133,43 +134,23 @@
 </div>
           <div role="main">
             
-  <div class="section" id="how-to-use">
-<h1>How To Use<a class="headerlink" href="#how-to-use" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="struggle-class">
+<h1>Struggle Class<a class="headerlink" href="#struggle-class" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
 <ul class="simple">
 </ul>
 </div>
-<div class="section" id="to-execute">
-<h2>To execute<a class="headerlink" href="#to-execute" title="Permalink to this headline">¶</a></h2>
-<div class="line-block">
-<div class="line">The entries are passed through stdin.</div>
-<div class="line">On EP/src/ directory, execute:</div>
-<div class="line"><tt class="docutils literal"><span class="pre">cat</span> <span class="pre">entries</span> <span class="pre">-</span> <span class="pre">|</span> <span class="pre">python3.4</span> <span class="pre">main.py</span> <span class="pre">[mode]</span> <span class="pre">[-&#64;</span> <span class="pre">address]</span></tt></div>
-<div class="line">Where mode can be -s (server), -c (client) or -o (offline) and address is the address used by the server. For example:</div>
-<div class="line"><tt class="docutils literal"><span class="pre">cat</span> <span class="pre">../Entradas/Pokemons/Pikachu.pok</span> <span class="pre">-</span> <span class="pre">|</span> <span class="pre">python3.4</span> <span class="pre">main.py</span> <span class="pre">-s</span> <span class="pre">-&#64;</span> <span class="pre">localhost:5000</span></tt></div>
-<div class="line"><br /></div>
-</div>
-</div>
-<div class="section" id="modules-used">
-<h2>Modules used<a class="headerlink" href="#modules-used" title="Permalink to this headline">¶</a></h2>
-<div class="line-block">
-<div class="line">The modules that need to be installed are: <strong>bottle</strong> and <strong>requests</strong> that can be installed through pip.</div>
-<div class="line"><br /></div>
-</div>
-</div>
-<div class="section" id="to-generate-the-documentation">
-<h2>To generate the documentation<a class="headerlink" href="#to-generate-the-documentation" title="Permalink to this headline">¶</a></h2>
-<div class="line-block">
-<div class="line">Install sphinx and sphinx_rtd_theme:</div>
-<div class="line"><tt class="docutils literal"><span class="pre">python3.4</span> <span class="pre">-m</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">sphinx</span></tt></div>
-<div class="line"><tt class="docutils literal"><span class="pre">python3.4</span> <span class="pre">-m</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">sphinx_rtd_theme</span></tt></div>
-<div class="line"><br /></div>
-<div class="line">In EP/Docs/ directory, execute:</div>
-<div class="line"><tt class="docutils literal"><span class="pre">make</span> <span class="pre">html</span></tt></div>
-<div class="line">The html files will be generated on EP/Docs/build/html directory</div>
-<div class="line"><br /></div>
-</div>
-</div>
+<span class="target" id="module-struggle"></span><dl class="class">
+<dt id="struggle.Struggle">
+<em class="property">class </em><tt class="descclassname">struggle.</tt><tt class="descname">Struggle</tt><a class="headerlink" href="#struggle.Struggle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represents the struggle move. It&#8217;s upper class is Move. The only difference is use_move method wich in Stuggle, is a simple pass</p>
+<dl class="method">
+<dt id="struggle.Struggle.__init__">
+<tt class="descname">__init__</tt><big>(</big><big>)</big><a class="headerlink" href="#struggle.Struggle.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </div>
 
 
@@ -178,8 +159,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
+        <a href="TypeClass.html" class="btn btn-neutral float-right" title="Type Class"/>Next <span class="fa fa-arrow-circle-right"></span></a>
       
-        <a href="PokeXmlerClass.html" class="btn btn-neutral" title="PokeXmler Class"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+        <a href="MoveClass.html" class="btn btn-neutral" title="Move Class"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

@@ -1,0 +1,11 @@
+OfflineBattle Class
+==================
+.. toctree::
+   :maxdepth: 2
+
+.. automodule:: OfflineBattle 
+.. autoclass:: OfflineBattle
+   :members:
+
+   .. automethod:: __init__
+

@@ -12,7 +12,7 @@ To execute
 |   On EP/src/ directory, execute: 
 |   ``cat entries - | python3.4 main.py [mode] [-@ address]``
 |   Where mode can be -s (server), -c (client) or -o (offline) and address is the address used by the server. For example:
-|   ``cat ../Entradas/Pokemons/Pikachu.pok - | python3.4 main.py -s -@ localhost:5000
+|   ``cat ../Entradas/Pokemons/Pikachu.pok - | python3.4 main.py -s -@ localhost:5000``
 |
 ------------
 Modules used

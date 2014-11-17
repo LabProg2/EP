@@ -1,0 +1,11 @@
+ServerBattle Class
+==================
+.. toctree::
+   :maxdepth: 2
+
+.. automodule:: ServerBattle 
+.. autoclass:: ServerBattle
+   :members:
+
+   .. automethod:: __init__
+

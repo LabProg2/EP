@@ -1,0 +1,11 @@
+BattleIO Class
+==============
+.. toctree::
+   :maxdepth: 2
+
+.. automodule:: BattleIO
+.. autoclass:: BattleIO
+   :members:
+
+   .. automethod:: __init__
+
