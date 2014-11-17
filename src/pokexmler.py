@@ -100,7 +100,8 @@ class PokeXmler:
             xml = str(xml)
         except:
             raise TypeError("The xml must be a string")
-
+        print('tipo: ' + str(type(xml)))
+        print(xml)
         battle_state = fromstring(xml)
 
         pokemons = []

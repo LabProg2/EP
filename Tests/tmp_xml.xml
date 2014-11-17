@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+<battle_state>
+	<pokemon>
+		<name>teste</name>
+		<level>5</level>
+		<attributes>
+			<health>2</health>
+			<attack>3</attack>
+			<defense>4</defense>
+			<speed>5</speed>
+			<special>6</special>
+		</attributes>
+		<type>7</type>
+		<type>8</type>
+		<attacks>
+			<id>0</id>
+			<name>atk</name>
+			<type>2</type>
+			<power>30</power>
+			<accuracy>100</accuracy>
+			<power_points>5</power_points>
+		</attacks>
+	</pokemon>
+</battle_state>
