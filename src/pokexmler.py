@@ -61,7 +61,7 @@ class PokeXmler:
                 attacksElm = SubElement(pokemonElm, "attacks")
 
                 attackidElm = SubElement(attacksElm, "id")
-                attackidElm.text = str(i+1)
+                attackidElm.text = str(i)
 
                 attacknameElm = SubElement(attacksElm, "name")
                 attacknameElm.text = move.name
@@ -101,8 +101,6 @@ class PokeXmler:
         except:
             raise TypeError("The xml must be a string")
 
-        xml = self._clean_xml(xml)
-        #built_parser = self._build_parser()
         battle_state = fromstring(xml)
 
         pokemons = []
@@ -133,21 +131,4 @@ class PokeXmler:
             stats = Stats(hp=hp, attack=attack, defense=defense, speed=speed, special=special)
             pokemon = Pokemon(name=name, level=level, stats=stats, type_list=types, moves=moves)
             pokemons.append(pokemon)
-        print(pokemons)
         return pokemons
-
-    def _clean_xml(self, xml):
-        xml = sub(r'\\n|\\t|b\'', '', xml)
-        xml = sub(r'(<\?.*\?>)', '', xml)
-        xml = sub(r'\'', '', xml)
-        return xml
-
-    def _build_parser(sefl):
-        scheme_path = './xml_scheme/bs_scheme.xsd'
-        scheme_file = open(scheme_path)
-        xsd_str = scheme_file.read()
-        schema_root = etree.XML(xsd_str)
-        schema = etree.XMLSchema(schema_root)
-        parser = etree.XMLParser(schema = schema)
-        return parser
-
