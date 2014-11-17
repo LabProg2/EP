@@ -13,7 +13,7 @@ class TestServerBattle(unittest.TestCase):
         self.valid_poke = Pokemon([Type(7),Type(8)], Stats(2, 3, 4, 5, 6), [Move("atk", Type(2), 100, 30, 5)], "teste", 5)
         self.valid_host = 'localhost'
         self.valid_port = 5000
-        self.valid_adress = 'http://' + self.valid_host + ':' + str(self.valid_port)
+        self.valid_address = 'http://' + self.valid_host + ':' + str(self.valid_port)
         self.valid_server = ServerBattle(self.valid_poke, self.valid_host, self.valid_port)
 
     def test_init(self):

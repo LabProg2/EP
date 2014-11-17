@@ -14,10 +14,14 @@ class ServerBattle(Battle):
         if not isinstance(server_poke, Pokemon):
             raise TypeError("server_poke must be a Pokemon instance")
 
-        if type(host) is not str:
+        try:
+            host = str(host)
+        except:
             raise TypeError("host name must be a string") 
 
-        if type(port) is not int and type(port) is not str:
+        try:
+            port = int(port)
+        except:
             raise TypeError("port must be an integer or a string")
 
         self._battleio = BattleIO()
@@ -83,9 +87,6 @@ class ServerBattle(Battle):
 
         self._inform_pokes_info(self._client_poke, self._server_poke)
         move = self._client_poke.moves.get_move(idx)
-        print(self._client_poke.moves._moves)
-        print(idx)
-        print(move)
         self._perform_play(self._client_poke, self._server_poke, move)
 
         if not self._server_poke.is_alive():
