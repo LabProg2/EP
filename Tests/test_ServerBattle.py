@@ -37,9 +37,5 @@ class TestServerBattle(unittest.TestCase):
         invalid_host_server = ServerBattle(self.valid_poke, 'anythingbutavalidhost', '5000')
         self.assertRaises(RuntimeError, invalid_host_server.start)
 
-        invalid_host_server = ServerBattle(self.valid_poke, 'localhost', 'anyport')
-        self.assertRaises(RuntimeError, invalid_host_server.start)
-
-
 if __name__ == '__main__':
     unittest.main()

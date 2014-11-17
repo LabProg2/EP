@@ -14,9 +14,7 @@ class ServerBattle(Battle):
         if not isinstance(server_poke, Pokemon):
             raise TypeError("server_poke must be a Pokemon instance")
 
-        try:
-            host = str(host)
-        except:
+        if type(host) is not str:
             raise TypeError("host name must be a string") 
 
         try:
