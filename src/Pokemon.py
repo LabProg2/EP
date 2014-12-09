@@ -114,8 +114,31 @@ class Pokemon:
         '''
         return self._stats.hp > 0
 
-    def perform_move(self, move, onPokemon):
+    def calculates_damage(self, move, onPokemon):
         ''' Calculates the damage of Pokemon's attack over the onPokemon
+        
+        :param move: Pokemon's move that will be performed, object of the Move class.
+        :param onPokemon: The Pokemon's opponent in the battle
+        :returns: The damage received by the pokemon. If the pokemon missed the attack it returns -1 
+        '''
+
+        if not isinstance(onPokemon, Pokemon):
+            raise TypeError("onPokemon must be a Pokemon instance")
+
+        if not isinstance(move, Move):
+            raise TypeError("move must be a Move instance")
+
+        damage = -1
+        compare_modifier = self.compare_types_to(onPokemon)
+        modifier = compare_modifier * move.stab(self._type_list[0], self._type_list[1]) * self._stats.critical(self._level) * uniform(0.85,1)
+        damage = (self._stats.attack_force(self._level) * move.power / onPokemon._stats.defense_force() + 2) * modifier
+        damage = int(damage)
+
+        return damage
+
+
+    def perform_move(self, move, onPokemon):
+        ''' Pokemon tries to attack the onPokemon
         
         :param move: Pokemon's move that will be performed, object of the Move class.
         :param onPokemon: The Pokemon's opponent in the battle
@@ -131,13 +154,30 @@ class Pokemon:
         damage = -1
         if not move.missed() and move.pp > 0:
             move.use_move()
-            compare_modifier = self.compare_types_to(onPokemon)
-            modifier = compare_modifier * move.stab(self._type_list[0], self._type_list[1]) * self._stats.critical(self._level) * uniform(0.85,1)
-            damage = (self._stats.attack_force(self._level) * move.power / onPokemon._stats.defense_force() + 2) * modifier
-            damage = int(damage)
+
+            damage = self.calculates_damage(move, onPokemon)
             onPokemon.receive_damage(damage)
 
         return damage
+
+    def best_move(self, onPokemon):
+        ''' Checks Pokemon's best move (bigger damage) over the onPokemon
+
+        :param onPokemon: The Pokemon's opponent in the battle
+        :returns: The best move (bigger damage)
+        '''
+
+        if not isinstance(onPokemon, Pokemon):
+            raise TypeError("onPokemon must be a Pokemon instance")
+
+        bestMove = self._moves.get_move(1)
+
+        for move in self._moves:
+            if  self.calculates_damage(move, onPokemon) > self.calculates_damage(bestMove, onPokemon) and move.isavailable():
+                bestMove = move
+
+        return bestMove
+
 
     def compare_types_to(self, pokemon):
         ''' Compare every combination between two pokemon's types. 

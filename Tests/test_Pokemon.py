@@ -6,17 +6,19 @@ from Pokemon import Pokemon
 from Stats import Stats
 from Type import Type
 from Move import Move
+from movelist import MoveList
 
 class testPokemon(unittest.TestCase):
     def setUp(self):
-        self.valid_pokemon1 = Pokemon([Type(7),Type(8)], Stats(2, 3, 4, 5, 6), [Move("atk", Type(2), 100, 30, 5)], "teste", 5)
+        self.valid_pokemon1 = Pokemon([Type(7),Type(8)], Stats(2, 3, 4, 5, 6), [Move("atk", Type(2), 100, 30, 5), Move("atk", Type(2), 100, 30, 100)], "teste", 5)
         self.valid_pokemon2 = Pokemon([Type(3),Type(4)], Stats(10, 11, 3, 13, 14), [Move("atk", Type(1), 7, 8, 9)], "NameTest2", 1)
 
         self.valid_type_list = [Type(7),Type(8)]
         self.valid_stats = Stats(10, 3, 4, 5, 6)
         self.valid_name = "NameTest"
         self.valid_level = 5
-        self.valid_move = [Move("atk", Type(2), 100, 30, 5)]
+        self.valid_move = [Move("atk", Type(2), 100, 30, 5), Move("atk2", Type(2), 100, 30, 100)]
+        self.valid_movelist = MoveList([Move("atk", Type(2), 100, 30, 5), Move("atk2", Type(2), 100, 30, 100)])
         pass
 
     def test_is_alive(self):
@@ -54,7 +56,11 @@ class testPokemon(unittest.TestCase):
 
         # Test absurds
         self.assertRaises(TypeError, self.valid_pokemon1.receive_damage, object())        
-        self.assertRaises(ValueError, self.valid_pokemon1.receive_damage, -100)        
+        self.assertRaises(ValueError, self.valid_pokemon1.receive_damage, -100)    
+
+    def test_best_move(self):
+        # Test regular use of the function
+        self.assertEqual(self.valid_pokemon1.perform_move(self.valid_movelist.get_move(1), self.valid_pokemon2), self.valid_pokemon1.perform_move(self.valid_pokemon1.best_move(self.valid_pokemon2), self.valid_pokemon2))
 
 if __name__ == '__main__':
     unittest.main()
