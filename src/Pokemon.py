@@ -130,12 +130,33 @@ class Pokemon:
 
         damage = -1
         compare_modifier = self.compare_types_to(onPokemon)
-        modifier = compare_modifier * move.stab(self._type_list[0], self._type_list[1]) * self._stats.critical(self._level) * uniform(0.85,1)
+        modifier = compare_modifier * move.stab(self._type_list[0], self._type_list[1]) * self._stats.critical(self._level) * uniform(0.85, 1)
         damage = (self._stats.attack_force(self._level) * move.power / onPokemon._stats.defense_force() + 2) * modifier
         damage = int(damage)
 
         return damage
 
+    def expected_damage(self, move, onPokemon):
+        ''' Returns the expected damage of Pokemon's attack over the onPokemon
+        
+        :param move: Pokemon's move that will be performed, object of the Move class.
+        :param onPokemon: The Pokemon's opponent in the battle
+        :returns: The expected damage received by the pokemon.
+        '''
+        if not isinstance(onPokemon, Pokemon):
+            raise TypeError("onPokemon must be a Pokemon instance")
+
+        if not isinstance(move, Move):
+            raise TypeError("move must be a Move instance")
+
+        compare_modifier = self.compare_types_to(onPokemon)
+        move_stab = move.stab(self._type_list[0], self._type_list[1])
+        expected_uniform_multiplier = (1 - 0.85 ** 2) / (2 * (1 - 0.85))
+        expected_modifier = move_stab * compare_modifier * self._stats.expected_critical_multiplier(self._level) * expected_uniform_multiplier
+        expected_damage = (self._stats.attack_force(self._level) * move.power / onPokemon._stats.defense_force() + 2) * expected_modifier
+        expected_damage = int(expected_damage)
+
+        return expected_damage
 
     def perform_move(self, move, onPokemon):
         ''' Pokemon tries to attack the onPokemon

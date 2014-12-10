@@ -126,6 +126,22 @@ class Stats:
             print("It was a critical hit!")
             return (2 * level + 5) / (level + 5)
         return 1
+    
+    def expected_critical_multiplier(self, level):
+        '''Calculates the expected value of the return of the critial function
+
+        :param level: The pokemon's level
+        :returns: the expected value of the return of the critial function.
+        '''
+        try:
+            level = int(level)
+            if level < 0:
+                raise ValueError('level must be an integer greater than 0')
+        except TypeError:
+            raise TypeError('level must be an integer')
+        #expect = 1 * P(critical = 1) + x * P(critical = x)
+        expectation = 1 * (self._speed / 512) + ((2 * level + 5) / (level + 5)) * (1 - (self._speed / 512))
+        return expectation
 
     def decrease_life(self, amount):
         '''Decreases the hp (health points) of the Pokemon by the value of amount
