@@ -5,7 +5,9 @@ from time import sleep
 
 class OfflineBattle(Battle):
     ''' The offline battle '''
-    def __init__(self, poke1, poke2):
+    def __init__(self, poke1, poke2, ai = False):
+        super().__init__(ai)
+
         ''' Prepare battle between poke1 and poke2
         :param poke1: A Pokemon
         :param poke2: Another Pokemon
@@ -23,7 +25,7 @@ class OfflineBattle(Battle):
             self._inform_pokes_info(self._active_poke, self._idle_poke)
 
             sleep(0.5)
-            move = self._select_move(self._active_poke)
+            move = self._select_move(self._active_poke, self._idle_poke, self._ai)
             self._perform_play(self._active_poke, self._idle_poke, move)
             self._switch_turns()    
 

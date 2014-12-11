@@ -7,6 +7,8 @@ from random import random
 
 class Battle:
     '''The battle between two pokemons'''
+    def __init__(self, ai = False):
+        self._ai = ai
 
     def _starting_poke(self, poke1, poke2):
         '''Decides whose pokemon starts to play
@@ -22,13 +24,16 @@ class Battle:
             return(poke1, poke2)
         return (poke2, poke1)
 
-    def _select_move(self, atking_poke):
+    def _select_move(self, atking_poke, atked_poke, best_move = False):
         '''Let the atking_poke choose a move
         :param atking_poke: The pokemon that is attacking
         :param move_list: The move list of the pokemon
         '''
         self._battleio.print_moves_of(atking_poke)
-        move = self._battleio.read_move_of(atking_poke)
+        if best_move:
+            move = atking_poke.best_move(onPokemon = atked_poke)
+        else:
+            move = self._battleio.read_move_of(atking_poke)
         return move
     
     def _perform_play(self, atking_poke, atked_poke, move):

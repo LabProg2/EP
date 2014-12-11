@@ -191,12 +191,16 @@ class Pokemon:
         if not isinstance(onPokemon, Pokemon):
             raise TypeError("onPokemon must be a Pokemon instance")
 
-        bestMove = self._moves.get_move(1)
-
+        bestMove = None
         for move in self._moves:
-            if  self.calculates_damage(move, onPokemon) > self.calculates_damage(bestMove, onPokemon) and move.isavailable():
+            if bestMove == None:
+                if move.isavailable():
+                    bestMove = move
+            elif self.expected_damage(move, onPokemon) > self.expected_damage(bestMove, onPokemon) and move.isavailable():
                 bestMove = move
 
+        if bestMove == None:
+            return self._moves.struggle
         return bestMove
 
 
