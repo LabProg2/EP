@@ -174,11 +174,11 @@ class Pokemon:
 
         damage = -1
         if not move.missed() and move.pp > 0:
-            move.use_move()
 
             damage = self.calculates_damage(move, onPokemon)
             onPokemon.receive_damage(damage)
 
+        move.use_move()
         return damage
 
     def best_move(self, onPokemon):

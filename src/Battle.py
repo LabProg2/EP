@@ -3,6 +3,7 @@ from time import sleep
 from Pokemon import Pokemon
 from Move import Move
 from pokexmler import PokeXmler
+from random import random
 
 class Battle:
     '''The battle between two pokemons'''
@@ -14,10 +15,14 @@ class Battle:
         :param poke1: A pokemon
         :param poke2: Another pokemon
         '''
-        if poke1.speed >= poke2.speed:
+        if poke1.speed > poke2.speed:
             return (poke1, poke2)
-        else:
+        elif poke1.speed < poke2.speed:
             return (poke2, poke1)
+        
+        if random() <= .5:
+            return(poke1, poke2)
+        return (poke2, poke1)
 
     def _select_move(self, atking_poke, atked_poke, best_move = False):
         '''Let the atking_poke choose a move
