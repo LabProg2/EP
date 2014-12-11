@@ -50,12 +50,6 @@ class ClientBattle(Battle):
         
         while self._client_poke.is_alive() and self._server_poke.is_alive():
             self._inform_pokes_info(self._client_poke, self._server_poke)
-
-            print("**************\nvalores esperados de dano:")
-            for move in self._client_poke.moves:
-                print(move.name + " : " + str(self._client_poke.expected_damage(move, self._server_poke)))
-            print("**************")
-
             move = self._select_move(self._client_poke, self._server_poke, self._ai)
             move_id = self._client_poke.moves.get_move_id(move)
             move_path = self._server_address + ':' + self._server_port + attack_path + '/' + str(move_id)
