@@ -12,6 +12,7 @@ parser.add_argument("-s", "--server", help="Server mode", action="store_true")
 parser.add_argument("-c", "--client", help="Client mode", action="store_true")
 parser.add_argument("-o", "--offline", help="Offline mode", action="store_true")
 parser.add_argument("-@", "--at", help="The address of the server", type=str)
+parser.add_argument("-i", "--artificial_intelligence", help="Artificial Intelligence mode. It will choose attacks by itself", action="store_true")
 args = parser.parse_args()
 
 if not args.at:
@@ -26,17 +27,17 @@ port = server_info[1]
 pokereader = PokeReader()
 if args.server:
     server_poke = pokereader.read_pokemons(1)
-    server_battle = ServerBattle(server_poke, host=address, port=port)
+    server_battle = ServerBattle(server_poke, host=address, port=port, ai=args.artificial_intelligence)
     server_battle.start(muted = False)
 
 elif args.client:
     client_poke = pokereader.read_pokemons(1)
-    client_battle = ClientBattle(client_poke, server_address="http://" + address, server_port=port)
+    client_battle = ClientBattle(client_poke, server_address="http://" + address, server_port=port, ai=args.artificial_intelligence)
     client_battle.run_battle()
 
 elif args.offline:
     poke1, poke2 = pokereader.read_pokemons(2)
-    offline_battle = OfflineBattle(poke1, poke2)
+    offline_battle = OfflineBattle(poke1, poke2, ai=args.artificial_intelligence)
     offline_battle.run_battle()
 
 else:

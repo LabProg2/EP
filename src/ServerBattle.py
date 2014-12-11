@@ -5,7 +5,8 @@ from Pokemon import Pokemon
 
 class ServerBattle(Battle):
     '''The server player in a client-server battle'''
-    def __init__(self, server_poke, host = 'localhost', port = '5000'):
+    def __init__(self, server_poke, host = 'localhost', port = '5000', ai = False):
+        super().__init__(ai)
         '''Prepare the server to host the battle
         :param server_poke: The pokemon used by the server player
         :param host: The address of the server
@@ -105,7 +106,7 @@ class ServerBattle(Battle):
     
     def _server_attack(self):
         self._inform_pokes_info(self._server_poke, self._client_poke)
-        move = self._select_move(self._server_poke)
+        move = self._select_move(self._server_poke, self._client_poke, self._ai)
         self._perform_play(self._server_poke, self._client_poke, move)
         
         self._update_battle_state(self._client_poke, self._server_poke)
