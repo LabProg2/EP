@@ -22,6 +22,8 @@ class Battle:
     def _select_move(self, atking_poke, atked_poke, best_move = False):
         '''Let the atking_poke choose a move
         :param atking_poke: The pokemon that is attacking
+        :param atked_poke: the pokemo that is being attacked
+        :param best_move: Optional parameter. If set to True the choosed move will be always the best one. 
         :param move_list: The move list of the pokemon
         '''
         self._battleio.print_moves_of(atking_poke)
