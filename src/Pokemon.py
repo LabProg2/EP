@@ -191,6 +191,7 @@ class Pokemon:
         if not isinstance(onPokemon, Pokemon):
             raise TypeError("onPokemon must be a Pokemon instance")
 
+   
         bestMove = None
         for move in self._moves:
             if bestMove == None:

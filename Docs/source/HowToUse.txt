@@ -10,9 +10,11 @@ To execute
 ----------
 |   The entries are passed through stdin.
 |   On EP/src/ directory, execute: 
-|   ``cat entries - | python3.4 main.py [mode] [-@ address]``
-|   Where mode can be -s (server), -c (client) or -o (offline) and address is the address used by the server. For example:
+|   ``cat entries - | python3.4 main.py [mode] [-@ address] [i]``
+|   Where mode can be -s (server), -c (client) or -o (offline), address is the address used by the server and 'i' is a flag to set Artificial Intelligence.. For example:
 |   ``cat ../Entradas/Pokemons/Pikachu.pok - | python3.4 main.py -s -@ localhost:5000``
+|   For more help type:
+|   ``python3.4 main.py --help``
 |
 ------------
 Modules used

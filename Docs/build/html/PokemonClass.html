@@ -170,6 +170,43 @@
 </dd></dl>
 
 <dl class="method">
+<dt id="Pokemon.Pokemon.best_move">
+<tt class="descname">best_move</tt><big>(</big><em>onPokemon</em><big>)</big><a class="headerlink" href="#Pokemon.Pokemon.best_move" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks Pokemon&#8217;s best move (bigger damage) over the onPokemon</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>onPokemon</strong> &#8211; The Pokemon&#8217;s opponent in the battle</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The best move (bigger damage)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Pokemon.Pokemon.calculates_damage">
+<tt class="descname">calculates_damage</tt><big>(</big><em>move</em>, <em>onPokemon</em><big>)</big><a class="headerlink" href="#Pokemon.Pokemon.calculates_damage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the damage of Pokemon&#8217;s attack over the onPokemon</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>move</strong> &#8211; Pokemon&#8217;s move that will be performed, object of the Move class.</li>
+<li><strong>onPokemon</strong> &#8211; The Pokemon&#8217;s opponent in the battle</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">The damage received by the pokemon. If the pokemon missed the attack it returns -1</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
 <dt id="Pokemon.Pokemon.compare_types_to">
 <tt class="descname">compare_types_to</tt><big>(</big><em>pokemon</em><big>)</big><a class="headerlink" href="#Pokemon.Pokemon.compare_types_to" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compare every combination between two pokemon&#8217;s types.</p>
@@ -180,6 +217,27 @@
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>pokemon</strong> &#8211; The deffensive pokemon.</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The <strong>Type</strong> coefficient to be used on damage formula</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Pokemon.Pokemon.expected_damage">
+<tt class="descname">expected_damage</tt><big>(</big><em>move</em>, <em>onPokemon</em><big>)</big><a class="headerlink" href="#Pokemon.Pokemon.expected_damage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the expected damage of Pokemon&#8217;s attack over the onPokemon</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>move</strong> &#8211; Pokemon&#8217;s move that will be performed, object of the Move class.</li>
+<li><strong>onPokemon</strong> &#8211; The Pokemon&#8217;s opponent in the battle</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">The expected damage received by the pokemon.</p>
+</td>
 </tr>
 </tbody>
 </table>
@@ -202,7 +260,7 @@
 <dl class="method">
 <dt id="Pokemon.Pokemon.perform_move">
 <tt class="descname">perform_move</tt><big>(</big><em>move</em>, <em>onPokemon</em><big>)</big><a class="headerlink" href="#Pokemon.Pokemon.perform_move" title="Permalink to this definition">¶</a></dt>
-<dd><p>Calculates the damage of Pokemon&#8217;s attack over the onPokemon</p>
+<dd><p>Pokemon tries to attack the onPokemon</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
